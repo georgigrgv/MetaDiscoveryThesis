@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc93fb1d-ceaa-40ca-bff7-b94e5c79ec26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/build.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ivy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ivysettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/playground/pipeline/MetaDiscoveryPipeline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/build.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1730057263570</updated>
       <workItem from="1730057264600" duration="6595000" />
-      <workItem from="1730112519791" duration="2857000" />
+      <workItem from="1730112519791" duration="3808000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1730111598825</created>
