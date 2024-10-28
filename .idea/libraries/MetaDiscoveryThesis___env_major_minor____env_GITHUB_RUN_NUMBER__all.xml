@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
