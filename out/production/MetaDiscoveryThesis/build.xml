@@ -1,0 +1,135 @@
+<project name="MetaDiscoveryThesis" default="Compile Sources" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+	<!-- Set global properties for this build -->
+	<property environment="env" />
+	<property name="src" location="algorithm" /> <!-- Updated source location -->
+	<property name="build" location="bindist" />
+	<property name="doc" location="doc" />
+	<property name="lib" location="lib" />
+	<property name="dist" location="dist" />
+	<property name="release" location="latestrelease" />
+	<property name="version" value="${env.major_minor}.${env.GITHUB_RUN_NUMBER}" />
+	<property name="project" value="MetaDiscoveryThesis" />
+	<property name="env.bytecode_format" value="1.8" />
+
+	<property name="author" value="SJJ Leemans" />
+	<property name="organization" value="Queensland University of Technology" />
+	<property name="description" value="Discovers process models from event logs recursively" />
+	<property name="license" value="L-GPL" />
+	<property name="logo" value="http://leemans.ch/figures/logoInductiveMiner.png" />
+
+	<property name="ivy.lib.dir" value="ivy" />
+	<property name="os" value="all" />
+
+	<property name="ivy.install.version" value="2.1.0-rc2" />
+	<condition property="ivy.home" value="${env.IVY_HOME}">
+		<isset property="env.IVY_HOME" />
+	</condition>
+	<property name="ivy.home" value="${user.home}/.ant" />
+	<property name="ivy.jar.dir" value="${ivy.home}/lib" />
+	<property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+
+	<target name="download-ivy" unless="offline">
+		<mkdir dir="${ivy.jar.dir}"/>
+		<get src="https://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+			 dest="${ivy.jar.file}" usetimestamp="true"/>
+	</target>
+
+	<target name="init-ivy" depends="download-ivy">
+		<path id="ivy.lib.path">
+			<fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+		</path>
+		<taskdef resource="org/apache/ivy/ant/antlib.xml"
+				 uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
+	</target>
+
+	<path id="classpath">
+		<pathelement path="${build}" />
+		<pathelement path="${java.class.path}" />
+		<fileset dir=".">
+			<include name="ivy/**/*.jar" />
+			<include name="lib/**/*.jar" />
+		</fileset>
+	</path>
+
+	<macrodef name="compile">
+		<sequential>
+			<javac srcdir="${src}" classpathref="classpath" destdir="${build}" nowarn="false" verbose="no" debug="true" debuglevel="lines,vars,source" deprecation="yes" source="${env.bytecode_format}" target="${env.bytecode_format}">
+				<compilerarg value="-Xlint:unchecked" />
+			</javac>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="makejar">
+		<sequential>
+			<jar jarfile="${dist}/${project}-${DSTAMP}.jar">
+				<fileset dir="${build}">
+					<include name="**" />
+					<exclude name="test**" />
+				</fileset>
+				<fileset dir="${src}">
+					<include name="**" />
+					<exclude name="test**" />
+				</fileset>
+				<manifest>
+					<attribute name="Built-By" value="${user.name}" />
+					<attribute name="Specification-Title" value="${project}" />
+					<attribute name="Specification-Version" value="${version}" />
+					<attribute name="Specification-Vendor" value="www.processmining.org" />
+					<attribute name="Implementation-Title" value="${project}" />
+					<attribute name="Implementation-Version" value="${version} ${TODAY}" />
+					<attribute name="Implementation-Vendor" value="www.processmining.org" />
+					<attribute name="Sealed" value="false" />
+				</manifest>
+			</jar>
+			<copy file="${dist}/${project}-${DSTAMP}.jar" tofile="${dist}/${project}.jar" overwrite="true" />
+		</sequential>
+	</macrodef>
+
+	<target name="clean">
+		<echo message="[build] Cleaning binaries and distributions" />
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<target name="resolve" depends="init-ivy" >
+		<ivy:retrieve type="jar,bundle" sync="true" haltonfailure="false" />
+		<ivy:retrieve pattern="lib/[artifact]-[revision].[ext]" conf="lib" type="jar,bundle" sync="true" />
+	</target>
+
+	<target name="javadoc">
+		<echo message="[build] Creating javadoc" />
+		<javadoc packagenames="**" classpathref="classpath" useexternalfile="true" defaultexcludes="yes" destdir="${doc}" author="true" version="true" verbose="false" use="true" windowtitle="${project}">
+			<fileset dir=".">
+				<include name="src/**/*.java" />
+				<exclude name="src/test/**/*.java" />
+			</fileset>
+		</javadoc>
+	</target>
+
+	<target name="compile">
+		<echo message="[build] Compiling the sources" />
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+		<compile />
+	</target>
+
+	<target name="makejar">
+		<echo message="[build] Creating jar" />
+		<tstamp />
+		<makejar />
+	</target>
+
+	<target name="archive">
+		<echo message="[build] Packaging the project" />
+		<zip destfile="${release}/${project}-${version}-${os}.zip">
+			<zipfileset dir="${lib}" prefix="lib">
+				<include name="**" />
+			</zipfileset>
+			<zipfileset dir="${dist}" prefix="">
+				<include name="${project}.jar" />
+			</zipfileset>
+		</zip>
+	</target>
+
+	<target name="buildHudson" depends="clean,resolve,javadoc,compile,makejar,archive" />
+</project>

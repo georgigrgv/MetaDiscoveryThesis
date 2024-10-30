@@ -1,7 +1,7 @@
 <project name="MetaDiscoveryThesis" default="Compile Sources" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 	<!-- Set global properties for this build -->
 	<property environment="env" />
-	<property name="src" location="playground" /> <!-- Updated source location -->
+	<property name="src" location="algorithm" /> <!-- Updated source location -->
 	<property name="build" location="bindist" />
 	<property name="doc" location="doc" />
 	<property name="lib" location="lib" />
@@ -131,5 +131,5 @@
 		</zip>
 	</target>
 
-	<target name="buildHudson" depends="clean,resolve,javadoc,compile,makejar,archive" />
+	<target name="buildHudson" depends="clean,resolve,compile,makejar,archive" />
 </project>
