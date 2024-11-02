@@ -3,18 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="bc93fb1d-ceaa-40ca-bff7-b94e5c79ec26" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/EventLogFilter$Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/EventLogFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/build.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/EventLogFilters$Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/EventLogFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/EventLogFilters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis-20241030.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/factory/PluginContextFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/factory/PluginContextFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algorithm/pipeline/MetaDiscoveryPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/pipeline/MetaDiscoveryPipeline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/preprocessing/EventLogFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/preprocessing/EventLogFilters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/preprocessing/EventLogFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/preprocessing/EventLogFilters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/tests/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bindist/algorithm/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/algorithm/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/algorithm/preprocessing/EventLogFilter$Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/algorithm/preprocessing/EventLogFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241030.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/algorithm/preprocessing/EventLogFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/algorithm/preprocessing/EventLogFilters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241102.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241102.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ivy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +76,7 @@
       <recent name="$PROJECT_DIR$/src/playground/" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.EventLogFilters$Main">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="EventLogFilter$Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="algorithm.preprocessing.EventLogFilter$Main" />
       <module name="MetaDiscoveryThesis" />
@@ -112,8 +116,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="algorithm.tests.Main" />
+      <module name="MetaDiscoveryThesis" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="algorithm.tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.EventLogFilters$Main" />
         <item itemvalue="Application.EventLogFilter$Main" />
         <item itemvalue="Application.EventLogFilter" />
@@ -131,7 +149,7 @@
       <workItem from="1730057264600" duration="6595000" />
       <workItem from="1730112519791" duration="3808000" />
       <workItem from="1730309470458" duration="6045000" />
-      <workItem from="1730316640009" duration="7217000" />
+      <workItem from="1730316640009" duration="13644000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1730111598825</created>
@@ -174,5 +192,35 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="main" />
     <option name="LAST_COMMIT_MESSAGE" value="main" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/algorithm/tests/Main.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/Log-latest.jar!/org/processmining/plugins/log/logfilters/impl/EventLogFilter.class</url>
+          <line>92</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/Log-latest.jar!/org/processmining/plugins/log/logfilters/impl/EventLogFilter.class</url>
+          <line>64</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="17" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="minOccurrence" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

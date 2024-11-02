@@ -16,13 +16,14 @@ public class EventLogFilters {
     public XLog filterMinCases(PluginContext context, XLog xLog, XEventClasses eventClasses,
                                XEventClass[] eventClassesToKeep, final Double minCases){
         final EventLogFilter filter = new EventLogFilter();
-        return filter.filterWithMinCases(context, xLog, eventClasses, eventClassesToKeep, minCases);
+        return filter.filterWithMinOccFreq(context, xLog, eventClasses, eventClassesToKeep, minCases);
     }
 
-    public static XLog loadXLog(File xesFile) throws Exception {
+    public XLog loadXLog(String xesFile) throws Exception {
+        File initialFile = new File(xesFile);
         XesXmlParser parser = new XesXmlParser();
-        if (parser.canParse(xesFile)) {
-            List<XLog> logs = parser.parse(xesFile);
+        if (parser.canParse(initialFile)) {
+            List<XLog> logs = parser.parse(initialFile);
             if (!logs.isEmpty()) {
                 return logs.get(0);
             }
