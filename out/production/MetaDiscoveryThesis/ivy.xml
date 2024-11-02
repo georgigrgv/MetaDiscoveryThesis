@@ -9,8 +9,12 @@
    		<conf name="lib" />
 	</configurations>
     <dependencies defaultconf="default">
+        <!-- Used to checks jars for implementations-->
+        <dependency org="prom" name="LogFiltering" rev="latest" changing="true" transitive="true" />
+        <!-- Dependencies needed for plugin       -->
     	<dependency org="prom" name="InductiveMiner" rev="latest" changing="true" transitive="true" />
-    	<dependency org="prom" name="ProM-Plugins" rev="latest" changing="true" transitive="true" />	
+
+    	<dependency org="prom" name="ProM-Plugins" rev="latest" changing="true" transitive="true" />
     	<dependency org="prom" name="ProcessTree" rev="latest" changing="true" transitive="true" />	
     	<dependency org="prom" name="Properties" rev="latest" changing="true" transitive="true" />
         <dependency org="prom" name="PetriNets" rev="latest" changing="true" transitive="true" />

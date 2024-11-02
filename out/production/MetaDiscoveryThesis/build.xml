@@ -131,5 +131,5 @@
 		</zip>
 	</target>
 
-	<target name="buildHudson" depends="clean,resolve,javadoc,compile,makejar,archive" />
+	<target name="buildHudson" depends="clean,resolve,compile,makejar,archive" />
 </project>
