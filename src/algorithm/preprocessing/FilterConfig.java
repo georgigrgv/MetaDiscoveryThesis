@@ -10,6 +10,7 @@ import org.processmining.filterd.parameters.ParameterRangeFromRange;
 
 public class FilterConfig {
 
+    // Test Parameters for second filter plugin
     public static List<Parameter> createFilterParameters() {
         List<Parameter> parameters = new ArrayList<>();
 
@@ -29,7 +30,7 @@ public class FilterConfig {
         parameters.add(filterModeParam);
 
         // Threshold range parameter (0.0 to 100.0 in this case)
-        List<Double> rangeFreqDefault = Arrays.asList(0.0, 100.0);
+        List<Double> rangeFreqDefault = Arrays.asList(0.0, 1.0);
         List<Double> rangeFreqOptions = Arrays.asList(0.0, 100.0);  // Set the min and max values for the range
         ParameterRangeFromRange<Double> rangeFreqParam = new ParameterRangeFromRange<>("rangeFreq", "Threshold", rangeFreqDefault, rangeFreqOptions, Double.class);
         parameters.add(rangeFreqParam);
