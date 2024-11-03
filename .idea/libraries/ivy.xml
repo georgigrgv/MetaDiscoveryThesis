@@ -153,8 +153,13 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/gurobi-6.5.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/asm-5.0.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/batik-script-1.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
+    </SOURCES>
   </library>
 </component>

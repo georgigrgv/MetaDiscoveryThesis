@@ -3,6 +3,7 @@ package algorithm.tests;
 import algorithm.factory.PluginContextFactory;
 import algorithm.pipeline.MetaDiscoveryPipeline;
 import algorithm.preprocessing.EventLogFilters;
+import org.deckfour.xes.info.XLogInfoFactory;
 import org.deckfour.xes.model.XLog;
 import org.processmining.plugins.log.logfilters.impl.EventLogFilter;
 
@@ -14,6 +15,7 @@ public class Main {
 
         XLog xLog = eventLogFilters.loadXLog("/Users/georgegeorgiev/Downloads/Road_Traffic_Fine_Management_Process.xes");
         XLog xlog = discoveryPipeline.processLog(factory.getContext(), xLog);
-        xlog.forEach(System.out::println);
+        System.out.println(XLogInfoFactory.createLogInfo(xlog).getEventClasses().getClasses());
+
     }
 }

@@ -2,23 +2,186 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc93fb1d-ceaa-40ca-bff7-b94e5c79ec26" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/algorithm/preprocessing/FilterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ivy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/EventLogFilters$Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/EventLogFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/EventLogFilters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis-20241030.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/tests/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/tests/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis-20241102.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis-20241102.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/AcceptingPetriNetDecomposer-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/AccessCPN-unknown.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/ActivityClusterArray-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/ActivityClusterArrayCreator-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/ActivityClusterArrayExtractor-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/Alignment-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/BPMN-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/CNet-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/CNetReplayer-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/CPNet-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/CausalActivityGraph-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/CausalActivityGraphCreator-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/CausalActivityMatrix-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/CausalActivityMatrixCreator-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/CausalActivityMatrixMiner-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/ChangePatterns-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/CohortAnalysis-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/DataAwareCNetMinerHCG-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/DataAwareReplayer-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/DataAwareReplayerLGPL-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/DataDiscovery-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/DataExpression-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/DataPetriNets-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/DataPetriNetsLGPL-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/DecomposedReplayer-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/DirectlyFollowsModelMiner-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/EMF-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/EPC-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/ETConformance-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/EarthMoversStochasticConformanceChecking-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/EvolutionaryTreeMiner-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/FastDTW-unknown.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/Fuzzy-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/GraphVisualizers-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/GuideTreeMiner-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/HybridILPMiner-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/ILPMiner-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/InductiveVisualMiner-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/IntervalTree-unknown.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/JRI-unknown.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/JRIEngine-unknown.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/LTL2Automaton-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/LogAlignment-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/LogDecomposer-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/LogFiltering-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/ModelRepair-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/Monte-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/PNAnalysis-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/PNetAlignmentAnalysis-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/PTAndLogGenerator-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/PTConversions-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/PTMerge-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/PetriNetSimulator-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/PrimeMiner-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/ProjectedRecallAndPrecision-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/PyTree-20180312.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/REngine-unknown.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/RTED-1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/Simpy-20180312.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/SparseBitSet-1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/StatisticalTests-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/StochasticAwareConformanceChecking-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/StochasticLabelledPetriNets-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/StochasticPetriNets-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/TraceAlignmentWithGuideTree-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/TreeSimulator-20180312.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/Uma-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/Visualisation3D-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/Weka-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/Woflan-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/XESAlignmentExtension-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/XESLite-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/antlr-2.7.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/antlr-runtime-3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/approxlib-1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/arpack_combined_all-0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/autocomplete-2.5.8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/bounce-0.18.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/dictomaton-1.2.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/eclipse-collections-9.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/eclipse-collections-api-9.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/flatlaf-2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-2.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-natives-android-armv6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-natives-linux-amd64.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-natives-linux-armv6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-natives-linux-armv6hf.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-natives-linux-i586.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-natives-macosx-universal.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-natives-solaris-amd64.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-natives-solaris-i586.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-natives-windows-amd64.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-natives-windows-i586.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/gluegen-rt-2.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/hamcrest-all-1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/hamcrest-core-1.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/high-scale-lib-1.1.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/istack-commons-runtime-3.0.12.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/j2ssh-common-0.2.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/j2ssh-core-0.2.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jakarta.activation-1.2.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jakarta.activation-api-1.2.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jakarta.xml.bind-api-2.3.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jama-1.0.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/java-cup-11b-2015.03.26.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/java-cup-11b-20160615.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/java-cup-11b-runtime-2015.03.26.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/java-cup-runtime-11b-20160615.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/java-sizeof-0.0.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/javabdd-1.0b2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/javassist-unknown.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/javolution-5.2.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jaxb-runtime-2.3.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jblas-1.2.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jclipboardhelper-0.1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jep-2.4.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jetm-1.2.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jfilechooser-bookmarks-0.1.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jgoodies-common-1.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jgoodies-forms-1.9.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-2.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-natives-android-armv6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-natives-linux-amd64.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-natives-linux-armv6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-natives-linux-armv6hf.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-natives-linux-i586.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-natives-macosx-universal.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-natives-solaris-amd64.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-natives-solaris-i586.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-natives-windows-amd64.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2-natives-windows-i586.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-2.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-main-2.3.2-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-main-2.3.2-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jogl-all-main-2.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jscience-4.3.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/json-simple-1.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/jxl-2.6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/mtj-1.0.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/nativewindow-2.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/netlib-java-1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/noUniqueTraces-20180312.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/oplall-6.3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/optics_dbScan-1.0.4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/org.eclipse.emf.common-2.7.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/org.eclipse.emf.ecore-2.8.3.v20130125-0546.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/org.eclipse.emf.ecore.xmi-2.5.0.v20100521-1846.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/org.eclipse.uml2.common-1.5.0.v201005031530.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/org.eclipse.uml2.uml-3.1.2.v201010261927.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/org.mozilla.javascript-1.7.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/pnapi-java-1.0.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/simple-xml-2.6.9.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/simple-xml-2.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/simpleEducationalLearningSchemes-1.0.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/stax-1.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/stax-api-1.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/stringtemplate-3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/txw2-2.3.5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/uma-1.3.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/weka-stable-3.8.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/xercesImpl-2.11.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/xmlParserAPIs-2.6.2.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/factory/PluginContextFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/factory/PluginContextFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algorithm/pipeline/MetaDiscoveryPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/pipeline/MetaDiscoveryPipeline.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algorithm/preprocessing/EventLogFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/preprocessing/EventLogFilters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algorithm/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/tests/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/algorithm/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/algorithm/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/algorithm/preprocessing/EventLogFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/algorithm/preprocessing/EventLogFilters.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241102.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241102.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ivy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +225,7 @@
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15332031" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -149,7 +312,7 @@
       <workItem from="1730057264600" duration="6595000" />
       <workItem from="1730112519791" duration="3808000" />
       <workItem from="1730309470458" duration="6045000" />
-      <workItem from="1730316640009" duration="13644000" />
+      <workItem from="1730316640009" duration="22072000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1730111598825</created>
@@ -198,7 +361,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/algorithm/tests/Main.java</url>
-          <line>16</line>
+          <line>17</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

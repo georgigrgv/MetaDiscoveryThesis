@@ -11,7 +11,7 @@
     <dependencies defaultconf="default">
 
         <!-- Used to checks jars for implementations-->
-        <dependency org="prom" name="LogFiltering" rev="latest" changing="true" transitive="true" />
+        <dependency org="prom" name="Filterd" rev="latest" changing="true" transitive="true" />
 
         <!-- Dependencies needed for plugin       -->
         <dependency org="prom" name="AlphaMiner" rev="latest" changing="true" transitive="true" />

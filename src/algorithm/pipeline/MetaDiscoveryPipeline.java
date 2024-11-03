@@ -13,7 +13,7 @@ public class MetaDiscoveryPipeline {
 
     public XLog processLog(PluginContext context, XLog log) {
         // Apply preprocessing and return list of logs
-        return filters.filterMinCases(context, log, XLogInfoFactory.createLogInfo(log).getEventClasses(),
+        return filters.filterWithMinOccFreq(context, log, XLogInfoFactory.createLogInfo(log).getEventClasses(),
                 XLogInfoFactory.createLogInfo(log).getEventClasses().getClasses().toArray(new XEventClass[0]),
                 0.05);
         // Here you would typically add discovery algorithms and ranking steps
