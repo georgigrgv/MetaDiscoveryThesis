@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc93fb1d-ceaa-40ca-bff7-b94e5c79ec26" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/algorithm/discovery/DiscoveryAlgorithms.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/algorithm/discovery/MyMiningParameters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/EventLogFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/EventLogFilters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/tests/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/tests/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/preprocessing/FilterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/preprocessing/FilterConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/tests/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +134,8 @@
       <workItem from="1730057264600" duration="6595000" />
       <workItem from="1730112519791" duration="3808000" />
       <workItem from="1730309470458" duration="6045000" />
-      <workItem from="1730316640009" duration="24702000" />
+      <workItem from="1730316640009" duration="26719000" />
+      <workItem from="1730712229931" duration="914000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1730111598825</created>
