@@ -2,9 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc93fb1d-ceaa-40ca-bff7-b94e5c79ec26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/algorithm/discovery/DiscoveryAlgorithms.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algorithm/discovery/MyMiningParameters.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/algorithm/discovery/ExportPetriNet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ivy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/FilterConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/preprocessing/FilterConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/tests/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/algorithm/tests/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis-20241102.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/discovery/DiscoveryAlgorithms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/discovery/DiscoveryAlgorithms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/preprocessing/EventLogFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/preprocessing/EventLogFilters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/tests/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/algorithm/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/algorithm/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/algorithm/preprocessing/EventLogFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/algorithm/preprocessing/EventLogFilters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/algorithm/tests/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/algorithm/tests/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241102.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ivy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +151,7 @@
       <workItem from="1730112519791" duration="3808000" />
       <workItem from="1730309470458" duration="6045000" />
       <workItem from="1730316640009" duration="26719000" />
-      <workItem from="1730712229931" duration="914000" />
+      <workItem from="1730712229931" duration="11248000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1730111598825</created>

@@ -1,32 +1,34 @@
 <ivy-module version="2.0">
     <info organisation="prom" module="MetaDiscoveryThesis" revision="latest">
-    	<description>
-    		Version VERSION
-    	</description>
+        <description>
+            Version VERSION
+        </description>
     </info>
     <configurations>
-   		<conf name="default" extends="lib" />
-   		<conf name="lib" />
-	</configurations>
+        <conf name="default" extends="lib"/>
+        <conf name="lib"/>
+    </configurations>
     <dependencies defaultconf="default">
 
         <!-- Used to checks jars for implementations-->
-        <dependency org="prom" name="Filterd" rev="latest" changing="true" transitive="true" />
+        <dependency org="prom" name="Filterd" rev="latest" changing="true" transitive="true"/>
+        <!-- Dependencies for fitness algorithms-->
+        <dependency org="prom" name="DataAwareExplorer" rev="latest" changing="true" transitive="true"/>
+        <!-- Dependencies for discovery algorithms-->
+        <dependency org="prom" name="AlphaMiner" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="InductiveMiner" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="HeuristicsMiner" rev="latest" changing="true" transitive="true"/>
 
-        <!-- Dependencies needed for plugin       -->
-        <dependency org="prom" name="AlphaMiner" rev="latest" changing="true" transitive="true" />
-    	<dependency org="prom" name="InductiveMiner" rev="latest" changing="true" transitive="true" />
-
-    	<dependency org="prom" name="ProM-Plugins" rev="latest" changing="true" transitive="true" />
-    	<dependency org="prom" name="ProcessTree" rev="latest" changing="true" transitive="true" />	
-    	<dependency org="prom" name="Properties" rev="latest" changing="true" transitive="true" />
-        <dependency org="prom" name="PetriNets" rev="latest" changing="true" transitive="true" />
-        <dependency org="prom" name="PNetReplayer" rev="latest" changing="true" transitive="true" />
-        <dependency org="prom" name="Sat4j" rev="latest" changing="true" transitive="true" />
-        <dependency org="prom" name="GraphViz" rev="latest" changing="true" transitive="true" />
-        <dependency org="prom" name="AcceptingPetriNet" rev="latest" changing="true" transitive="true" />
-        <dependency org="prom" name="Murata" rev="latest" changing="true" transitive="true" />
-        <dependency org="prom" name="JAXB" rev="latest" changing="true" transitive="true" />
-        <dependency conf="lib->default" org="com.fifesoft" name="rsyntaxtextarea" rev="2.5.8" />
+        <dependency org="prom" name="ProM-Plugins" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="ProcessTree" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="Properties" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="PetriNets" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="PNetReplayer" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="Sat4j" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="GraphViz" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="AcceptingPetriNet" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="Murata" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="JAXB" rev="latest" changing="true" transitive="true"/>
+        <dependency conf="lib->default" org="com.fifesoft" name="rsyntaxtextarea" rev="2.5.8"/>
     </dependencies>
 </ivy-module>

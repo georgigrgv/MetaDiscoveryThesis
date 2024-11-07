@@ -154,12 +154,38 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/asm-5.0.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/batik-script-1.9.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/HeuristicsMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareExplorer-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareReplayer-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareReplayerLGPL-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataDiscovery-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataExpression-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNets-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNetsLGPL-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/dictomaton-1.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/EMF-latest.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/HeuristicsMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareReplayerLGPL-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataDiscovery-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataExpression-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNets-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNetsLGPL-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/EMF-latest.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/HeuristicsMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareExplorer-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareReplayer-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareReplayerLGPL-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataDiscovery-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataExpression-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNets-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNetsLGPL-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/EMF-latest.jar!/" />
     </SOURCES>
   </library>
 </component>

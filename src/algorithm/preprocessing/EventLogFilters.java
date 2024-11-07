@@ -18,6 +18,10 @@ import java.util.*;
 
 public class EventLogFilters {
 
+
+    /**
+    / Filtering traces with different configs based on the Parameters
+    */
     public XLog filterTracesByMinOcc(XLog log, List<Parameter> parameters){
 
         //Using filter from the plugin Filter Event Log
@@ -27,7 +31,7 @@ public class EventLogFilters {
     }
 
     /**
-     * Filtering events will low amount of occurances.
+     * Filtering events based on % occurance.
      */
     public XLog filterWithMinOccFreq(PluginContext context, XLog log, final XEventClasses allEventClasses,
                                      final XEventClass[] eventClassesToKeep, final Double minOccurrence) {

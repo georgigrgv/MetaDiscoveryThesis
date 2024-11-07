@@ -13,9 +13,11 @@
         <!-- Used to checks jars for implementations-->
         <dependency org="prom" name="Filterd" rev="latest" changing="true" transitive="true" />
 
-        <!-- Dependencies needed for plugin       -->
+
+        <!-- Dependencies for discovery algorithms       -->
         <dependency org="prom" name="AlphaMiner" rev="latest" changing="true" transitive="true" />
     	<dependency org="prom" name="InductiveMiner" rev="latest" changing="true" transitive="true" />
+        <dependency org="prom" name="HeuristicsMiner" rev="latest" changing="true" transitive="true" />
 
     	<dependency org="prom" name="ProM-Plugins" rev="latest" changing="true" transitive="true" />
     	<dependency org="prom" name="ProcessTree" rev="latest" changing="true" transitive="true" />	
