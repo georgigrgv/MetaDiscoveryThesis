@@ -1,7 +1,7 @@
 <project name="MetaDiscoveryThesis" default="Compile Sources" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
 	<!-- Set global properties for this build -->
 	<property environment="env" />
-	<property name="src" location="algorithm" /> <!-- Updated source location -->
+	<property name="src" location="org" /> <!-- Updated source location -->
 	<property name="build" location="bindist" />
 	<property name="doc" location="doc" />
 	<property name="lib" location="lib" />

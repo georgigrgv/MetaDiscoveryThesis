@@ -164,6 +164,10 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNetsLGPL-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/dictomaton-1.2.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/EMF-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/AlphaMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/NewPackageIvy-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/split-miner-1.7.1.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
@@ -174,6 +178,8 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNets-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNetsLGPL-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/EMF-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/split-miner-1.7.1.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
@@ -186,6 +192,10 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNets-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNetsLGPL-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/EMF-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/AlphaMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/NewPackageIvy-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/split-miner-1.7.1.jar!/" />
     </SOURCES>
   </library>
 </component>

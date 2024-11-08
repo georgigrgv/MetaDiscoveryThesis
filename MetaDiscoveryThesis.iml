@@ -10,5 +10,6 @@
     <orderEntry type="library" exported="" name="lib" level="application" />
     <orderEntry type="library" exported="" name="ivy" level="project" />
     <orderEntry type="library" exported="" name="rsyntaxtextarea-2.5.8" level="project" />
+    <orderEntry type="library" name="split-miner-1.7.1-all" level="project" />
   </component>
 </module>

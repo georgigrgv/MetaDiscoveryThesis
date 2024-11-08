@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="split-miner-1.7.1-all">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/libs/split-miner-1.7.1-all.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/src/libs/split-miner-1.7.1-all.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/src/libs/split-miner-1.7.1-all.jar!/" />
+    </SOURCES>
+  </library>
+</component>
