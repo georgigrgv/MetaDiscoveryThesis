@@ -1,11 +1,12 @@
 <ivysettings>
-    <settings defaultResolver="default" />   
+    <settings defaultResolver="default" />
     <resolvers>
+        <!-- Existing URL resolvers -->
         <url name="prom" checkmodified="true">
             <ivy pattern="https://github.com/promworkbench/[module]/raw/main/latestrelease/ivy.xml" />
             <artifact pattern="https://github.com/promworkbench/[module]/raw/main/latestrelease/[artifact].[ext]" />
         </url>
-         <url name="prom-svn" checkmodified="true">
+        <url name="prom-svn" checkmodified="true">
             <ivy pattern="https://github.com/promworkbench/Releases/raw/main/Packages/[module]/[revision]/ivy.xml" />
             <artifact pattern="https://github.com/promworkbench/Releases/raw/main/Packages/[module]/[revision]/[artifact]-[revision].[ext]" />
         </url>
@@ -14,12 +15,16 @@
             <artifact pattern="https://github.com/promworkbench/Releases/raw/main/Libraries/[module]/[revision]/[artifact]-[revision].[ext]" />
             <artifact pattern="https://github.com/promworkbench/Releases/raw/main/Libraries/[module]/[revision]/[artifact]_[revision].[ext]" />
         </url>
+
+        <!-- Maven Central resolver -->
         <ibiblio name="maven2" m2compatible="true" root="https://repo1.maven.org/maven2/"/>
-        <chain name="default" returnFirst="true">  
-            <resolver ref="prom" />  
-            <resolver ref="prom-svn" />  
-            <resolver ref="prom-libs" />  
-            <resolver ref="maven2" />  
-        </chain>  
+
+        <!-- Chain resolvers with 'local' checked first -->
+        <chain name="default" returnFirst="true">
+            <resolver ref="prom"/>
+            <resolver ref="prom-svn"/>
+            <resolver ref="prom-libs"/>
+            <resolver ref="maven2"/>
+        </chain>
     </resolvers>
 </ivysettings>

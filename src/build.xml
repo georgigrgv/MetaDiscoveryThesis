@@ -48,6 +48,7 @@
 		<fileset dir=".">
 			<include name="ivy/**/*.jar" />
 			<include name="lib/**/*.jar" />
+			<include name="libs/**/*.jar"/>
 		</fileset>
 	</path>
 

@@ -168,6 +168,10 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/NewPackageIvy-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/split-miner-1.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/XESAlignmentExtension-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/XESLite-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/LogEnhancement-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/LogAbstractions-latest.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
@@ -180,6 +184,9 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/EMF-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/split-miner-1.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/XESAlignmentExtension-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/XESLite-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/LogEnhancement-latest.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
@@ -196,6 +203,10 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/NewPackageIvy-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/split-miner-1.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/XESAlignmentExtension-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/XESLite-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/LogEnhancement-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/LogAbstractions-latest.jar!/" />
     </SOURCES>
   </library>
 </component>
