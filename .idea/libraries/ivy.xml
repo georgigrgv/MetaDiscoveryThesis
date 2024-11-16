@@ -172,6 +172,8 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/XESLite-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/LogEnhancement-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/LogAbstractions-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/BPMN-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/BPMNConversions-latest.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
@@ -187,6 +189,8 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/XESAlignmentExtension-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/XESLite-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/LogEnhancement-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/BPMN-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/BPMNConversions-latest.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
@@ -207,6 +211,8 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/XESLite-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/LogEnhancement-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/LogAbstractions-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/BPMN-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/BPMNConversions-latest.jar!/" />
     </SOURCES>
   </library>
 </component>

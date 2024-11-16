@@ -13,11 +13,11 @@
         <!--Reflection failures because of this-->
         <!-- Used to checks jars for implementations-->
         <dependency org="prom" name="Filterd" rev="latest" changing="true" transitive="true"/>
-<!--        LP SOLVER -->
-        <dependency org="prom" name="LPEngine" rev="latest" changing="true" transitive="true"/>
         <!-- Dependencies for fitness algorithms-->
+        <dependency org="prom" name="LPEngine" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="DataAwareExplorer" rev="latest" changing="true" transitive="true"/>
         <!-- Dependencies for discovery algorithms-->
+        <dependency org="prom" name="BPMNConversions" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="AlphaMiner" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="InductiveMiner" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="HeuristicsMiner" rev="latest" changing="true" transitive="true"/>

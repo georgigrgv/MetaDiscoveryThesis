@@ -1,1 +1,3 @@
 # MetaDiscoveryThesis
+
+Problems: LPSolver library
