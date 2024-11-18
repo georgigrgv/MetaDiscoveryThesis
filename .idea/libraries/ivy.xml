@@ -174,6 +174,22 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/LogAbstractions-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMN-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMNConversions-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/InteractiveProcessMining-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/HeuristicsCNetMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArray-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArrayCreator-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityGraph-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityGraphCreator-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityMatrix-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityMatrixMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareCNetMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareCNetMinerHCG-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/Fuzzy-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/GraphVisualizers-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CNet-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CNetReplayer-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/libs/json-20240303.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
@@ -191,6 +207,21 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/LogEnhancement-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMN-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMNConversions-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/InteractiveProcessMining-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/HeuristicsCNetMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArray-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArrayCreator-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityGraph-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityGraphCreator-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityMatrix-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityMatrixMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareCNetMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareCNetMinerHCG-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/Fuzzy-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/GraphVisualizers-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CNet-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CNetReplayer-latest.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
@@ -213,6 +244,21 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/LogAbstractions-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMN-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMNConversions-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/InteractiveProcessMining-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/HeuristicsCNetMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArray-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArrayCreator-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityGraph-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityGraphCreator-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityMatrix-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityMatrixMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareCNetMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/DataAwareCNetMinerHCG-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/Fuzzy-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/GraphVisualizers-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CNet-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/CNetReplayer-latest.jar!/" />
     </SOURCES>
   </library>
 </component>

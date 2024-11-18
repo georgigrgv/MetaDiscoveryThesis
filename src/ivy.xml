@@ -18,10 +18,16 @@
         <dependency org="prom" name="DataAwareExplorer" rev="latest" changing="true" transitive="true"/>
         <!-- Dependencies for discovery algorithms-->
         <dependency org="prom" name="BPMNConversions" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="DataAwareCNetMiner" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="AlphaMiner" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="InductiveMiner" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="HeuristicsMiner" rev="latest" changing="true" transitive="true"/>
-        <dependency org="prom" name="ILPMiner" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="HybridILPMiner" rev="latest" changing="true" transitive="true"/>
+        <!--Causla graph dependencies for HybridILPMiner-->
+        <dependency org="prom" name="CausalActivityGraph" rev="latest" changing="true" />
+        <dependency org="prom" name="CausalActivityGraphCreator" rev="latest" changing="true" />
+        <dependency org="prom" name="CausalActivityMatrix" rev="latest" changing="true" />
+        <dependency org="prom" name="CausalActivityMatrixMiner" rev="latest" changing="true" />
 
         <dependency org="prom" name="ProM-Plugins" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="ProcessTree" rev="latest" changing="true" transitive="true"/>
@@ -33,8 +39,10 @@
         <dependency org="prom" name="AcceptingPetriNet" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="Murata" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="JAXB" rev="latest" changing="true" transitive="true"/>
+
         <dependency conf="lib->default" org="com.fifesoft" name="rsyntaxtextarea" rev="2.5.8"/>
         <dependency conf="lib->default" org="com.github.stephenc.high-scale-lib" name="high-scale-lib" rev="1.1.4"/>
+
 
     </dependencies>
 </ivy-module>

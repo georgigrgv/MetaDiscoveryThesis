@@ -1,11 +1,9 @@
 package org.discovery;
 
-import org.deckfour.xes.classification.XEventClass;
-import org.deckfour.xes.classification.XEventClassifier;
-import org.deckfour.xes.classification.XEventNameClassifier;
+import org.deckfour.xes.classification.*;
+import org.deckfour.xes.info.XLogInfo;
 import org.deckfour.xes.info.impl.XLogInfoImpl;
 import org.deckfour.xes.model.XLog;
-import org.processmining.acceptingpetrinet.models.AcceptingPetriNet;
 import org.processmining.alphaminer.abstractions.AlphaClassicAbstraction;
 import org.processmining.alphaminer.algorithms.AlphaMiner;
 import org.processmining.alphaminer.algorithms.AlphaMinerFactory;
@@ -13,33 +11,40 @@ import org.processmining.alphaminer.parameters.AlphaMinerParameters;
 import org.processmining.alphaminer.parameters.AlphaVersion;
 import org.processmining.contexts.uitopia.PluginContextFactory;
 import org.processmining.contexts.uitopia.UIPluginContextFactory;
-import org.processmining.framework.packages.PackageManager;
+import org.processmining.dataawarecnetminer.mining.classic.HeuristicsCausalGraphBuilder;
+import org.processmining.dataawarecnetminer.mining.classic.HeuristicsCausalGraphMiner;
+import org.processmining.framework.connections.Connection;
+import org.processmining.framework.connections.ConnectionCannotBeObtained;
 import org.processmining.framework.util.Pair;
+import org.processmining.hybridilpminer.connections.XLogHybridILPMinerParametersConnection;
+import org.processmining.hybridilpminer.dialogs.ConnectionsClassifierEngineAndDefaultConfigurationDialogImpl;
+import org.processmining.hybridilpminer.parameters.DiscoveryStrategyType;
+import org.processmining.hybridilpminer.parameters.XLogHybridILPMinerParametersImpl;
+import org.processmining.hybridilpminer.utils.XLogUtils;
+import org.processmining.models.causalgraph.SimpleCausalGraph;
+import org.processmining.models.causalgraph.XEventClassifierAwareSimpleCausalGraph;
 import org.processmining.models.graphbased.directed.bpmn.BPMNDiagram;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
-import org.processmining.models.graphbased.directed.petrinet.impl.PetrinetImpl;
 import org.processmining.models.heuristics.HeuristicsNet;
 import org.processmining.models.semantics.petrinet.Marking;
-import org.processmining.plugins.InductiveMiner.efficienttree.EfficientTree;
-import org.processmining.plugins.InductiveMiner.efficienttree.EfficientTree2AcceptingPetriNet;
-import org.processmining.plugins.InductiveMiner.efficienttree.EfficientTreeReduce;
-import org.processmining.plugins.InductiveMiner.efficienttree.EfficientTreeReduceParametersForPetriNet;
-import org.processmining.plugins.InductiveMiner.plugins.IM;
 import org.processmining.plugins.InductiveMiner.plugins.IMPetriNet;
 import org.processmining.plugins.InductiveMiner.plugins.dialogs.IMMiningDialog;
-import org.processmining.plugins.InductiveMiner.reduceacceptingpetrinet.ReduceAcceptingPetriNetKeepLanguage;
 import org.processmining.plugins.heuristicsnet.miner.heuristics.converter.HeuristicsNetToPetriNetConverter;
-import org.processmining.plugins.heuristicsnet.miner.heuristics.miner.HeuristicsMiner;
-import org.processmining.plugins.ilpminer.ILPMiner;
-import org.processmining.plugins.inductiveminer2.logs.IMLog;
-import org.processmining.plugins.inductiveminer2.mining.InductiveMiner;
-import org.processmining.plugins.inductiveminer2.mining.MiningParameters;
-import org.processmining.plugins.inductiveminer2.plugins.InductiveMinerPlugin;
+import org.processmining.plugins.heuristicsnet.miner.heuristics.miner.FlexibleHeuristicsMinerPlugin;
+import org.processmining.plugins.heuristicsnet.miner.heuristics.miner.gui.ParametersPanel;
+import org.processmining.widgets.wizard.Dialog;
+import org.processmining.widgets.wizard.Wizard;
+import org.processmining.widgets.wizard.WizardResult;
 import processmining.log.LogParser;
 import processmining.log.SimpleLog;
 import processmining.splitminer.SplitMiner;
 import processmining.splitminer.dfgp.DirectlyFollowGraphPlus;
 import processmining.splitminer.ui.dfgp.DFGPUIResult;
+
+import java.util.Collection;
+import java.util.HashSet;
+
+import static org.processmining.hybridilpminer.plugins.HybridILPMinerPlugin.discoverWithArtificialStartEnd;
 
 public class DiscoveryAlgorithms {
 
@@ -52,10 +57,21 @@ public class DiscoveryAlgorithms {
 
     public Object[] obtainPetriNetUsingHeuristicsMiner(XLog log) throws
             Exception {
-        PluginContextFactory factory = new PluginContextFactory();
-        HeuristicsMiner miner = new HeuristicsMiner(factory.getContext(), log);
-        HeuristicsNet heuristicsNet = miner.mine();
-        return HeuristicsNetToPetriNetConverter.converter(factory.getContext(), heuristicsNet);
+        UIPluginContextFactory factory = new UIPluginContextFactory();
+        XEventClassifier defaultClassifier;
+        if (log.getClassifiers().isEmpty()) {
+            XEventClassifier nameCl = new XEventNameClassifier();
+            XEventClassifier lifeTransCl = new XEventLifeTransClassifier();
+            defaultClassifier = new XEventAndClassifier(nameCl, lifeTransCl);
+        } else {
+            defaultClassifier = log.getClassifiers().get(0);
+        }
+        XLogInfo loginfo = new XLogInfoImpl(log, defaultClassifier, log.getClassifiers());
+        ParametersPanel parameters = new ParametersPanel(loginfo.getEventClassifiers());
+        parameters.removeAndThreshold();
+        HeuristicsNet net = FlexibleHeuristicsMinerPlugin.run(factory.getContext(), log, parameters.getSettings(), loginfo);
+        return HeuristicsNetToPetriNetConverter.converter(factory.getContext(),
+                FlexibleHeuristicsMinerPlugin.run(factory.getContext(), log, parameters.getSettings(), loginfo));
     }
 
     public Object[] obtainPetriNetUsingAlphaMiner(XLog xLog) {
@@ -73,13 +89,42 @@ public class DiscoveryAlgorithms {
         return ret;
     }
 
-    public Object[] obtainPetriNetUsingILPMiner(XLog xLog) throws Exception {
-        ILPMiner miner = new ILPMiner();
-        UIPluginContextFactory factory = new UIPluginContextFactory();
-        return miner.doILPMining(factory.getContext(), xLog);
+    public Object[] obtainPetriNetUsingHybridILPMiner(XLog xLog) throws Exception {
+        UIPluginContextFactory contextFactory = new UIPluginContextFactory();
+        Object[] result = null;
+        Collection<XLogHybridILPMinerParametersConnection> connections = new HashSet<>();
+        try {
+            connections = contextFactory.getContext().getConnectionManager().getConnections(XLogHybridILPMinerParametersConnection.class,
+                    contextFactory.getContext(), xLog);
+        } catch (ConnectionCannotBeObtained e) {
+        }
+        XEventClassifier defaultClassifier;
+        if (xLog.getClassifiers().isEmpty()) {
+            XEventClassifier nameCl = new XEventNameClassifier();
+            XEventClassifier lifeTransCl = new XEventLifeTransClassifier();
+            defaultClassifier = new XEventAndClassifier(nameCl, lifeTransCl);
+        } else {
+            defaultClassifier = xLog.getClassifiers().get(0);
+        }
+        final String startLabel = "[start>@" + System.currentTimeMillis();
+        final String endLabel = "[end]@" + System.currentTimeMillis();
+        XLog artifLog = XLogUtils.addArtificialStartAndEnd(xLog, startLabel, endLabel);
+        Dialog<XLogHybridILPMinerParametersImpl> firstDialog = new ConnectionsClassifierEngineAndDefaultConfigurationDialogImpl(
+                contextFactory.getContext(), null, artifLog, connections);
+        WizardResult<XLogHybridILPMinerParametersImpl> wizardResult = Wizard.show(contextFactory.getContext(), firstDialog);
+        XLogHybridILPMinerParametersImpl params = wizardResult.getParameters();
+        params.setEventClassifier(defaultClassifier);
+        result = discoverWithArtificialStartEnd(contextFactory.getContext(), xLog, artifLog, params);
+        if (!params.getDiscoveryStrategy().getDiscoveryStrategyType()
+                .equals(DiscoveryStrategyType.CAUSAL_FLEX_HEUR)) {
+            Connection paramsConnection = new XLogHybridILPMinerParametersConnection(xLog, params);
+            contextFactory.getContext().getConnectionManager().addConnection(paramsConnection);
+        }
+        return result;
     }
 
     public Object[] obtainPetriNetUsingSplitMiner(XLog xLog) {
+        UIPluginContextFactory factory = new UIPluginContextFactory();
         Object[] ret = new Object[1];
         double eta = 1.0;
         double epsilon = 0.5;

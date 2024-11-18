@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MetaDiscoveryThesis.iml" filepath="$PROJECT_DIR$/MetaDiscoveryThesis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/org/hyperParameterOptimizer/hyperParameterOptimizer.iml" filepath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/hyperParameterOptimizer.iml" />
     </modules>
   </component>
 </project>

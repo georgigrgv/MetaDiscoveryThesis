@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Python" name="Python">
+      <configuration sdkName="Python 3.11" />
+    </facet>
+  </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
@@ -12,5 +17,6 @@
     <orderEntry type="library" exported="" name="rsyntaxtextarea-2.5.8" level="project" />
     <orderEntry type="library" name="split-miner-1.7.1-all" level="project" />
     <orderEntry type="library" name="lpsolve55j" level="project" />
+    <orderEntry type="library" name="Python 3.11 interpreter library" level="application" />
   </component>
 </module>

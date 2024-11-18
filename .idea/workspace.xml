@@ -2,21 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc93fb1d-ceaa-40ca-bff7-b94e5c79ec26" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/MetaDiscoveryThesis.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/hyperParameterOptimizer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/org/tests/exampleLogs/Road_Traffic_Fine_Management_Process.xes" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ivy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis-20241113.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis-20241113.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MetaDiscoveryThesis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MetaDiscoveryThesis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis-20241113.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/ILPMiner-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/oplall-6.3.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/tests/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/tests/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/org/tests/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/tests/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241113.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241113.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/discovery/DiscoveryAlgorithms.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/discovery/DiscoveryAlgorithms.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/preprocessing/EventLogFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/preprocessing/EventLogFilters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/tests/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/discovery/DiscoveryAlgorithms.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/discovery/DiscoveryAlgorithms.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/evaluate/PetriNetEvaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/evaluate/PetriNetEvaluator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/tests/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241113.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ivy.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ivy/oplall-6.3.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/evaluate/PetriNetEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/evaluate/PetriNetEvaluator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/tests/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/discovery/DiscoveryAlgorithms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/discovery/DiscoveryAlgorithms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/preprocessing/EventLogFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/preprocessing/EventLogFilters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/tests/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +44,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -60,10 +78,10 @@
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/libs" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15332031" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -72,12 +90,13 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/org/tests/exampleLogs" />
       <recent name="$PROJECT_DIR$/src/libs" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/playground/" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Optimizer">
     <configuration name="EventLogFilter$Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="algorithm.preprocessing.EventLogFilter$Main" />
       <module name="MetaDiscoveryThesis" />
@@ -131,14 +150,47 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Optimizer" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.pipeline.MetaDiscoveryPipeline" />
+      <module name="MetaDiscoveryThesis" />
+      <option name="PROGRAM_PARAMETERS" value="0.01" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bayesianOptimizer" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hyperParameterOptimizer" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/org/hyperParameterOptimizer" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Application.Optimizer" />
       <item itemvalue="Application.EventLogFilter" />
       <item itemvalue="Application.EventLogFilter$Main" />
       <item itemvalue="Application.EventLogFilters$Main" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Python.bayesianOptimizer" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.bayesianOptimizer" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.EventLogFilters$Main" />
         <item itemvalue="Application.EventLogFilter$Main" />
@@ -160,7 +212,8 @@
       <workItem from="1730316640009" duration="26719000" />
       <workItem from="1730712229931" duration="19500000" />
       <workItem from="1731093782907" duration="33008000" />
-      <workItem from="1731517967140" duration="7669000" />
+      <workItem from="1731517967140" duration="8107000" />
+      <workItem from="1731770426267" duration="40574000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1730111598825</created>
@@ -243,14 +296,64 @@
           <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/org/discovery/DiscoveryAlgorithms.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="57" />
+          <url>file://$PROJECT_DIR$/src/org/tests/Test.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/org/discovery/DiscoveryAlgorithms.java</url>
+          <url>jar://$PROJECT_DIR$/src/ivy/OpenXES-latest.jar!/org/deckfour/xes/info/XLogInfoFactory.class</url>
+          <line>20</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/HeuristicsMiner-latest.jar!/org/processmining/plugins/heuristicsnet/miner/heuristics/miner/FlexibleHeuristicsMinerPlugin.java</url>
           <line>55</line>
-          <option name="timeStamp" value="58" />
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/HeuristicsMiner-latest.jar!/org/processmining/plugins/heuristicsnet/miner/heuristics/converter/HeuristicsNetToPetriNetConverter.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/HeuristicsMiner-latest.jar!/org/processmining/plugins/heuristicsnet/miner/heuristics/converter/HeuristicsNetToPetriNetConverter.java</url>
+          <line>148</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/org/processmining/hybridilpminer/plugins/HybridILPMinerPlugin.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/org/processmining/hybridilpminer/plugins/HybridILPMinerPlugin.java</url>
+          <line>177</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/org/processmining/hybridilpminer/plugins/HybridILPMinerPlugin.java</url>
+          <line>221</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/org/processmining/hybridilpminer/plugins/HybridILPMinerPlugin.java</url>
+          <line>257</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/org/processmining/hybridilpminer/plugins/HybridILPMinerPlugin.java</url>
+          <line>190</line>
+          <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/org/processmining/hybridilpminer/plugins/HybridILPMinerPlugin.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="91" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="94" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
@@ -265,12 +368,35 @@
           </properties>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://$PROJECT_DIR$/src/ivy/DataAwareExplorer-latest.jar!/org/processmining/dataawareexplorer/utils/PetrinetUtils.java</url>
+          <line>44</line>
+          <properties class="org.processmining.dataawareexplorer.utils.PetrinetUtils" method="guessFinalMarking">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py</url>
+          <line>7</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.processmining.hybridilpminer.parameters.XLogHybridILPMinerParametersImpl" memberName="discoveryStrategy" />
+      </pinned-members>
+    </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="minOccurrence" />
+        <watch expression="((PetrinetImpl)objects[0]).places" custom="org.processmining.models.graphbased.directed.petrinet.impl.PetrinetImpl" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/MetaDiscoveryThesis$bayesianOptimizer.coverage" NAME="bayesianOptimizer Coverage Results" MODIFIED="1731958087454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/org/hyperParameterOptimizer" />
   </component>
 </project>

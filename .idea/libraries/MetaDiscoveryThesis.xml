@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MetaDiscoveryThesis">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -53,7 +53,7 @@ public class EventLogFilters {
     /**
      * Calculates the occurrence frequency of each event class in the provided log.
      */
-    public static Map<XEventClass, Double> getOccurrenceFrequency(XLog log, XEventClasses allEventClasses) {
+    public Map<XEventClass, Double> getOccurrenceFrequency(XLog log, XEventClasses allEventClasses) {
         Map<XEventClass, Integer> eventCounts = new HashMap<>();
         int totalEvents = 0;
 
