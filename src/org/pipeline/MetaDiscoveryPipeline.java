@@ -16,13 +16,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 public class MetaDiscoveryPipeline {
 
-    public EventLogFilters filters = new EventLogFilters();
+    public static EventLogFilters filters = new EventLogFilters();
     private Map<Object, Double> dataStorage = new HashMap<>();
 
-    public double pipeline(XLog log, double hyperParamFilter) throws Exception {
+    public static double pipeline(XLog log, double hyperParamFilter) throws Exception {
         DiscoveryAlgorithms algorithms = new DiscoveryAlgorithms();
         PluginContextFactory factory = new PluginContextFactory();
 
@@ -33,22 +32,25 @@ public class MetaDiscoveryPipeline {
         Object[] objects = algorithms.obtainPetriNetUsingInductiveMiner(filteredXlog);
 
         //calculate fitness
-        Double fitness = PetriNetEvaluator.calculateFitness(log, objects, factory);
 
-        dataStorage.put(objects, fitness);
-
-        return fitness;
+        return PetriNetEvaluator.calculateFitness(log, objects, factory);
         // Here you would typically add discovery algorithms and ranking steps
     }
 
     public static void main(String[] args) throws Exception {
-        if (args.length < 1) {
-            System.out.println("Usage: java MetaDiscoveryPipeline <logPath>");
+
+        if (args.length >= 3) {
+            System.out.println(pipeline(filters.loadXLog(args[0]), Double.parseDouble(args[1])));
             return;
         }
 
-        String logPath = "/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/org/tests/exampleLogs/Road_Traffic_Fine_Management_Process.xes"; // Path to the XES log file
-        String pythonScript = "/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/org/hyperParameterOptimizer/bayesianOptimizer.py"; // Relative path to the Python script
+        // Ensure arguments are passed
+        System.out.println("Usage: java MetaDiscoveryPipeline <logPath>");
+        // Extract the log path
+        String logPath = "/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/org/tests/exampleLogs/Road_Traffic_Fine_Management_Process.xes";
+
+        // Path to the Python script
+        String pythonScript = "/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/org/hyperParameterOptimizer/bayesianOptimizer.py";
 
         // Command to execute the Python script
         String[] command = {
@@ -58,24 +60,17 @@ public class MetaDiscoveryPipeline {
                 pythonScript, // Python script
                 logPath // Argument to the Python script
         };
+
         ProcessBuilder processBuilder = new ProcessBuilder(command);
-
-        // Redirect error and output streams
-        processBuilder.redirectErrorStream(true);
-
+        processBuilder.redirectErrorStream(true); // Redirect error stream to output stream
         Process process = processBuilder.start();
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
         String line;
         while ((line = reader.readLine()) != null) {
             System.out.println(line); // Print Python script output
         }
-
-        int exitCode = process.waitFor();
-        if (exitCode == 0) {
-            System.out.println("Python script executed successfully!");
-        } else {
-            System.err.println("Python script execution failed with exit code " + exitCode);
-        }
     }
 }
+

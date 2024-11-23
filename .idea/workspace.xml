@@ -2,38 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc93fb1d-ceaa-40ca-bff7-b94e5c79ec26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/MetaDiscoveryThesis.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/hyperParameterOptimizer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/tests/exampleLogs/Road_Traffic_Fine_Management_Process.xes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/ivy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MetaDiscoveryThesis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MetaDiscoveryThesis.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis-20241113.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/dist/MetaDiscoveryThesis.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/ILPMiner-latest.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/ivy/oplall-6.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/discovery/DiscoveryAlgorithms.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/discovery/DiscoveryAlgorithms.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/preprocessing/EventLogFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/preprocessing/EventLogFilters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/org/tests/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/org/discovery/DiscoveryAlgorithms.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/discovery/DiscoveryAlgorithms.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/org/evaluate/PetriNetEvaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/evaluate/PetriNetEvaluator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/org/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/org/tests/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241113.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ivy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ivy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ivy/oplall-6.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/discovery/DiscoveryAlgorithms.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/discovery/DiscoveryAlgorithms.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/preprocessing/EventLogFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/preprocessing/EventLogFilters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/tests/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/tests/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,6 +126,7 @@
       <option name="MAIN_CLASS_NAME" value="org.pipeline.MetaDiscoveryPipeline" />
       <module name="MetaDiscoveryThesis" />
       <option name="PROGRAM_PARAMETERS" value="0.01" />
+      <option name="VM_PARAMETERS" value="-Djava.library.path=$PROJECT_DIR$/../6.Semester/BPI/prom-6.12-all-platforms/packages/lpsolve-5.5.4/LpSolve_mac/mac" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -213,7 +186,8 @@
       <workItem from="1730712229931" duration="19500000" />
       <workItem from="1731093782907" duration="33008000" />
       <workItem from="1731517967140" duration="8107000" />
-      <workItem from="1731770426267" duration="40574000" />
+      <workItem from="1731770426267" duration="42707000" />
+      <workItem from="1732201302164" duration="6049000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1730111598825</created>
@@ -352,8 +326,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="94" />
+          <line>47</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="97" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />
@@ -379,7 +358,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py</url>
-          <line>7</line>
+          <line>9</line>
           <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>

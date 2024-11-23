@@ -1,4 +1,6 @@
 import subprocess
+import re
+
 import optuna
 import sys
 import os
@@ -23,13 +25,15 @@ def objective(trial):
     # Command to call the Java pipeline function
     java_command = [
         "java",
+        "-Djava.library.path=/Users/georgegeorgiev/Desktop/6.Semester/BPI/prom-6.12-all-platforms/packages/lpsolve-5.5.4/LpSolve_mac/mac",
         "-classpath",
         "/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/dist/MetaDiscoveryThesis.jar:/Users/georgegeorgiev"
         "/Desktop/MetaDiscoveryThesis/src/lib/*:/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/libs/*:/Users"
         "/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/ivy/*",
         "/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/org/pipeline/MetaDiscoveryPipeline.java",
         log_path,
-        str(hyper_param_filter)
+        str(hyper_param_filter),
+        str("running")
     ]
 
     # Run the Java pipeline
@@ -46,7 +50,7 @@ def objective(trial):
             raise RuntimeError(f"Java process failed: {result.stderr}")
 
         # Parse the output as a float
-        fitness = float(result.stdout.strip())
+        fitness = float(re.search(r"[-+]?\d*\.\d+|\d+", result.stdout).group())
         return fitness
 
     except Exception as e:
@@ -56,9 +60,8 @@ def objective(trial):
 
 # Run the optimization using Optuna
 def main():
-    print("heio")
     study = optuna.create_study(direction="maximize")
-    study.optimize(objective, n_trials=1)
+    study.optimize(objective, n_trials=50)
 
     # Print the best parameters
     print("Best hyperparameters:", study.best_params)
