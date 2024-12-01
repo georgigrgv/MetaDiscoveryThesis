@@ -5,6 +5,7 @@
 	<property name="build" location="bindist" />
 	<property name="doc" location="doc" />
 	<property name="lib" location="lib" />
+	<property name="libs" location="libs" />
 	<property name="dist" location="dist" />
 	<property name="release" location="latestrelease" />
 	<property name="version" value="${env.major_minor}.${env.GITHUB_RUN_NUMBER}" />
@@ -73,6 +74,12 @@
 					<include name="**" />
 					<exclude name="test**" />
 				</fileset>
+				<fileset dir="${lib}">
+					<include name="**/*.jar" />
+					<exclude name="test**" />
+				</fileset>
+				<zipfileset dir="${libs}" includes="**/*.jar" />
+				<zipfileset dir="${ivy.lib.dir}" includes="**/*.jar" />
 				<manifest>
 					<attribute name="Built-By" value="${user.name}" />
 					<attribute name="Specification-Title" value="${project}" />
@@ -137,6 +144,15 @@
 
 	<target name="prepare-java-docker">
 		<copy file="${dist}/MetaDiscoveryThesis.jar" tofile="${java-app.dir}/MetaDiscoveryThesis.jar" />
+		<copy todir="${java-app.dir}/lib">
+			<fileset dir="${basedir}/lib" />
+		</copy>
+		<copy todir="${java-app.dir}/libs">
+			<fileset dir="${basedir}/libs" />
+		</copy>
+		<copy todir="${java-app.dir}/ivy">
+			<fileset dir="${basedir}/ivy" />
+		</copy>
 	</target>
 
 	<target name="build-java-docker" depends="prepare-java-docker">
@@ -159,6 +175,9 @@
 
 	<target name="clean-docker" depends="build-java-docker">
 		<delete file="${java-app.dir}/MetaDiscoveryThesis.jar" />
+		<delete dir="${java-app.dir}/lib" />
+		<delete dir="${java-app.dir}/libs" />
+		<delete dir="${java-app.dir}/ivy" />
 	</target>
 
 	<target name="build-docker" depends="build-java-docker, build-python-docker, clean-docker">

@@ -2,6 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc93fb1d-ceaa-40ca-bff7-b94e5c79ec26" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_servlet_api_4_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jetty_http_9_4_56_v20240826.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jetty_io_9_4_56_v20240826.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jetty_server_12_0_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jetty_server_9_4_56_v20240826.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jetty_util_11_0_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jetty_util_12_0_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jetty_util_9_4_56_v20240826.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/slf4j_api_2_0_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/libs/javax.servlet-api-4.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/libs/jetty-http-9.4.56.v20240826.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/libs/jetty-io-9.4.56.v20240826.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/libs/jetty-server-9.4.56.v20240826.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/libs/jetty-util-9.4.56.v20240826.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/libs/slf4j-api-2.0.16.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MetaDiscoveryThesis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MetaDiscoveryThesis.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bindist/org/discovery/DiscoveryAlgorithms.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/discovery/DiscoveryAlgorithms.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bindist/org/discovery/ExportPetriNet.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/discovery/ExportPetriNet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bindist/org/discovery/MyMiningParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/discovery/MyMiningParameters.class" afterDir="false" />
@@ -12,10 +29,15 @@
       <change beforePath="$PROJECT_DIR$/src/bindist/org/processmining/contexts/uitopia/PluginContextFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/processmining/contexts/uitopia/PluginContextFactory.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bindist/org/processmining/contexts/uitopia/UIPluginContextFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/processmining/contexts/uitopia/UIPluginContextFactory.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bindist/org/tests/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/tests/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/build.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241201.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241201.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/docker/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryThesis.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/pipeline/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/pipeline/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryThesis.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +83,7 @@
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/libs" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15332031" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -200,7 +222,7 @@
       <workItem from="1731770426267" duration="42707000" />
       <workItem from="1732201302164" duration="6190000" />
       <workItem from="1732478039740" duration="16745000" />
-      <workItem from="1733044443892" duration="8346000" />
+      <workItem from="1733044443892" duration="21101000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1730111598825</created>
@@ -339,7 +361,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java</url>
-          <line>52</line>
+          <line>53</line>
           <option name="timeStamp" value="96" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
@@ -366,7 +388,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py</url>
-          <line>6</line>
+          <line>8</line>
           <option name="timeStamp" value="95" />
         </line-breakpoint>
       </breakpoints>

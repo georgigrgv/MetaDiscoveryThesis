@@ -1,9 +1,11 @@
+import os
+
 import requests
 import optuna
 import sys
 
 # Define the Java service URL
-JAVA_SERVICE_URL = "http://localhost:8080/pipeline"  # Update to match your setup if using Docker
+JAVA_SERVICE_URL = os.environ.get("JAVA_SERVICE_URL", "http://localhost:8080/pipeline")  # Update to match your setup if using Docker
 
 
 # Define the objective function for Optuna
