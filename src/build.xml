@@ -158,7 +158,7 @@
 	</target>
 
 	<target name="clean-docker" depends="build-java-docker">
-		<delete file="${java-app.dir}/MetaDiscoveryPipeline.jar" />
+		<delete file="${java-app.dir}/MetaDiscoveryThesis.jar" />
 	</target>
 
 	<target name="build-docker" depends="build-java-docker, build-python-docker, clean-docker">

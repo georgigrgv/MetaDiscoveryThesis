@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc93fb1d-ceaa-40ca-bff7-b94e5c79ec26" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/discovery/DiscoveryAlgorithms.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/discovery/DiscoveryAlgorithms.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/discovery/ExportPetriNet.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/discovery/ExportPetriNet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/discovery/MyMiningParameters.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/discovery/MyMiningParameters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/evaluate/PetriNetEvaluator.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/evaluate/PetriNetEvaluator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/preprocessing/EventLogFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/preprocessing/EventLogFilters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/preprocessing/FilterConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/preprocessing/FilterConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/processmining/contexts/uitopia/PluginContextFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/processmining/contexts/uitopia/PluginContextFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/processmining/contexts/uitopia/UIPluginContextFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/processmining/contexts/uitopia/UIPluginContextFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bindist/org/tests/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/tests/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241201.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241201.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryThesis.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +200,7 @@
       <workItem from="1731770426267" duration="42707000" />
       <workItem from="1732201302164" duration="6190000" />
       <workItem from="1732478039740" duration="16745000" />
-      <workItem from="1733044443892" duration="7842000" />
+      <workItem from="1733044443892" duration="8346000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1730111598825</created>
