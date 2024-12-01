@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc93fb1d-ceaa-40ca-bff7-b94e5c79ec26" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/spark_core_2_9_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/docker/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/libs/spark-core-2.9.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/org/pipeline/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MetaDiscoveryThesis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MetaDiscoveryThesis.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MetaDiscoveryThesis/build.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/org/pipeline/MetaDiscoveryPipeline.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/pipeline/MetaDiscoveryPipeline.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bindist/org/preprocessing/EventLogFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/bindist/org/preprocessing/EventLogFilters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/build.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/build.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis-20241118.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" beforeDir="false" afterPath="$PROJECT_DIR$/src/dist/MetaDiscoveryThesis.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/latestrelease/MetaDiscoveryThesis-${env.major_minor}.${env.GITHUB_RUN_NUMBER}-all.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/hyperParameterOptimizer/bayesianOptimizer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/pipeline/MetaDiscoveryPipeline.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +187,7 @@
       <workItem from="1731770426267" duration="42707000" />
       <workItem from="1732201302164" duration="6190000" />
       <workItem from="1732478039740" duration="16745000" />
-      <workItem from="1733044443892" duration="6876000" />
+      <workItem from="1733044443892" duration="7842000" />
     </task>
     <task id="LOCAL-00001" summary="main">
       <created>1730111598825</created>
