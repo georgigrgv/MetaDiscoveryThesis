@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  java-service:
+    image: java-service-image  # Use the image name built by Ant
+    build:                     # Optional, only needed if you still want Compose to build
+      context: ./pipeline       # Ensure this matches the context for your Java app
+    ports:
+      - "8080:8080"             # Expose the Java service's port
+    volumes:
+      - ./java-app/exampleLogs:/app/exampleLogs  # Mount event log directory
+    environment:
+      - EVENT_LOG_PATH=/app/exampleLogs/Road_Traffic_Fine_Management_Process.xes
+
+  python-service:
+    image: python-service-image  # Use the image name built by Ant
+    build:                       # Optional, only needed if you still want Compose to build
+      context: ./hyperParameterOptimizer
+    depends_on:
+      - java-service
+    environment:
+      - JAVA_SERVICE_URL=http://java-service:8080/pipeline

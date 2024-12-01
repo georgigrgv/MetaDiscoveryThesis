@@ -1,20 +1,9 @@
-import subprocess
-import re
-
+import requests
 import optuna
 import sys
-import os
-import numpy as np
 
-# Ensure the working directory is the Java project's root
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Get the log file path from Java
-if len(sys.argv) < 2:
-    print("Usage: python3 optuna_pipeline.py <logPath>")
-    sys.exit(1)
-
-log_path = sys.argv[1]  # The log file path passed by the Java program
+# Define the Java service URL
+JAVA_SERVICE_URL = "http://localhost:8080/pipeline"  # Update to match your setup if using Docker
 
 
 # Define the objective function for Optuna
@@ -22,49 +11,41 @@ def objective(trial):
     # Suggest a value for the hyperparameter
     hyper_param_filter = trial.suggest_float("hyperParamFilter", 0.01, 0.2)
 
-    # Command to call the Java pipeline function
-    java_command = [
-        "java",
-        "-Djava.library.path=/Users/georgegeorgiev/Desktop/6.Semester/BPI/prom-6.12-all-platforms/packages/lpsolve-5.5.4/LpSolve_mac/mac",
-        "-classpath",
-        "/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/dist/MetaDiscoveryThesis.jar:/Users/georgegeorgiev"
-        "/Desktop/MetaDiscoveryThesis/src/lib/*:/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/libs/*:/Users"
-        "/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/ivy/*",
-        "/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/org/pipeline/MetaDiscoveryPipeline.java",
-        log_path,
-        str(hyper_param_filter),
-        str("running")
-    ]
+    # Create the JSON payload to send to the Java server
+    payload = {"hyperParamFilter": hyper_param_filter}
 
-    # Run the Java pipeline
     try:
-        result = subprocess.run(
-            java_command,
-            capture_output=True,
-            text=True,
-            cwd=project_root  # Set the working directory to the project root
-        )
+        # Send the request to the Java server
+        response = requests.post(JAVA_SERVICE_URL, json=payload)
 
-        # Check for errors
-        if result.returncode != 0:
-            raise RuntimeError(f"Java process failed: {result.stderr}")
+        # Raise an exception for non-200 responses
+        response.raise_for_status()
 
-        # Parse the output as a float
-        fitness = float(re.search(r"[-+]?\d*\.\d+|\d+", result.stdout).group())
+        # Parse the fitness value from the response JSON
+        result = response.json()
+        fitness = result.get("fitness")
+        if fitness is None:
+            raise ValueError("Invalid response from server: 'fitness' field is missing.")
+
+        # Return the fitness value to Optuna
         return fitness
 
-    except Exception as e:
-        print(f"Error during Java pipeline execution: {e}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error communicating with Java server: {e}")
         raise
 
 
-# Run the optimization using Optuna
+# Main function to run the optimization
 def main():
+    # Create an Optuna study
     study = optuna.create_study(direction="maximize")
-    study.optimize(objective, n_trials=50)
 
-    # Print the best parameters
+    # Optimize the objective function
+    study.optimize(objective, n_trials=10)
+
+    # Print the best parameters and fitness value
     print("Best hyperparameters:", study.best_params)
+    print("Best fitness:", study.best_value)
 
 
 if __name__ == "__main__":

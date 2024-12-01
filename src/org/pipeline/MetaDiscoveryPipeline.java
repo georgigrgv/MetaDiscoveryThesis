@@ -8,18 +8,44 @@ import org.deckfour.xes.classification.XEventClass;
 import org.deckfour.xes.info.XLogInfoFactory;
 import org.deckfour.xes.model.XLog;
 import org.processmining.contexts.uitopia.PluginContextFactory;
-import org.processmining.framework.plugin.PluginContext;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
-
+import static spark.Spark.port;
+import static spark.Spark.post;
 
 public class MetaDiscoveryPipeline {
 
-    public static EventLogFilters filters = new EventLogFilters();
-    private Map<Object, Double> dataStorage = new HashMap<>();
+    private static final EventLogFilters filters = new EventLogFilters();
+    private static XLog cachedLog = null;
+
+    public static void main(String[] args) throws Exception {
+        // Load the event log at the beginning
+        String logPath = System.getenv("EVENT_LOG_PATH");
+        if (logPath == null || logPath.isEmpty()) {
+            System.out.println("Event log path not specified. Set EVENT_LOG_PATH environment variable.");
+            System.exit(1);
+        }
+
+        cachedLog = filters.loadXLog(logPath);
+
+        // Start the HTTP server
+        port(8080);
+
+        // Define the pipeline endpoint
+        post("/pipeline", (req, res) -> {
+            JSONObject requestBody = new JSONObject(req.body());
+            double hyperParamFilter = requestBody.getDouble("hyperParamFilter");
+
+            // Execute the pipeline
+            double fitness = pipeline(cachedLog, hyperParamFilter);
+
+            // Return the result as JSON
+            JSONObject response = new JSONObject();
+            response.put("fitness", fitness);
+            return response.toString();
+        });
+
+        System.out.println("Java HTTP server running on port 8080...");
+    }
+
 
     public static double pipeline(XLog log, double hyperParamFilter) throws Exception {
         DiscoveryAlgorithms algorithms = new DiscoveryAlgorithms();
@@ -31,46 +57,7 @@ public class MetaDiscoveryPipeline {
 
         Object[] objects = algorithms.obtainPetriNetUsingInductiveMiner(filteredXlog);
 
-        //calculate fitness
-
+        // Calculate fitness
         return PetriNetEvaluator.calculateFitness(log, objects, factory);
-        // Here you would typically add discovery algorithms and ranking steps
-    }
-
-    public static void main(String[] args) throws Exception {
-
-        if (args.length >= 3) {
-            System.out.println(pipeline(filters.loadXLog(args[0]), Double.parseDouble(args[1])));
-            return;
-        }
-
-        // Ensure arguments are passed
-        System.out.println("Usage: java MetaDiscoveryPipeline <logPath>");
-        // Extract the log path
-        String logPath = "/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/org/tests/exampleLogs/Road_Traffic_Fine_Management_Process.xes";
-
-        // Path to the Python script
-        String pythonScript = "/Users/georgegeorgiev/Desktop/MetaDiscoveryThesis/src/org/hyperParameterOptimizer/bayesianOptimizer.py";
-
-        // Command to execute the Python script
-        String[] command = {
-                "arch", // Specify architecture
-                "-arm64", // Force x86_64 mode
-                "python3", // Python binary
-                pythonScript, // Python script
-                logPath // Argument to the Python script
-        };
-
-        ProcessBuilder processBuilder = new ProcessBuilder(command);
-        processBuilder.redirectErrorStream(true); // Redirect error stream to output stream
-        Process process = processBuilder.start();
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
-        String line;
-        while ((line = reader.readLine()) != null) {
-            System.out.println(line); // Print Python script output
-        }
     }
 }
-
