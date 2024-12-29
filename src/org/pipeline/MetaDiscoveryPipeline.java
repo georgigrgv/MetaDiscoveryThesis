@@ -27,7 +27,7 @@ public class MetaDiscoveryPipeline {
 
         cachedLog = filters.loadXLog(logPath);
 
-        // Start the HTTP server
+//        // Start the HTTP server
         port(8080);
 
         // Define the pipeline endpoint

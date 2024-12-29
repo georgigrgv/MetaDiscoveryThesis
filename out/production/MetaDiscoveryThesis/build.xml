@@ -5,11 +5,14 @@
 	<property name="build" location="bindist" />
 	<property name="doc" location="doc" />
 	<property name="lib" location="lib" />
+	<property name="libs" location="libs" />
 	<property name="dist" location="dist" />
 	<property name="release" location="latestrelease" />
 	<property name="version" value="${env.major_minor}.${env.GITHUB_RUN_NUMBER}" />
 	<property name="project" value="MetaDiscoveryThesis" />
 	<property name="env.bytecode_format" value="1.8" />
+	<property name="java-app.dir" location="org/pipeline" />
+	<property name="python-app.dir" location="org/hyperParameterOptimizer" />
 
 	<property name="author" value="SJJ Leemans" />
 	<property name="organization" value="Queensland University of Technology" />
@@ -71,6 +74,12 @@
 					<include name="**" />
 					<exclude name="test**" />
 				</fileset>
+				<fileset dir="${lib}">
+					<include name="**/*.jar" />
+					<exclude name="test**" />
+				</fileset>
+				<zipfileset dir="${libs}" includes="**/*.jar" />
+				<zipfileset dir="${ivy.lib.dir}" includes="**/*.jar" />
 				<manifest>
 					<attribute name="Built-By" value="${user.name}" />
 					<attribute name="Specification-Title" value="${project}" />
@@ -80,6 +89,7 @@
 					<attribute name="Implementation-Version" value="${version} ${TODAY}" />
 					<attribute name="Implementation-Vendor" value="www.processmining.org" />
 					<attribute name="Sealed" value="false" />
+					<attribute name="Main-Class" value="org.pipeline.MetaDiscoveryPipeline" />
 				</manifest>
 			</jar>
 			<copy file="${dist}/${project}-${DSTAMP}.jar" tofile="${dist}/${project}.jar" overwrite="true" />
@@ -132,6 +142,48 @@
 		</zip>
 	</target>
 
-	<target name="buildHudson" depends="clean,resolve,compile,makejar,archive" />
+	<target name="prepare-java-docker">
+		<copy file="${dist}/MetaDiscoveryThesis.jar" tofile="${java-app.dir}/MetaDiscoveryThesis.jar" />
+		<copy todir="${java-app.dir}/lib">
+			<fileset dir="${basedir}/lib" />
+		</copy>
+		<copy todir="${java-app.dir}/libs">
+			<fileset dir="${basedir}/libs" />
+		</copy>
+		<copy todir="${java-app.dir}/ivy">
+			<fileset dir="${basedir}/ivy" />
+		</copy>
+	</target>
+
+	<target name="build-java-docker" depends="prepare-java-docker">
+		<exec executable="docker" dir="${java-app.dir}">
+			<arg value="build" />
+			<arg value="-t" />
+			<arg value="java-service-image" />
+			<arg value="." />
+		</exec>
+	</target>
+
+	<target name="build-python-docker">
+		<exec executable="docker" >
+			<arg value="build" />
+			<arg value="-t" />
+			<arg value="python-service-image" />
+			<arg value="${python-app.dir}" />
+		</exec>
+	</target>
+
+	<target name="clean-docker" depends="build-java-docker">
+		<delete file="${java-app.dir}/MetaDiscoveryThesis.jar" />
+		<delete dir="${java-app.dir}/lib" />
+		<delete dir="${java-app.dir}/libs" />
+		<delete dir="${java-app.dir}/ivy" />
+	</target>
+
+	<target name="build-docker" depends="build-java-docker, build-python-docker, clean-docker">
+		<echo message="Both Docker images have been built successfully!" />
+	</target>
+
+	<target name="buildHudson" depends="clean,resolve,compile,makejar,archive, build-docker" />
 
 </project>
