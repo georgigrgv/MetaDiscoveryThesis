@@ -8,6 +8,7 @@ import org.deckfour.xes.classification.XEventClass;
 import org.deckfour.xes.info.XLogInfoFactory;
 import org.deckfour.xes.model.XLog;
 import org.processmining.contexts.uitopia.PluginContextFactory;
+import org.processmining.models.graphbased.directed.petrinet.Petrinet;
 
 import static spark.Spark.port;
 import static spark.Spark.post;
@@ -27,20 +28,25 @@ public class MetaDiscoveryPipeline {
 
         cachedLog = filters.loadXLog(logPath);
 
-//        // Start the HTTP server
         port(8080);
 
         // Define the pipeline endpoint
         post("/pipeline", (req, res) -> {
             JSONObject requestBody = new JSONObject(req.body());
             double hyperParamFilter = requestBody.getDouble("hyperParamFilter");
+            String algorithm = (String) requestBody.get("algorithm");
 
             // Execute the pipeline
-            double fitness = pipeline(cachedLog, hyperParamFilter);
+            double[] metricsResult = pipeline(cachedLog, hyperParamFilter, algorithm, requestBody);
 
-            // Return the result as JSON
             JSONObject response = new JSONObject();
-            response.put("fitness", fitness);
+            if(metricsResult.length == 2){
+                // Return the result as JSON
+                response.put("fitness", metricsResult[0]);
+                response.put("precision", metricsResult[1]);
+            }else {
+                response.put("fitness", metricsResult[0]);
+            }
             return response.toString();
         });
 
@@ -48,17 +54,36 @@ public class MetaDiscoveryPipeline {
     }
 
 
-    public static double pipeline(XLog log, double hyperParamFilter) throws Exception {
+    public static double[] pipeline(XLog log, double hyperParamFilter, String algorithm, JSONObject request) throws Exception {
         DiscoveryAlgorithms algorithms = new DiscoveryAlgorithms();
         PluginContextFactory factory = new PluginContextFactory();
 
         XLog filteredXlog = filters.filterWithMinOccFreq(factory.getContext(), log, XLogInfoFactory.createLogInfo(log).getEventClasses(),
                 XLogInfoFactory.createLogInfo(log).getEventClasses().getClasses().toArray(new XEventClass[0]),
                 hyperParamFilter);
-
-        Object[] objects = algorithms.obtainPetriNetUsingInductiveMiner(filteredXlog);
-
-        // Calculate fitness
-        return PetriNetEvaluator.calculateFitness(log, objects, factory);
+        
+        Object[] objects = new Object[2];
+        switch (algorithm){
+            case "InductiveMiner":
+                objects= algorithms.obtainPetriNetUsingInductiveMiner(filteredXlog, request);
+                break;
+            case "HeuristicsMiner":
+                objects = algorithms.obtainPetriNetUsingHeuristicsMiner(filteredXlog);
+                break;
+            case "AlphaMiner":
+                objects = algorithms.obtainPetriNetUsingAlphaMiner(filteredXlog);
+                break;
+            case "HybridILPMiner":
+                objects = algorithms.obtainPetriNetUsingHybridILPMiner(filteredXlog);
+                break;
+            case "SplitMiner":
+                objects = algorithms.obtainPetriNetUsingSplitMiner(filteredXlog);
+                break;
+        }
+//        if(PetriNetEvaluator.checkForMarkings((Petrinet) objects[0])){
+//            return PetriNetEvaluator.calculateMetrics(log, objects, factory);
+//        }else {
+            return PetriNetEvaluator.tokenBasedReplayFitness(log, (Petrinet) objects[0], factory);
+//        }
     }
 }

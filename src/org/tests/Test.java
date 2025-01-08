@@ -36,85 +36,21 @@ import java.lang.reflect.Method;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-//        EventLogFilters eventLogFilters = new EventLogFilters();
-//        MetaDiscoveryPipeline discoveryPipeline = new MetaDiscoveryPipeline();
-//        PluginContextFactory factory = new PluginContextFactory();
-//        UIPluginContextFactory factory1 = new UIPluginContextFactory();
-//
-//        System.out.println(System.getProperty("java.library.path"));
-//
-//        XLog xLog = eventLogFilters.loadXLog("/Users/georgegeorgiev/Downloads/Road_Traffic_Fine_Management_Process.xes");
-//
-//        BpmnExportPlugin exportPlugin = new BpmnExportPlugin();
-//        DiscoveryAlgorithms algorithms = new DiscoveryAlgorithms();
-//        Object[] objects = algorithms.obtainPetriNetUsingInductiveMiner(xLog);
-//
-//        // Using reflection get the private methods
-//
-//
-//        //System.out.println(PetriNetEvaluator.calculateFitness(xLog, objects, factory));
-//
-//        //TODO: This is important right now
-////        explorerModel.setEventClassifier(classifier);
-////        explorerModel.setFilterConfiguration(filterConfiguration);
-//
-//
-////        XLog xlog = discoveryPipeline.processLog(factory.getContext(), xLog);
-////        System.out.println(XLogInfoFactory.createLogInfo(xlog).getEventClasses().getClasses());
-////
-////        XLog log2 = eventLogFilters.filterTracesByMinOcc(xLog, FilterConfig.createFilterParameters());
-////        System.out.println(log2);
-//
-////        DiscoveryAlgorithms algorithms = new DiscoveryAlgorithms();
-////        Object[] obj = algorithms.obtainPetriNetUsingSplitMiner(xLog);
-////
-////
-//        ExportPetriNet.exportPetrinetToPNMLorEPNMLFile((PetrinetGraph) objects[0], Pnml.PnmlType.PNML, (Marking) objects[1], "/Users/georgegeorgiev/Desktop/PADS_THESIS_TEST/ilpminer.pnml");
-        try {
-            // Paths and parameters
-            String pythonExecutable = "python3"; // Use "python" if python3 is the default
-            String pythonScriptPath = "path/to/optimizer.py";
-            String jarPath = "path/to/pipeline.jar";
-            String logPath = "path/to/log.xes";
-            int nTrials = 50;
+        EventLogFilters eventLogFilters = new EventLogFilters();
+        MetaDiscoveryPipeline discoveryPipeline = new MetaDiscoveryPipeline();
+        PluginContextFactory factory = new PluginContextFactory();
+        UIPluginContextFactory factory1 = new UIPluginContextFactory();
 
-            // Build the Python command
-            ProcessBuilder processBuilder = new ProcessBuilder(
-                    pythonExecutable,
-                    pythonScriptPath,
-                    jarPath,
-                    logPath,
-                    String.valueOf(nTrials)
-            );
+        System.out.println(System.getProperty("java.library.path"));
 
-            // Start the Python process
-            Process process = processBuilder.start();
+        XLog xLog = eventLogFilters.loadXLog("/Users/georgegeorgiev/Downloads/Road_Traffic_Fine_Management_Process.xes");
 
-            // Read the Python script's output
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            StringBuilder output = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line);
-            }
 
-            // Wait for the Python process to complete
-            int exitCode = process.waitFor();
-            if (exitCode == 0) {
-                // Parse the JSON result
-                JSONObject result = new JSONObject(output.toString());
-                JSONObject bestParams = result.getJSONObject("best_params");
-                double bestFitness = result.getDouble("best_fitness");
+        DiscoveryAlgorithms algorithms = new DiscoveryAlgorithms();
+        Object[] objects = algorithms.obtainPetriNetUsingSplitMiner(xLog);
 
-                // Output the results
-                System.out.println("Best Hyperparameters: " + bestParams);
-                System.out.println("Best Fitness: " + bestFitness);
-            } else {
-                System.err.println("Python script failed with exit code: " + exitCode);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ExportPetriNet.exportPetrinetToPNMLorEPNMLFile((PetrinetGraph) objects[0], Pnml.PnmlType.PNML, (Marking) objects[1], "/Users/georgegeorgiev/Desktop/PADS_THESIS_TEST/splitminer.pnml");
 
+        System.out.println("exported");
     }
 }

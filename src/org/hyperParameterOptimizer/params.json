@@ -1,0 +1,50 @@
+{
+  "algorithms": {
+    "InductiveMiner": {
+      "parameters": {
+        "variant": {
+          "type": "categorical",
+          "choices": [
+            {
+              "name": "Inductive Miner (IM)",
+              "requiresNoiseThreshold": false
+            },
+            {
+              "name": "Inductive Miner - infrequent (IMf)",
+              "requiresNoiseThreshold": true
+            },
+            {
+              "name": "Inductive Miner - all operators (IMa)",
+              "requiresNoiseThreshold": false
+            },
+            {
+              "name": "Inductive Miner - infrequent & all operators (IMfa)",
+              "requiresNoiseThreshold": true
+            },
+            {
+              "name": "Inductive Miner - incompleteness (IMc)",
+              "requiresNoiseThreshold": false
+            },
+            {
+              "name": "Inductive Miner - exhaustive K-successor",
+              "requiresNoiseThreshold": false
+            },
+            {
+              "name": "Inductive Miner - life cycle (IMlc)",
+              "requiresNoiseThreshold": false
+            },
+            {
+              "name": "Inductive Miner - infrequent & life cycle (IMflc)",
+              "requiresNoiseThreshold": true
+            }
+          ]
+        },
+        "noiseThreshold": {
+          "type": "float",
+          "low": 0.00,
+          "high": 1.00
+        }
+      }
+    }
+  }
+}
