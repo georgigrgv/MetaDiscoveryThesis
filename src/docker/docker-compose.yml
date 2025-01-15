@@ -11,14 +11,22 @@ services:
       - EVENT_LOG_PATH=${EVENT_LOG_PATH}
     volumes:
       - ${EVENT_LOG_FILE}:${EVENT_LOG_PATH}
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://java-service:8080/health" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
 
   python-service:
     image: python-service-image
     depends_on:
       java-service:
-        condition: service_started
+        condition: service_healthy
     environment:
       - JAVA_SERVICE_URL=${JAVA_SERVICE_URL}
+    deploy:
+      replicas: 4
 
   db:
     image: postgres:14-alpine

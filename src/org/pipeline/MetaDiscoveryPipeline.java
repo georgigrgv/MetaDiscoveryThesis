@@ -14,8 +14,7 @@ import org.processmining.plugins.balancedconformance.controlflow.UnreliableContr
 
 import java.lang.reflect.InvocationTargetException;
 
-import static spark.Spark.port;
-import static spark.Spark.post;
+import static spark.Spark.*;
 
 public class MetaDiscoveryPipeline {
 
@@ -33,6 +32,11 @@ public class MetaDiscoveryPipeline {
         cachedLog = filters.loadXLog(logPath);
 
         port(8080);
+
+        get("/health", (req, res) -> {
+            res.status(200);
+            return "OK";
+        });
 
         // Define the pipeline endpoint
         post("/pipeline", (req, res) -> {
