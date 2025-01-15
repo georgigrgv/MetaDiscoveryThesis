@@ -69,10 +69,20 @@ def objective(trial, config):
 def main():
     config = load_config(CONFIG_PATH)
 
-    study = optuna.create_study(
-        storage=DB_URL,
-        directions=["maximize", "maximize", "maximize"]
-    )
+    resume_study = os.environ.get("OPTUNA_RESUME_STUDY", "")
+
+    if resume_study == "":
+        study = optuna.create_study(
+            storage=DB_URL,
+            directions=["maximize", "maximize", "maximize"],
+        )
+    else:
+        study = optuna.create_study(
+            storage=DB_URL,
+            study_name=resume_study,
+            directions=["maximize", "maximize", "maximize"],
+            load_if_exists=True
+        )
 
     study.optimize(lambda trial: objective(trial, config), n_trials=15)
 
