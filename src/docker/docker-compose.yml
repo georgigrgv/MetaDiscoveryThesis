@@ -7,10 +7,10 @@ services:
       - "8080:8080"
       - "5005:5005"
     environment:
-      - JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
-      - EVENT_LOG_PATH=/app/event-log/eventLog.xes
+      - JAVA_OPTS=${JAVA_OPTS}
+      - EVENT_LOG_PATH=${EVENT_LOG_PATH}
     volumes:
-      - ${EVENT_LOG_FILE}:/app/event-log/eventLog.xes
+      - ${EVENT_LOG_FILE}:${EVENT_LOG_PATH}
 
   python-service:
     image: python-service-image
@@ -18,14 +18,14 @@ services:
       java-service:
         condition: service_started
     environment:
-      - JAVA_SERVICE_URL=http://java-service:8080/pipeline
+      - JAVA_SERVICE_URL=${JAVA_SERVICE_URL}
 
   db:
     image: postgres:14-alpine
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - ~/apps/postgres:/var/lib/postgresql/data
 volumes:
