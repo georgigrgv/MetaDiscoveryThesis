@@ -78,6 +78,10 @@
       "requiresParallelismFirst": true,
       "requiresReplaceIORs": true,
       "requiresRemoveLoopActivities": true
+    },
+    "ILPMiner": {
+      "algorithm": "HybridILPMiner",
+      "variant": "Hybrid ILPMiner"
     }
   },
   "parameters": {
