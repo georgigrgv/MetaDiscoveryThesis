@@ -44,10 +44,11 @@ public class MetaDiscoveryPipeline {
             double[] metricsResult = pipeline(cachedLog, hyperParamFilter, algorithm, requestBody);
 
             JSONObject response = new JSONObject();
-            if (metricsResult.length == 2) {
+            if (metricsResult.length == 3) {
                 // Return the result as JSON
                 response.put("fitness", metricsResult[0]);
                 response.put("precision", metricsResult[1]);
+                response.put("f1-score", metricsResult[2]);
             } else {
                 response.put("fitness", metricsResult[0]);
             }

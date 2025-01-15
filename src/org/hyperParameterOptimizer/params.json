@@ -1,69 +1,64 @@
 {
-  "algorithm_variant": [
-    {
+  "algorithm_variants": {
+    "IM": {
       "algorithm": "InductiveMiner",
       "variant": "Inductive Miner (IM)",
       "requiresNoiseThreshold": false
     },
-    {
+    "IMf": {
       "algorithm": "InductiveMiner",
       "variant": "Inductive Miner - infrequent (IMf)",
       "requiresNoiseThreshold": true
     },
-    {
+    "IMa": {
       "algorithm": "InductiveMiner",
       "variant": "Inductive Miner - all operators (IMa)",
       "requiresNoiseThreshold": false
     },
-    {
+    "IMfa": {
       "algorithm": "InductiveMiner",
       "variant": "Inductive Miner - infrequent & all operators (IMfa)",
       "requiresNoiseThreshold": true
     },
-    {
+    "IMc": {
       "algorithm": "InductiveMiner",
       "variant": "Inductive Miner - incompleteness (IMc)",
       "requiresNoiseThreshold": false
     },
-    {
-      "algorithm": "InductiveMiner",
-      "variant": "Inductive Miner - exhaustive K-successor",
-      "requiresNoiseThreshold": false
-    },
-    {
+    "IMlc": {
       "algorithm": "InductiveMiner",
       "variant": "Inductive Miner - life cycle (IMlc)",
       "requiresNoiseThreshold": false
     },
-    {
+    "IMflc": {
       "algorithm": "InductiveMiner",
       "variant": "Inductive Miner - infrequent & life cycle (IMflc)",
       "requiresNoiseThreshold": true
     },
-    {
+    "Alpha": {
       "algorithm": "AlphaMiner",
       "variant": "Alpha"
     },
-    {
+    "Alpha+": {
       "algorithm": "AlphaMiner",
       "variant": "Alpha+"
     },
-    {
+    "Alpha++": {
       "algorithm": "AlphaMiner",
       "variant": "Alpha++"
     },
-    {
+    "Alpha#": {
       "algorithm": "AlphaMiner",
       "variant": "Alpha#"
     },
-    {
+    "AlphaR": {
       "algorithm": "AlphaMiner",
       "variant": "AlphaR",
       "requiresCausalThreshold": true,
       "requiresNoiseThresholdLeastFreq": true,
       "requiresNoiseThresholdMostFreq": true
     },
-    {
+    "HM": {
       "algorithm": "HeuristicsMiner",
       "variant": "Heuristics Miner",
       "requiresRelativeToBest": true,
@@ -75,7 +70,7 @@
       "requiresLongDistanceDependency": true,
       "requiresIgnoreLoopDependencyThresholds": true
     },
-    {
+    "SM": {
       "algorithm": "SplitMiner",
       "variant": "Split Miner",
       "requiresEta": true,
@@ -84,10 +79,10 @@
       "requiresReplaceIORs": true,
       "requiresRemoveLoopActivities": true
     }
-  ],
+  },
   "parameters": {
     "hyperParamFilter": {
-      "type": "double",
+      "type": "float",
       "low": 0.01,
       "high": 0.2
     },
@@ -97,72 +92,96 @@
       "high": 1.0
     },
     "causalThreshold": {
-      "type": "double",
+      "type": "float",
       "low": 1.0,
       "high": 120.0
     },
     "noiseThresholdLeastFreq": {
-      "type": "double",
+      "type": "float",
       "low": 0.0,
       "high": 1.0
     },
     "noiseThresholdMostFreq": {
-      "type": "double",
+      "type": "float",
       "low": 0.0,
       "high": 1.0
     },
     "relativeToBest": {
-      "type": "double",
+      "type": "float",
       "low": 1.0,
       "high": 10.0
     },
     "dependencyThreshold": {
-      "type": "double",
+      "type": "float",
       "low": 0.0,
       "high": 100.0
     },
     "lengthOneLoopsThreshold": {
-      "type": "double",
+      "type": "float",
       "low": 0.0,
       "high": 100.0
     },
     "lengthTwoLoopsThreshold": {
-      "type": "double",
+      "type": "float",
       "low": 0.0,
       "high": 100.0
     },
     "longDistanceThreshold": {
-      "type": "double",
+      "type": "float",
       "low": 0.0,
       "high": 100.0
     },
     "allTasksConnected": {
-      "type": "boolean"
+      "type": "categorical",
+      "choices": [
+        true,
+        false
+      ]
     },
     "longDistanceDependency": {
-      "type": "boolean"
+      "type": "categorical",
+      "choices": [
+        true,
+        false
+      ]
     },
     "ignoreLoopDependencyThresholds": {
-      "type": "boolean"
+      "type": "categorical",
+      "choices": [
+        true,
+        false
+      ]
     },
     "eta": {
-      "type": "double",
+      "type": "float",
       "low": 0.0,
       "high": 1.0
     },
     "epsilon": {
-      "type": "double",
+      "type": "float",
       "low": 0.0,
       "high": 1.0
     },
     "parallelismFirst": {
-      "type": "boolean"
+      "type": "categorical",
+      "choices": [
+        true,
+        false
+      ]
     },
     "replaceIORs": {
-      "type": "boolean"
+      "type": "categorical",
+      "choices": [
+        true,
+        false
+      ]
     },
     "removeLoopActivities": {
-      "type": "boolean"
+      "type": "categorical",
+      "choices": [
+        true,
+        false
+      ]
     }
   }
 }

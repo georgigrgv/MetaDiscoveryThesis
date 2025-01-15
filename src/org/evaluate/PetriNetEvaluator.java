@@ -53,7 +53,7 @@ public class PetriNetEvaluator {
             InstantiationException, IllegalAccessException, NetVisualizationException, NoSuchFieldException,
             ControlFlowAlignmentException {
 
-        double[] metrics = new double[2];
+        double[] metrics = new double[3];
         Class<?> clazz = DataAwareExplorerPlugin.class;
         Method method = clazz.getDeclaredMethod("wrapPetrinet", PetrinetGraph.class);
         method.setAccessible(true);
@@ -93,6 +93,7 @@ public class PetriNetEvaluator {
         field.setAccessible(true);
         PrecisionResult result = (PrecisionResult) field.get(performanceView);
         metrics[1] = result.getPrecision();
+        metrics[2] = calculateF1Score(metrics[0], metrics[1]);
         return metrics;
     }
 
@@ -131,7 +132,8 @@ public class PetriNetEvaluator {
     public static double[] tokenBasedReplayFitness(XLog log, Petrinet petriNet, PluginContextFactory context){
         ConvertPetriNetToAcceptingPetriNetPlugin convertPetriNetToAcceptingPetriNetPlugin = new ConvertPetriNetToAcceptingPetriNetPlugin();
         AcceptingPetriNet acceptingPetriNet = convertPetriNetToAcceptingPetriNetPlugin.runDefault(context.getContext(), petriNet);
-        return new double[]{TokenBasedReplay.apply(context.getContext(), log, acceptingPetriNet).logFitness, Math.random()};
+        double fitness = TokenBasedReplay.apply(context.getContext(), log, acceptingPetriNet).logFitness;
+        return new double[]{fitness, 0, calculateF1Score(fitness, 0)};
     }
 
     public static boolean checkForMarkings(Petrinet petrinet){
@@ -140,5 +142,9 @@ public class PetriNetEvaluator {
 
         // Log the problem and continue with TokenBasedReplay
         return initialMarking != null && finalMarking != null;
+    }
+
+    public static double calculateF1Score(double fitness, double precision) {
+        return 2 * (fitness * precision) / (fitness + precision);
     }
 }
