@@ -1,14 +1,18 @@
 package org.pipeline;
 
+import org.deckfour.xes.classification.XEventClass;
+import org.deckfour.xes.info.XLogInfoFactory;
+import org.deckfour.xes.model.XLog;
 import org.discovery.DiscoveryAlgorithms;
 import org.evaluate.PetriNetEvaluator;
 import org.json.JSONObject;
 import org.preprocessing.EventLogFilters;
-import org.deckfour.xes.classification.XEventClass;
-import org.deckfour.xes.info.XLogInfoFactory;
-import org.deckfour.xes.model.XLog;
 import org.processmining.contexts.uitopia.PluginContextFactory;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
+import org.processmining.plugins.balancedconformance.controlflow.ControlFlowAlignmentException;
+import org.processmining.plugins.balancedconformance.controlflow.UnreliableControlFlowAlignmentException;
+
+import java.lang.reflect.InvocationTargetException;
 
 import static spark.Spark.port;
 import static spark.Spark.post;
@@ -40,11 +44,11 @@ public class MetaDiscoveryPipeline {
             double[] metricsResult = pipeline(cachedLog, hyperParamFilter, algorithm, requestBody);
 
             JSONObject response = new JSONObject();
-            if(metricsResult.length == 2){
+            if (metricsResult.length == 2) {
                 // Return the result as JSON
                 response.put("fitness", metricsResult[0]);
                 response.put("precision", metricsResult[1]);
-            }else {
+            } else {
                 response.put("fitness", metricsResult[0]);
             }
             return response.toString();
@@ -61,29 +65,33 @@ public class MetaDiscoveryPipeline {
         XLog filteredXlog = filters.filterWithMinOccFreq(factory.getContext(), log, XLogInfoFactory.createLogInfo(log).getEventClasses(),
                 XLogInfoFactory.createLogInfo(log).getEventClasses().getClasses().toArray(new XEventClass[0]),
                 hyperParamFilter);
-        
+
         Object[] objects = new Object[2];
-        switch (algorithm){
+        switch (algorithm) {
             case "InductiveMiner":
-                objects= algorithms.obtainPetriNetUsingInductiveMiner(filteredXlog, request);
+                objects = algorithms.obtainPetriNetUsingInductiveMiner(filteredXlog, request);
                 break;
             case "HeuristicsMiner":
-                objects = algorithms.obtainPetriNetUsingHeuristicsMiner(filteredXlog);
+                objects = algorithms.obtainPetriNetUsingHeuristicsMiner(filteredXlog, request);
                 break;
             case "AlphaMiner":
-                objects = algorithms.obtainPetriNetUsingAlphaMiner(filteredXlog);
+                objects = algorithms.obtainPetriNetUsingAlphaMiner(filteredXlog, request);
                 break;
             case "HybridILPMiner":
                 objects = algorithms.obtainPetriNetUsingHybridILPMiner(filteredXlog);
                 break;
             case "SplitMiner":
-                objects = algorithms.obtainPetriNetUsingSplitMiner(filteredXlog);
+                objects = algorithms.obtainPetriNetUsingSplitMiner(filteredXlog, request);
                 break;
         }
-//        if(PetriNetEvaluator.checkForMarkings((Petrinet) objects[0])){
-//            return PetriNetEvaluator.calculateMetrics(log, objects, factory);
-//        }else {
-            return PetriNetEvaluator.tokenBasedReplayFitness(log, (Petrinet) objects[0], factory);
-//        }
+        if (PetriNetEvaluator.checkForMarkings((Petrinet) objects[0])) {
+            try{
+                return PetriNetEvaluator.calculateMetrics(log, objects, factory);
+            } catch (ControlFlowAlignmentException | InvocationTargetException f){
+                return PetriNetEvaluator.tokenBasedReplayFitness(log, (Petrinet) objects[0], factory);
+            }
+        } else {
+        return PetriNetEvaluator.tokenBasedReplayFitness(log, (Petrinet) objects[0], factory);
+        }
     }
 }

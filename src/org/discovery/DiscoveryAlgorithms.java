@@ -4,6 +4,8 @@ import org.deckfour.xes.classification.*;
 import org.deckfour.xes.info.XLogInfo;
 import org.deckfour.xes.info.impl.XLogInfoImpl;
 import org.deckfour.xes.model.XLog;
+import org.discovery.alphaMiner.AlphaMinerVariant;
+import org.discovery.heuristicsMiner.HeuristicsMinerVariant;
 import org.discovery.inductiveMiner.InductiveMinerVariant;
 import org.discovery.utils.ParamsConstants;
 import org.json.JSONObject;
@@ -11,6 +13,7 @@ import org.processmining.alphaminer.abstractions.AlphaClassicAbstraction;
 import org.processmining.alphaminer.algorithms.AlphaMiner;
 import org.processmining.alphaminer.algorithms.AlphaMinerFactory;
 import org.processmining.alphaminer.parameters.AlphaMinerParameters;
+import org.processmining.alphaminer.parameters.AlphaRobustMinerParameters;
 import org.processmining.alphaminer.parameters.AlphaVersion;
 import org.processmining.contexts.uitopia.PluginContextFactory;
 import org.processmining.contexts.uitopia.UIPluginContextFactory;
@@ -33,6 +36,7 @@ import org.processmining.plugins.converters.bpmn2pn.BPMN2PetriNetConverter_Plugi
 import org.processmining.plugins.heuristicsnet.miner.heuristics.converter.HeuristicsNetToPetriNetConverter;
 import org.processmining.plugins.heuristicsnet.miner.heuristics.miner.FlexibleHeuristicsMinerPlugin;
 import org.processmining.plugins.heuristicsnet.miner.heuristics.miner.gui.ParametersPanel;
+import org.processmining.plugins.heuristicsnet.miner.heuristics.miner.settings.HeuristicsMinerSettings;
 import org.processmining.widgets.wizard.Dialog;
 import org.processmining.widgets.wizard.Wizard;
 import org.processmining.widgets.wizard.WizardResult;
@@ -47,6 +51,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 
+import static org.processmining.hybridilpminer.plugins.HybridILPMinerPlugin.applyExpress;
 import static org.processmining.hybridilpminer.plugins.HybridILPMinerPlugin.discoverWithArtificialStartEnd;
 
 public class DiscoveryAlgorithms {
@@ -69,7 +74,7 @@ public class DiscoveryAlgorithms {
         IMMiningDialog.ParametersWrapper parametersWrapper = (IMMiningDialog.ParametersWrapper) parametersWrapperField.get(dialog);
 
         parametersWrapper.parameters = Objects.requireNonNull(InductiveMinerVariant.variant(variant, dialog)).getMiningParameters();
-        if (existThreshold){
+        if (existThreshold) {
             parametersWrapper.parameters.setNoiseThreshold(threshold);
         }
         parametersWrapper.variant = InductiveMinerVariant.variant(variant, dialog);
@@ -78,7 +83,7 @@ public class DiscoveryAlgorithms {
         return IMPetriNet.minePetriNet(factory.getContext(), log, dialog.getMiningParameters());
     }
 
-    public Object[] obtainPetriNetUsingHeuristicsMiner(XLog log) throws
+    public Object[] obtainPetriNetUsingHeuristicsMiner(XLog log, JSONObject request) throws
             Exception {
         UIPluginContextFactory factory = new UIPluginContextFactory();
         XEventClassifier defaultClassifier;
@@ -91,20 +96,28 @@ public class DiscoveryAlgorithms {
         }
         XLogInfo loginfo = new XLogInfoImpl(log, defaultClassifier, log.getClassifiers());
         ParametersPanel parameters = new ParametersPanel(loginfo.getEventClassifiers());
-        parameters.removeAndThreshold();
+        HeuristicsMinerSettings settings = HeuristicsMinerVariant.createHeuristicsMinerParameters(parameters.getSettings(), request);
         return HeuristicsNetToPetriNetConverter.converter(factory.getContext(),
-                FlexibleHeuristicsMinerPlugin.run(factory.getContext(), log, parameters.getSettings(), loginfo));
+                FlexibleHeuristicsMinerPlugin.run(factory.getContext(), log, settings, loginfo));
     }
 
-    public Object[] obtainPetriNetUsingAlphaMiner(XLog xLog) {
+    public Object[] obtainPetriNetUsingAlphaMiner(XLog xLog, JSONObject request) {
         PluginContextFactory factory = new PluginContextFactory();
         Object[] ret = new Object[2];
         XEventClassifier classifier = XLogInfoImpl.NAME_CLASSIFIER;
-        AlphaMinerParameters parameters = new AlphaMinerParameters();
-        parameters.setVersion(AlphaVersion.CLASSIC);
-        AlphaMiner<XEventClass, ? extends AlphaClassicAbstraction<XEventClass>, ?
-                extends AlphaMinerParameters> miner = AlphaMinerFactory
-                .createAlphaMiner(factory.getContext(), xLog, classifier, parameters);
+        String variant = request.getString(ParamsConstants.ALGORITHM_VARIANT);
+
+        AlphaMinerParameters parameters;
+
+        if (variant.equals(AlphaMinerVariant.ALPHA_ROBUST.toString())) {
+            parameters = AlphaMinerVariant.createAlphaRobustMinerParameters(variant, request);
+        } else {
+            parameters = AlphaMinerVariant.createAlphaMinerParameters(variant);
+        }
+
+        AlphaMiner<XEventClass, ? extends AlphaClassicAbstraction<XEventClass>, ? extends AlphaMinerParameters> miner =
+                AlphaMinerFactory.createAlphaMiner(factory.getContext(), xLog, classifier, parameters);
+
         Pair<Petrinet, Marking> markedNet = miner.run();
         ret[0] = markedNet.getFirst();
         ret[1] = markedNet.getSecond();
@@ -145,16 +158,15 @@ public class DiscoveryAlgorithms {
         return result;
     }
 
-    public Object[] obtainPetriNetUsingSplitMiner(XLog xLog) {
+    public Object[] obtainPetriNetUsingSplitMiner(XLog xLog, JSONObject request) {
         UIPluginContextFactory factory = new UIPluginContextFactory();
-        BPMN2PetriNetConverter_Plugin converterPlugin = new BPMN2PetriNetConverter_Plugin();
         BPMN2PetriNetConverter_Configuration config = new BPMN2PetriNetConverter_Configuration();
         ExportPetriNet exportPetriNet = new ExportPetriNet();
-        double eta = 1.0;
-        double epsilon = 0.5;
-        boolean parallelismFirst = true;
-        boolean replaceIORs = false;
-        boolean removeLoopActivities = false;
+        double eta = request.getDouble(ParamsConstants.ETA);
+        double epsilon = request.getDouble(ParamsConstants.EPSILON);
+        boolean parallelismFirst = request.getBoolean(ParamsConstants.PARALLELISM_FIRST);
+        boolean replaceIORs = request.getBoolean(ParamsConstants.REPLACE_IORS);
+        boolean removeLoopActivities = request.getBoolean(ParamsConstants.REMOVE_LOOP_ACTIVITIES);
         SimpleLog cLog = LogParser.getComplexLog(xLog, new XEventNameClassifier());
         DirectlyFollowGraphPlus dfgp = new DirectlyFollowGraphPlus(cLog, eta, epsilon, DFGPUIResult.FilterType.FWG, parallelismFirst);
         dfgp.buildDFGP();

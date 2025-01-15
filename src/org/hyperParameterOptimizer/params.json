@@ -1,50 +1,168 @@
 {
-  "algorithms": {
-    "InductiveMiner": {
-      "parameters": {
-        "variant": {
-          "type": "categorical",
-          "choices": [
-            {
-              "name": "Inductive Miner (IM)",
-              "requiresNoiseThreshold": false
-            },
-            {
-              "name": "Inductive Miner - infrequent (IMf)",
-              "requiresNoiseThreshold": true
-            },
-            {
-              "name": "Inductive Miner - all operators (IMa)",
-              "requiresNoiseThreshold": false
-            },
-            {
-              "name": "Inductive Miner - infrequent & all operators (IMfa)",
-              "requiresNoiseThreshold": true
-            },
-            {
-              "name": "Inductive Miner - incompleteness (IMc)",
-              "requiresNoiseThreshold": false
-            },
-            {
-              "name": "Inductive Miner - exhaustive K-successor",
-              "requiresNoiseThreshold": false
-            },
-            {
-              "name": "Inductive Miner - life cycle (IMlc)",
-              "requiresNoiseThreshold": false
-            },
-            {
-              "name": "Inductive Miner - infrequent & life cycle (IMflc)",
-              "requiresNoiseThreshold": true
-            }
-          ]
-        },
-        "noiseThreshold": {
-          "type": "float",
-          "low": 0.00,
-          "high": 1.00
-        }
-      }
+  "algorithm_variant": [
+    {
+      "algorithm": "InductiveMiner",
+      "variant": "Inductive Miner (IM)",
+      "requiresNoiseThreshold": false
+    },
+    {
+      "algorithm": "InductiveMiner",
+      "variant": "Inductive Miner - infrequent (IMf)",
+      "requiresNoiseThreshold": true
+    },
+    {
+      "algorithm": "InductiveMiner",
+      "variant": "Inductive Miner - all operators (IMa)",
+      "requiresNoiseThreshold": false
+    },
+    {
+      "algorithm": "InductiveMiner",
+      "variant": "Inductive Miner - infrequent & all operators (IMfa)",
+      "requiresNoiseThreshold": true
+    },
+    {
+      "algorithm": "InductiveMiner",
+      "variant": "Inductive Miner - incompleteness (IMc)",
+      "requiresNoiseThreshold": false
+    },
+    {
+      "algorithm": "InductiveMiner",
+      "variant": "Inductive Miner - exhaustive K-successor",
+      "requiresNoiseThreshold": false
+    },
+    {
+      "algorithm": "InductiveMiner",
+      "variant": "Inductive Miner - life cycle (IMlc)",
+      "requiresNoiseThreshold": false
+    },
+    {
+      "algorithm": "InductiveMiner",
+      "variant": "Inductive Miner - infrequent & life cycle (IMflc)",
+      "requiresNoiseThreshold": true
+    },
+    {
+      "algorithm": "AlphaMiner",
+      "variant": "Alpha"
+    },
+    {
+      "algorithm": "AlphaMiner",
+      "variant": "Alpha+"
+    },
+    {
+      "algorithm": "AlphaMiner",
+      "variant": "Alpha++"
+    },
+    {
+      "algorithm": "AlphaMiner",
+      "variant": "Alpha#"
+    },
+    {
+      "algorithm": "AlphaMiner",
+      "variant": "AlphaR",
+      "requiresCausalThreshold": true,
+      "requiresNoiseThresholdLeastFreq": true,
+      "requiresNoiseThresholdMostFreq": true
+    },
+    {
+      "algorithm": "HeuristicsMiner",
+      "variant": "Heuristics Miner",
+      "requiresRelativeToBest": true,
+      "requiresDependencyThreshold": true,
+      "requiresLengthOneLoopsThreshold": true,
+      "requiresLengthTwoLoopsThreshold": true,
+      "requiresLongDistanceThreshold": true,
+      "requiresAllTasksConnected": true,
+      "requiresLongDistanceDependency": true,
+      "requiresIgnoreLoopDependencyThresholds": true
+    },
+    {
+      "algorithm": "SplitMiner",
+      "variant": "Split Miner",
+      "requiresEta": true,
+      "requiresEpsilon": true,
+      "requiresParallelismFirst": true,
+      "requiresReplaceIORs": true,
+      "requiresRemoveLoopActivities": true
+    }
+  ],
+  "parameters": {
+    "hyperParamFilter": {
+      "type": "double",
+      "low": 0.01,
+      "high": 0.2
+    },
+    "noiseThreshold": {
+      "type": "float",
+      "low": 0.0,
+      "high": 1.0
+    },
+    "causalThreshold": {
+      "type": "double",
+      "low": 1.0,
+      "high": 120.0
+    },
+    "noiseThresholdLeastFreq": {
+      "type": "double",
+      "low": 0.0,
+      "high": 1.0
+    },
+    "noiseThresholdMostFreq": {
+      "type": "double",
+      "low": 0.0,
+      "high": 1.0
+    },
+    "relativeToBest": {
+      "type": "double",
+      "low": 1.0,
+      "high": 10.0
+    },
+    "dependencyThreshold": {
+      "type": "double",
+      "low": 0.0,
+      "high": 100.0
+    },
+    "lengthOneLoopsThreshold": {
+      "type": "double",
+      "low": 0.0,
+      "high": 100.0
+    },
+    "lengthTwoLoopsThreshold": {
+      "type": "double",
+      "low": 0.0,
+      "high": 100.0
+    },
+    "longDistanceThreshold": {
+      "type": "double",
+      "low": 0.0,
+      "high": 100.0
+    },
+    "allTasksConnected": {
+      "type": "boolean"
+    },
+    "longDistanceDependency": {
+      "type": "boolean"
+    },
+    "ignoreLoopDependencyThresholds": {
+      "type": "boolean"
+    },
+    "eta": {
+      "type": "double",
+      "low": 0.0,
+      "high": 1.0
+    },
+    "epsilon": {
+      "type": "double",
+      "low": 0.0,
+      "high": 1.0
+    },
+    "parallelismFirst": {
+      "type": "boolean"
+    },
+    "replaceIORs": {
+      "type": "boolean"
+    },
+    "removeLoopActivities": {
+      "type": "boolean"
     }
   }
 }
