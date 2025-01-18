@@ -78,6 +78,8 @@ def main():
         load_if_exists=True
     )
 
+    study.set_metric_names(["Fitness", "Precision","F1-Score"])
+
     study.optimize(lambda trial: objective(trial, config), n_trials=80)
 
     logger.info("Best algorithm and hyperparameters:")

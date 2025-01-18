@@ -12,6 +12,7 @@ import org.processmining.models.graphbased.directed.petrinet.elements.Place;
 import org.processmining.models.semantics.petrinet.Marking;
 import org.processmining.plugins.converters.bpmn2pn.BPMN2PetriNetConverter;
 import org.processmining.plugins.converters.bpmn2pn.BPMN2PetriNetConverter_Configuration;
+import org.processmining.plugins.petrinet.replayresult.PNRepResult;
 import org.processmining.plugins.pnml.base.FullPnmlElementFactory;
 import org.processmining.plugins.pnml.base.Pnml;
 import org.processmining.plugins.pnml.base.PnmlElement;

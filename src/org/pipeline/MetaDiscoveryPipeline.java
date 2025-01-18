@@ -1,5 +1,6 @@
 package org.pipeline;
 
+import nl.tue.astar.AStarException;
 import org.deckfour.xes.classification.XEventClass;
 import org.deckfour.xes.info.XLogInfoFactory;
 import org.deckfour.xes.model.XLog;
@@ -9,6 +10,7 @@ import org.json.JSONObject;
 import org.preprocessing.EventLogFilters;
 import org.processmining.contexts.uitopia.PluginContextFactory;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
+import org.processmining.models.graphbased.directed.petrinet.PetrinetGraph;
 import org.processmining.plugins.balancedconformance.controlflow.ControlFlowAlignmentException;
 import org.processmining.plugins.balancedconformance.controlflow.UnreliableControlFlowAlignmentException;
 
@@ -91,8 +93,8 @@ public class MetaDiscoveryPipeline {
         }
         if (PetriNetEvaluator.checkForMarkings((Petrinet) objects[0])) {
             try{
-                return PetriNetEvaluator.calculateMetrics(log, objects, factory);
-            } catch (ControlFlowAlignmentException | InvocationTargetException f){
+                return PetriNetEvaluator.executeAlignments(log, (PetrinetGraph) objects[0], factory);
+            } catch (AStarException e){
                 return PetriNetEvaluator.tokenBasedReplayFitness(log, (Petrinet) objects[0], factory);
             }
         } else {

@@ -10,7 +10,8 @@
     </configurations>
     <dependencies defaultconf="default">
 
-        <!--Reflection failures because of this-->
+        <!--Conformance Checking-->
+        <dependency org="prom" name="Precision" rev="latest" changing="true" transitive="true"/>
         <!-- Used to checks jars for implementations-->
         <dependency org="prom" name="Filterd" rev="latest" changing="true" transitive="true"/>
         <!-- Dependencies for fitness algorithms-->
