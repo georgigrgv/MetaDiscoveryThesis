@@ -21,6 +21,7 @@ import org.processmining.plugins.connectionfactories.logpetrinet.TransEvClassMap
 import org.processmining.plugins.petrinet.replayer.PNLogReplayer;
 import org.processmining.plugins.petrinet.replayer.algorithms.costbasedcomplete.CostBasedCompleteParam;
 import org.processmining.plugins.petrinet.replayresult.PNRepResult;
+import org.processmining.plugins.petrinet.replayresult.PNRepResultImpl;
 import org.processmining.precision.models.EscapingEdgesPrecisionResult;
 import org.processmining.precision.plugins.EscapingEdgesPrecisionPlugin;
 import org.processmining.tbr.TokenBasedReplay;
@@ -58,37 +59,38 @@ public class PetriNetEvaluator {
         parameter.setFinalMarkings(finalMarking);
         parameter.setMaxNumOfStates(200000);
         PluginContext context = factory.getContext();
-        PetrinetReplayerWithoutILP replWithoutILP = new
-                PetrinetReplayerWithoutILP();
-        PNLogReplayer replayer = new PNLogReplayer();
-        PNRepResult pnRepResult = replayer.replayLog(context, net, log,
-                mapping, replWithoutILP, parameter);
-        Map<String, Object> resultAllignments =  pnRepResult.getInfo();
-        double fitness = (double) resultAllignments.get(PNRepResult.TRACEFITNESS);
+        PNRepResultImpl result = (PNRepResultImpl) new PNLogReplayer().replayLog(null, net, log, mapping,
+                new PetrinetReplayerWithoutILP(), parameter);
+        Double fitness = (Double) result.getInfo().get(PNRepResult.TRACEFITNESS);
+        metrics[0] = (fitness != null && fitness > 0.0) ? fitness : -1.0;
         EscapingEdgesPrecisionPlugin precisionPlugin = new EscapingEdgesPrecisionPlugin();
         ConvertPetriNetToAcceptingPetriNetPlugin convertPetriNetToAcceptingPetriNetPlugin = new ConvertPetriNetToAcceptingPetriNetPlugin();
         AcceptingPetriNet acceptingPetriNet = convertPetriNetToAcceptingPetriNetPlugin.runDefault(context, (Petrinet) net);
 
-        EscapingEdgesPrecisionResult precisionResult = precisionPlugin.runDefault(context, pnRepResult, acceptingPetriNet);
-        metrics[1] = precisionResult.getPrecision();
+        EscapingEdgesPrecisionResult precisionResult = precisionPlugin.runDefault(context, result, acceptingPetriNet);
+        double precision = precisionResult.getPrecision();
+        metrics[1] = !Double.isNaN(precision) ? precision : -1.0;
+
         metrics[2] = calculateF1Score(metrics[0], metrics[1]);
         return metrics;
     }
 
-    public static double[] tokenBasedReplayFitness(XLog log, Petrinet petriNet, PluginContextFactory context) {
-        ConvertPetriNetToAcceptingPetriNetPlugin convertPetriNetToAcceptingPetriNetPlugin = new ConvertPetriNetToAcceptingPetriNetPlugin();
-        AcceptingPetriNet acceptingPetriNet = convertPetriNetToAcceptingPetriNetPlugin.runDefault(context.getContext(), petriNet);
-        double fitness = TokenBasedReplay.apply(context.getContext(), log, acceptingPetriNet).logFitness;
-        return new double[]{fitness, 0, calculateF1Score(fitness, 0)};
-    }
+// TODO: REMOVE
 
-    public static boolean checkForMarkings(Petrinet petrinet) {
-        final Marking initialMarking = PetrinetUtils.guessInitialMarking(petrinet);
-        final Marking finalMarking = PetrinetUtils.guessFinalMarking(petrinet);
-
-        // Log the problem and continue with TokenBasedReplay
-        return initialMarking != null && finalMarking != null;
-    }
+//    public static double[] tokenBasedReplayFitness(XLog log, Petrinet petriNet, PluginContextFactory context) {
+//        ConvertPetriNetToAcceptingPetriNetPlugin convertPetriNetToAcceptingPetriNetPlugin = new ConvertPetriNetToAcceptingPetriNetPlugin();
+//        AcceptingPetriNet acceptingPetriNet = convertPetriNetToAcceptingPetriNetPlugin.runDefault(context.getContext(), petriNet);
+//        double fitness = TokenBasedReplay.apply(context.getContext(), log, acceptingPetriNet).logFitness;
+//        return new double[]{fitness, 0, calculateF1Score(fitness, 0)};
+//    }
+//
+//    public static boolean checkForMarkings(Petrinet petrinet) {
+//        final Marking initialMarking = PetrinetUtils.guessInitialMarking(petrinet);
+//        final Marking finalMarking = PetrinetUtils.guessFinalMarking(petrinet);
+//
+//        // Log the problem and continue with TokenBasedReplay
+//        return initialMarking != null && finalMarking != null;
+//    }
 
     public static double calculateF1Score(double fitness, double precision) {
         return 2 * (fitness * precision) / (fitness + precision);

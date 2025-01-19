@@ -53,11 +53,18 @@ def objective(trial, config):
         response.raise_for_status()
         result = response.json()
 
-        fitness = result.get("fitness")
-        precision = result.get("precision")
-        f1_score = result.get("f1-score")
-        if fitness is None or precision is None or f1_score is None:
-            raise ValueError("Invalid response: 'fitness' or 'precision' or 'f1-score' field is missing.")
+        fitness = result.get("fitness", -1.0)
+        precision = result.get("precision", -1.0)
+        f1_score = result.get("f1-score", -1.0)
+
+        if fitness == -1.0:
+            logger.warning(f"Trial {trial.number}: Fitness could not be computed. Defaulting to -1.0.")
+            trial.set_user_attr("status", "Alignments/Fitness could not be computed")
+            raise optuna.TrialPruned()
+        if precision == -1.0:
+            logger.warning(f"Trial {trial.number}: Precision could not be computed. Defaulting to -1.0.")
+            trial.set_user_attr("status", "Alignments/Precision could not be computed")
+            raise optuna.TrialPruned()
 
         return fitness, precision, f1_score
 
@@ -80,7 +87,7 @@ def main():
 
     study.set_metric_names(["Fitness", "Precision","F1-Score"])
 
-    study.optimize(lambda trial: objective(trial, config), n_trials=80)
+    study.optimize(lambda trial: objective(trial, config), n_trials=100)
 
     logger.info("Best algorithm and hyperparameters:")
     for trial in study.best_trials:

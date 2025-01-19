@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     gcc \
     make \
     curl  \
+    zip \
     unzip \
     g++ \
     libfreetype6 \
@@ -20,6 +21,13 @@ COPY lib /app/lib
 COPY libs /app/libs
 COPY ivy /app/ivy
 COPY LpSolve_mac /app/lpsolve
+
+WORKDIR /app/libs
+
+RUN zip -d split-miner-1.7.1-all.jar  \
+     "org/processmining/plugins/petrinet/replayresult/**" \
+      "org/processmining/plugins/petrinet/replayer/**" \
+      "org/processmining/plugins/astar/petrinet/**"
 
 WORKDIR /app
 

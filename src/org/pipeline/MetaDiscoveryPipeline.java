@@ -51,12 +51,9 @@ public class MetaDiscoveryPipeline {
 
             JSONObject response = new JSONObject();
             if (metricsResult.length == 3) {
-                // Return the result as JSON
                 response.put("fitness", metricsResult[0]);
                 response.put("precision", metricsResult[1]);
                 response.put("f1-score", metricsResult[2]);
-            } else {
-                response.put("fitness", metricsResult[0]);
             }
             return response.toString();
         });
@@ -91,14 +88,10 @@ public class MetaDiscoveryPipeline {
                 objects = algorithms.obtainPetriNetUsingSplitMiner(filteredXlog, request);
                 break;
         }
-        if (PetriNetEvaluator.checkForMarkings((Petrinet) objects[0])) {
-            try{
-                return PetriNetEvaluator.executeAlignments(log, (PetrinetGraph) objects[0], factory);
-            } catch (AStarException e){
-                return PetriNetEvaluator.tokenBasedReplayFitness(log, (Petrinet) objects[0], factory);
-            }
-        } else {
-        return PetriNetEvaluator.tokenBasedReplayFitness(log, (Petrinet) objects[0], factory);
+        try{
+            return PetriNetEvaluator.executeAlignments(log, (PetrinetGraph) objects[0], factory);
+        } catch (AStarException e){
+            return new double[]{-1.0, -1.0, -1.0};
         }
     }
 }

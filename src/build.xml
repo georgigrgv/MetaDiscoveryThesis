@@ -78,7 +78,9 @@
 					<include name="**/*.jar" />
 					<exclude name="test**" />
 				</fileset>
-				<zipfileset dir="${libs}" includes="**/*.jar" />
+				<zipfileset dir="${libs}" includes="**/*.jar">
+					<exclude name="split-miner-1.7.1-all.jar" />
+				</zipfileset>
 				<zipfileset dir="${ivy.lib.dir}" includes="**/*.jar" />
 				<manifest>
 					<attribute name="Built-By" value="${user.name}" />
@@ -130,17 +132,17 @@
 		<makejar />
 	</target>
 
-	<target name="archive">
-		<echo message="[build] Packaging the project" />
-		<zip destfile="${release}/${project}-${version}-${os}.zip">
-			<zipfileset dir="${lib}" prefix="lib">
-				<include name="**" />
-			</zipfileset>
-			<zipfileset dir="${dist}" prefix="">
-				<include name="${project}.jar" />
-			</zipfileset>
-		</zip>
-	</target>
+<!--	<target name="archive">-->
+<!--		<echo message="[build] Packaging the project" />-->
+<!--		<zip destfile="${release}/${project}-${version}-${os}.zip">-->
+<!--			<zipfileset dir="${lib}" prefix="lib">-->
+<!--				<include name="**" />-->
+<!--			</zipfileset>-->
+<!--			<zipfileset dir="${dist}" prefix="">-->
+<!--				<include name="${project}.jar" />-->
+<!--			</zipfileset>-->
+<!--		</zip>-->
+<!--	</target>-->
 
 	<target name="prepare-java-docker">
 		<copy file="${dist}/MetaDiscoveryThesis.jar" tofile="${java-app.dir}/MetaDiscoveryThesis.jar" />
@@ -184,6 +186,6 @@
 		<echo message="Both Docker images have been built successfully!" />
 	</target>
 
-	<target name="buildHudson" depends="clean,resolve,compile,makejar,archive, build-docker" />
+	<target name="buildHudson" depends="clean,resolve,compile,makejar, build-docker" />
 
 </project>
