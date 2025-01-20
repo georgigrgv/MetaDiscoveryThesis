@@ -15,6 +15,7 @@ import org.processmining.plugins.balancedconformance.controlflow.ControlFlowAlig
 import org.processmining.plugins.balancedconformance.controlflow.UnreliableControlFlowAlignmentException;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.*;
 
 import static spark.Spark.*;
 
@@ -88,10 +89,25 @@ public class MetaDiscoveryPipeline {
                 objects = algorithms.obtainPetriNetUsingSplitMiner(filteredXlog, request);
                 break;
         }
-        try{
-            return PetriNetEvaluator.executeAlignments(log, (PetrinetGraph) objects[0], factory);
-        } catch (AStarException e){
+        // Stops alignments if they take more than 10 Minutes
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+        Object[] finalObjects = objects;
+        Future<double[]> future = executor.submit(() -> {
+            try {
+                return PetriNetEvaluator.executeAlignments(log, (PetrinetGraph) finalObjects[0], factory);
+            } catch (AStarException e) {
+                return new double[]{-1.0, -1.0, -1.0};
+            }
+        });
+
+        try {
+            return future.get(10, TimeUnit.MINUTES);
+        } catch (TimeoutException e) {
+            future.cancel(true);
             return new double[]{-1.0, -1.0, -1.0};
+        }  finally {
+            executor.shutdownNow();
         }
+
     }
 }
