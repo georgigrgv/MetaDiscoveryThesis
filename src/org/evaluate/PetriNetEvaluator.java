@@ -62,7 +62,7 @@ public class PetriNetEvaluator {
         PNRepResultImpl result = (PNRepResultImpl) new PNLogReplayer().replayLog(null, net, log, mapping,
                 new PetrinetReplayerWithoutILP(), parameter);
         Double fitness = (Double) result.getInfo().get(PNRepResult.TRACEFITNESS);
-        metrics[0] = (fitness != null && fitness > 0.0) ? fitness : -1.0;
+        metrics[0] = ((fitness != null && fitness > 0.0) || Double.isNaN(fitness)) ? fitness : -1.0;
         EscapingEdgesPrecisionPlugin precisionPlugin = new EscapingEdgesPrecisionPlugin();
         ConvertPetriNetToAcceptingPetriNetPlugin convertPetriNetToAcceptingPetriNetPlugin = new ConvertPetriNetToAcceptingPetriNetPlugin();
         AcceptingPetriNet acceptingPetriNet = convertPetriNetToAcceptingPetriNetPlugin.runDefault(context, (Petrinet) net);

@@ -41,7 +41,7 @@ ENV JAVA_LIBRARY_PATH="/usr/local/lib:$JAVA_LIBRARY_PATH"
 
 ENV CLASSPATH="/app/MetaDiscoveryThesis.jar:/app/ivy/*:/app/lib/*:/app/libs/*"
 
-EXPOSE 8080 5005
+EXPOSE 8081 5005
 
 ENV JAVA_OPTS_DEFAULT="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
 

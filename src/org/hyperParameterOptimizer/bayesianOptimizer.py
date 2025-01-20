@@ -7,7 +7,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("Logger")
 
-JAVA_SERVICE_URL = os.environ.get("JAVA_SERVICE_URL", "http://java-service:8080/pipeline")
+JAVA_SERVICE_URL = os.environ.get("JAVA_SERVICE_URL", "http://java-service:8081/pipeline")
 CONFIG_PATH = os.environ.get("CONFIG_PATH", "params.json")
 DB_URL = os.environ.get("DB_URL", "postgresql+psycopg2://postgres:postgres@db:5432")
 

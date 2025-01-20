@@ -33,7 +33,7 @@ public class MetaDiscoveryPipeline {
 
         cachedLog = filters.loadXLog(logPath);
 
-        port(8080);
+        port(8081);
 
         get("/health", (req, res) -> {
             res.status(200);
