@@ -31,7 +31,7 @@ public class EventLogFilters {
     }
 
     /**
-     * Filtering events based on % occurance.
+     * Filtering traces based on % occurrence.
      */
     public XLog filterWithMinOccFreq(PluginContext context, XLog log, final XEventClasses allEventClasses,
                                      final XEventClass[] eventClassesToKeep, final Double minOccurrence) {
@@ -87,5 +87,4 @@ public class EventLogFilters {
         }
         throw new Exception("Failed to parse XES file.");
     }
-
 }

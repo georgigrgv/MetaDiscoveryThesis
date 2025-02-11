@@ -10,7 +10,9 @@
     </configurations>
     <dependencies defaultconf="default">
 
-        <!--Reflection failures because of this-->
+        <!--Conformance Checking-->
+        <dependency org="prom" name="Precision" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="AntiAlignments" rev="latest" changing="true" transitive="true"/>
         <!-- Used to checks jars for implementations-->
         <dependency org="prom" name="Filterd" rev="latest" changing="true" transitive="true"/>
         <!-- Dependencies for fitness algorithms-->
@@ -34,7 +36,6 @@
         <dependency org="prom" name="ProcessTree" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="Properties" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="PetriNets" rev="latest" changing="true" transitive="true"/>
-        <dependency org="prom" name="PNetReplayer" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="Sat4j" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="GraphViz" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="AcceptingPetriNet" rev="latest" changing="true" transitive="true"/>

@@ -24,15 +24,12 @@ import org.processmining.plugins.petrinet.replayresult.PNRepResult;
 import org.processmining.plugins.petrinet.replayresult.PNRepResultImpl;
 import org.processmining.precision.models.EscapingEdgesPrecisionResult;
 import org.processmining.precision.plugins.EscapingEdgesPrecisionPlugin;
-import org.processmining.tbr.TokenBasedReplay;
-
-import java.util.Map;
 
 
 public class PetriNetEvaluator {
 
     public static double[] executeAlignments(XLog log, PetrinetGraph net, PluginContextFactory factory) throws AStarException, IllegalTransitionException {
-        double[] metrics = new double[3];
+        double[] metrics = new double[4];
         final Marking initialMarking = PetrinetUtils.guessInitialMarking(net);
         final Marking finalMarking = PetrinetUtils.guessFinalMarking(net);
         XEventClass evClassDummy = new XEventClass("DUMMY",
@@ -72,25 +69,10 @@ public class PetriNetEvaluator {
         metrics[1] = !Double.isNaN(precision) ? precision : -1.0;
 
         metrics[2] = calculateF1Score(metrics[0], metrics[1]);
+        metrics[3] = ModelSimplicity.calculateSimplicity((Petrinet) net, log);
+
         return metrics;
     }
-
-// TODO: REMOVE
-
-//    public static double[] tokenBasedReplayFitness(XLog log, Petrinet petriNet, PluginContextFactory context) {
-//        ConvertPetriNetToAcceptingPetriNetPlugin convertPetriNetToAcceptingPetriNetPlugin = new ConvertPetriNetToAcceptingPetriNetPlugin();
-//        AcceptingPetriNet acceptingPetriNet = convertPetriNetToAcceptingPetriNetPlugin.runDefault(context.getContext(), petriNet);
-//        double fitness = TokenBasedReplay.apply(context.getContext(), log, acceptingPetriNet).logFitness;
-//        return new double[]{fitness, 0, calculateF1Score(fitness, 0)};
-//    }
-//
-//    public static boolean checkForMarkings(Petrinet petrinet) {
-//        final Marking initialMarking = PetrinetUtils.guessInitialMarking(petrinet);
-//        final Marking finalMarking = PetrinetUtils.guessFinalMarking(petrinet);
-//
-//        // Log the problem and continue with TokenBasedReplay
-//        return initialMarking != null && finalMarking != null;
-//    }
 
     public static double calculateF1Score(double fitness, double precision) {
         return 2 * (fitness * precision) / (fitness + precision);

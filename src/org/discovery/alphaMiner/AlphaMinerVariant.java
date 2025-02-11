@@ -14,14 +14,13 @@ public enum AlphaMinerVariant {
 
     private final String name;
 
-    private AlphaMinerVariant(final String name) {
+    AlphaMinerVariant(final String name) {
         this.name = name;
     }
 
     public String toString() {
         return name;
     }
-        //
 
     public static AlphaVersion fromString(String name) {
         for (AlphaVersion version : AlphaVersion.values()) {

@@ -4,14 +4,40 @@ services:
   java-service:
     image: java-service-image
     ports:
-      - "8080:8080"
+      - "8081:8081"
       - "5005:5005"
     environment:
-          - JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+      - JAVA_OPTS=${JAVA_OPTS}
+      - EVENT_LOG_PATH=${EVENT_LOG_PATH}
+    volumes:
+      - ${EVENT_LOG_FILE}:${EVENT_LOG_PATH}
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://java-service:8081/health" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
   python-service:
     image: python-service-image
     depends_on:
       java-service:
-        condition: service_started
+        condition: service_healthy
     environment:
-      - JAVA_SERVICE_URL=http://java-service:8080/pipeline
+      - OPTUNA_STUDY_NAME=${OPTUNA_STUDY_NAME}
+      - JAVA_SERVICE_URL=${JAVA_SERVICE_URL}
+
+  db:
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:

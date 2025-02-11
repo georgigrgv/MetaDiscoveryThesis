@@ -25,10 +25,15 @@ import org.processmining.dataawarecnetminer.interactive.InteractiveDataAwareCaus
 import org.processmining.dataawarecnetminer.interactive.InteractiveDataAwareCausalMinerPlugin;
 import org.processmining.dataawareexplorer.explorer.ExplorerContext;
 import org.processmining.dataawareexplorer.explorer.ExplorerInterface;
+import org.processmining.dataawareexplorer.explorer.ExplorerUpdater;
+import org.processmining.dataawareexplorer.explorer.exception.NetVisualizationException;
 import org.processmining.dataawareexplorer.explorer.model.ExplorerModel;
+import org.processmining.dataawareexplorer.explorer.netview.NetView;
+import org.processmining.dataawareexplorer.explorer.netview.impl.ViewMode;
 import org.processmining.dataawareexplorer.plugin.DataAwareExplorerPlugin;
 import org.processmining.dataawareexplorer.plugin.DataAwareExplorerViewsPlugin;
 import org.processmining.dataawareexplorer.utils.PetrinetUtils;
+import org.processmining.dataawarereplayer.precision.PrecisionResult;
 import org.processmining.datapetrinets.DataPetriNetsWithMarkings;
 import org.processmining.framework.plugin.PluginContext;
 import org.processmining.framework.util.Pair;
@@ -39,20 +44,18 @@ import org.processmining.models.semantics.petrinet.Marking;
 import org.processmining.plugins.InductiveMiner.mining.MiningParameters;
 import org.processmining.plugins.InductiveMiner.plugins.IMPetriNet;
 import org.processmining.plugins.InductiveMiner.plugins.dialogs.IMMiningDialog;
+import org.processmining.plugins.balancedconformance.controlflow.ControlFlowAlignmentException;
 import org.processmining.plugins.bpmn.plugins.BpmnExportPlugin;
 import org.processmining.plugins.converters.bpmn2pn.BPMN2PetriNetConverter_Configuration;
 import org.processmining.plugins.converters.bpmn2pn.BPMN2PetriNetConverter_Plugin;
 import org.processmining.plugins.converters.bpmn2pn.BPMN2PetriNetConverter_UI;
-import org.processmining.plugins.petrinet.replayresult.PNRepResult;
-import org.processmining.plugins.pnml.base.Pnml;
-import org.processmining.tbr.TokenBasedReplay;
-import org.processmining.tbr.TokenBasedReplayResultLog;
-
+import org.processmining.plugins.petrinet.replayer.PNLogReplayer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Objects;
@@ -71,7 +74,6 @@ public class Test {
 
 
 //        IMMiningDialog dialog = new IMMiningDialog(xLog);
-//
 //        Object[] obj = IMPetriNet.minePetriNet(factory.getContext(), xLog, dialog.getMiningParameters());
         Object[] ret = new Object[2];
         XEventClassifier classifier = XLogInfoImpl.NAME_CLASSIFIER;
@@ -80,19 +82,64 @@ public class Test {
                 AlphaMinerFactory.createAlphaMiner(factory.getContext(), xLog, classifier, parameters);
 
         Pair<Petrinet, Marking> markedNet = miner.run();
-        ret[0] = markedNet.getFirst();
-        ret[1] = markedNet.getSecond();
-//
-//        PetriNetEvaluator.calculateMetrics(xLog, ret, factory);
 
-        final Marking initialMarking = PetrinetUtils.guessInitialMarking(markedNet.getFirst());
-        final Marking finalMarking = PetrinetUtils.guessFinalMarking(markedNet.getFirst());
 
-        PNRepResult result = PetriNetEvaluator.executeAlignments(xLog, markedNet.getFirst(), initialMarking, finalMarking);
-        Map<String, Object> result1 = result.getInfo();
+        double[] result = PetriNetEvaluator.executeAlignments(xLog, markedNet.getFirst(), factory);
+
 
 //        ExportPetriNet.exportPetrinetToPNMLorEPNMLFile((PetrinetGraph) objects[0], Pnml.PnmlType.PNML, (Marking) objects[1], "/Users/georgegeorgiev/Desktop/PADS_THESIS_TEST/splitminer.pnml");
 
         System.out.println("exported");
+
+
+// TODO: DON'T DELETE
+//        public static double[] calculateMetrics(XLog xLog, Object[] model, PluginContextFactory factory)
+//            throws NoSuchMethodException, ClassNotFoundException, InvocationTargetException,
+//                InstantiationException, IllegalAccessException, NetVisualizationException, NoSuchFieldException,
+//                ControlFlowAlignmentException {
+//
+//            double[] metrics = new double[3];
+//            Class<?> clazz = DataAwareExplorerPlugin.class;
+//            Method method = clazz.getDeclaredMethod("wrapPetrinet", PetrinetGraph.class);
+//            method.setAccessible(true);
+//
+//            Class<?> clazz2 = DataAwareExplorerViewsPlugin.class;
+//            Method method2 = clazz2.getDeclaredMethod("computeAlignment", PluginContext.class, ExplorerModel.class, ExplorerContext.class);
+//            method2.setAccessible(true);
+//
+//            Method method3 = clazz2.getDeclaredMethod("createNetView", ViewMode.class, ExplorerModel.class, ExplorerUpdater.class, ExplorerContext.class);
+//            method3.setAccessible(true);
+//
+//            Class<?> explorerInterfaceClass = Class.forName("org.processmining.dataawareexplorer.plugin.DataAwareExplorerViewsPlugin$ExplorerInterfaceHeadlessImpl");
+//            Constructor<?> explorerInterfaceConstructor = explorerInterfaceClass.getDeclaredConstructor();
+//            explorerInterfaceConstructor.setAccessible(true);
+//            ExplorerInterface explorerInterface = (ExplorerInterface) explorerInterfaceConstructor.newInstance();
+//
+//            Class<?> explorerContextClass = Class.forName("org.processmining.dataawareexplorer.plugin.DataAwareExplorerViewsPlugin$ExplorerContextHeadlessImpl");
+//            Constructor<?> explorerContextConstructor = explorerContextClass.getDeclaredConstructor(PluginContext.class, ExplorerInterface.class);
+//            explorerContextConstructor.setAccessible(true);
+//            ExplorerContext explorerContext = (ExplorerContext) explorerContextConstructor.newInstance(factory.getContext(), explorerInterface);
+//
+//            Class<?> updatableExplorerClass = Class.forName("org.processmining.dataawareexplorer.plugin.DataAwareExplorerViewsPlugin$ExplorerUpdaterNoOpImpl");
+//            Constructor<?> updatableExplorerConstructor = updatableExplorerClass.getDeclaredConstructor();
+//            updatableExplorerConstructor.setAccessible(true);
+//            ExplorerUpdater updatableExplorer = (ExplorerUpdater) updatableExplorerConstructor.newInstance();
+//
+//            PetrinetGraph graph = (PetrinetGraph) model[0];
+//            DataPetriNetsWithMarkings dpn = (DataPetriNetsWithMarkings) method.invoke(null, graph);
+//            ExplorerModel explorerModel = new ExplorerModel(xLog, dpn);
+//
+//            method2.invoke(new DataAwareExplorerViewsPlugin(), factory.getContext(), explorerModel, explorerContext);
+//            explorerModel.filter();
+//            NetView performanceView = (NetView) method3.invoke(new DataAwareExplorerViewsPlugin(), ViewMode.PRECISION, explorerModel, updatableExplorer, explorerContext);
+//            metrics[0] = explorerModel.getAlignmentInformation().averageFitness;
+//            Class<?> clazzNetPrecision = Class.forName("org.processmining.dataawareexplorer.explorer.netview.impl.NetViewPrecisionImpl");
+//            Field field = clazzNetPrecision.getDeclaredField("precisionResult");
+//            field.setAccessible(true);
+//            PrecisionResult result = (PrecisionResult) field.get(performanceView);
+//            metrics[1] = result.getPrecision();
+//            metrics[2] = calculateF1Score(metrics[0], metrics[1]);
+//            return metrics;
+//        }
     }
 }
