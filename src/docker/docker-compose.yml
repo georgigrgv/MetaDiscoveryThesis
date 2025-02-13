@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   java-service:
-    image: java-service-image
+    image: metadiscoveryalgorithm
     ports:
       - "8081:8081"
       - "5005:5005"
@@ -19,7 +17,7 @@ services:
 
 
   python-service:
-    image: python-service-image
+    image: metahyperparamtuning
     depends_on:
       java-service:
         condition: service_healthy

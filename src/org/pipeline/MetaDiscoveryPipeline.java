@@ -5,6 +5,7 @@ import org.deckfour.xes.classification.XEventClass;
 import org.deckfour.xes.info.XLogInfoFactory;
 import org.deckfour.xes.model.XLog;
 import org.discovery.DiscoveryAlgorithms;
+import org.discovery.ExportPetriNet;
 import org.evaluate.PetriNetEvaluator;
 import org.json.JSONObject;
 import org.preprocessing.EventLogFilters;
@@ -31,6 +32,8 @@ public class MetaDiscoveryPipeline {
             System.out.println("Event log path not specified. Set EVENT_LOG_PATH environment variable.");
             System.exit(1);
         }
+//        ExportPetriNet.createFolderForResults(System.getenv("DISCOVERY_RESULTS_FOLDER"),
+//                System.getenv("DISCOVERY_RESULTS_FOLDER_NAME"));
 
         cachedLog = filters.loadXLog(logPath);
 
@@ -105,7 +108,7 @@ public class MetaDiscoveryPipeline {
         } catch (TimeoutException e) {
             future.cancel(true);
             return new double[]{-1.0, -1.0, -1.0, -1.0};
-        }  finally {
+        } finally {
             executor.shutdownNow();
         }
 

@@ -6,6 +6,7 @@ import org.deckfour.xes.info.XLogInfo;
 import org.deckfour.xes.info.XLogInfoFactory;
 import org.deckfour.xes.info.impl.XLogInfoImpl;
 import org.deckfour.xes.model.XLog;
+import org.discovery.ExportPetriNet;
 import org.processmining.acceptingpetrinet.models.AcceptingPetriNet;
 import org.processmining.acceptingpetrinet.plugins.ConvertPetriNetToAcceptingPetriNetPlugin;
 import org.processmining.contexts.uitopia.PluginContextFactory;
@@ -25,10 +26,13 @@ import org.processmining.plugins.petrinet.replayresult.PNRepResultImpl;
 import org.processmining.precision.models.EscapingEdgesPrecisionResult;
 import org.processmining.precision.plugins.EscapingEdgesPrecisionPlugin;
 
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+
 
 public class PetriNetEvaluator {
 
-    public static double[] executeAlignments(XLog log, PetrinetGraph net, PluginContextFactory factory) throws AStarException, IllegalTransitionException {
+    public static double[] executeAlignments(XLog log, PetrinetGraph net, PluginContextFactory factory) throws AStarException, IllegalTransitionException, FileNotFoundException {
         double[] metrics = new double[4];
         final Marking initialMarking = PetrinetUtils.guessInitialMarking(net);
         final Marking finalMarking = PetrinetUtils.guessFinalMarking(net);
@@ -71,6 +75,10 @@ public class PetriNetEvaluator {
         metrics[2] = calculateF1Score(metrics[0], metrics[1]);
         metrics[3] = ModelSimplicity.calculateSimplicity((Petrinet) net, log);
 
+//        Boolean conformanceResults = Arrays.stream(metrics).allMatch(n -> n > 0);
+//        if (conformanceResults) {
+//            ExportPetriNet.exportPetrinetToPNMLorEPNMLFile(net, initialMarking, System.getenv("SAVE_RESULTS"));
+//        }
         return metrics;
     }
 

@@ -17,6 +17,7 @@ import org.processmining.plugins.pnml.base.FullPnmlElementFactory;
 import org.processmining.plugins.pnml.base.Pnml;
 import org.processmining.plugins.pnml.base.PnmlElement;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Collection;
@@ -26,8 +27,12 @@ import java.util.List;
 
 public class ExportPetriNet {
 
-    public static String exportPetrinetToPNMLorEPNMLString(PetrinetGraph net, Pnml.PnmlType
-            type, Marking marking) {
+    public static void createFolderForResults(String parentDirectory, String newFolderName){
+        File folder = new File(parentDirectory, newFolderName);
+        folder.mkdir();
+    }
+
+    public static String exportPetrinetToPNMLorEPNMLString(PetrinetGraph net, Marking marking) {
         Collection<Marking> finalMarkings = new HashSet<Marking>();
         GraphLayoutConnection layout;
         layout = new GraphLayoutConnection(net);
@@ -47,10 +52,9 @@ public class ExportPetriNet {
                 pnml.exportElement(pnml);
     }
 
-    public static void exportPetrinetToPNMLorEPNMLFile(PetrinetGraph net, Pnml.PnmlType
-            type, Marking marking, String targetName) throws FileNotFoundException {
+    public static void exportPetrinetToPNMLorEPNMLFile(PetrinetGraph net, Marking marking, String targetName) throws FileNotFoundException {
         PrintWriter out = new PrintWriter(targetName);
-        out.write(exportPetrinetToPNMLorEPNMLString(net, type, marking));
+        out.write(exportPetrinetToPNMLorEPNMLString(net, marking));
         out.flush();
         out.close();
     }

@@ -161,7 +161,7 @@
 		<exec executable="docker" dir="${java-app.dir}">
 			<arg value="build" />
 			<arg value="-t" />
-			<arg value="java-service-image" />
+			<arg value="metadiscoveryalgorithm" />
 			<arg value="." />
 		</exec>
 	</target>
@@ -170,7 +170,7 @@
 		<exec executable="docker" >
 			<arg value="build" />
 			<arg value="-t" />
-			<arg value="python-service-image" />
+			<arg value="metahyperparamtuning" />
 			<arg value="${python-app.dir}" />
 		</exec>
 	</target>
