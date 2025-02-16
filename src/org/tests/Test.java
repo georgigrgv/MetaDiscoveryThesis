@@ -1,5 +1,6 @@
 package org.tests;
 
+import com.kitfox.svg.A;
 import org.deckfour.xes.classification.XEventClass;
 import org.deckfour.xes.classification.XEventClassifier;
 import org.deckfour.xes.info.impl.XLogInfoImpl;
@@ -19,6 +20,7 @@ import org.processmining.alphaminer.abstractions.AlphaClassicAbstraction;
 import org.processmining.alphaminer.algorithms.AlphaMiner;
 import org.processmining.alphaminer.algorithms.AlphaMinerFactory;
 import org.processmining.alphaminer.parameters.AlphaMinerParameters;
+import org.processmining.antialignments.ilp.antialignment.AntiAlignmentPlugin;
 import org.processmining.contexts.uitopia.PluginContextFactory;
 import org.processmining.contexts.uitopia.UIPluginContextFactory;
 import org.processmining.dataawarecnetminer.interactive.InteractiveDataAwareCausalMiner;
@@ -50,6 +52,8 @@ import org.processmining.plugins.converters.bpmn2pn.BPMN2PetriNetConverter_Confi
 import org.processmining.plugins.converters.bpmn2pn.BPMN2PetriNetConverter_Plugin;
 import org.processmining.plugins.converters.bpmn2pn.BPMN2PetriNetConverter_UI;
 import org.processmining.plugins.petrinet.replayer.PNLogReplayer;
+import org.processmining.plugins.petrinet.replayresult.PNRepResult;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -73,18 +77,17 @@ public class Test {
         XLog xLog = eventLogFilters.loadXLog("/Users/georgegeorgiev/Downloads/Road_Traffic_Fine_Management_Process.xes");
 
 
-//        IMMiningDialog dialog = new IMMiningDialog(xLog);
-//        Object[] obj = IMPetriNet.minePetriNet(factory.getContext(), xLog, dialog.getMiningParameters());
-        Object[] ret = new Object[2];
-        XEventClassifier classifier = XLogInfoImpl.NAME_CLASSIFIER;
-        AlphaMinerParameters parameters =  AlphaMinerVariant.createAlphaMinerParameters(String.valueOf(AlphaMinerVariant.CLASSIC));
-        AlphaMiner<XEventClass, ? extends AlphaClassicAbstraction<XEventClass>, ? extends AlphaMinerParameters> miner =
-                AlphaMinerFactory.createAlphaMiner(factory.getContext(), xLog, classifier, parameters);
+        IMMiningDialog dialog = new IMMiningDialog(xLog);
+        Object[] obj = IMPetriNet.minePetriNet(factory.getContext(), xLog, dialog.getMiningParameters());
+//        Object[] ret = new Object[2];
+//        XEventClassifier classifier = XLogInfoImpl.NAME_CLASSIFIER;
+//        AlphaMinerParameters parameters =  AlphaMinerVariant.createAlphaMinerParameters(String.valueOf(AlphaMinerVariant.CLASSIC));
+//        AlphaMiner<XEventClass, ? extends AlphaClassicAbstraction<XEventClass>, ? extends AlphaMinerParameters> miner =
+//                AlphaMinerFactory.createAlphaMiner(factory.getContext(), xLog, classifier, parameters);
+//
+//        Pair<Petrinet, Marking> markedNet = miner.run();
 
-        Pair<Petrinet, Marking> markedNet = miner.run();
-
-
-        double[] result = PetriNetEvaluator.executeAlignments(xLog, markedNet.getFirst(), factory);
+        double[] result = PetriNetEvaluator.executeAlignments(xLog, (PetrinetGraph) obj[0], factory);
 
 
 //        ExportPetriNet.exportPetrinetToPNMLorEPNMLFile((PetrinetGraph) objects[0], Pnml.PnmlType.PNML, (Marking) objects[1], "/Users/georgegeorgiev/Desktop/PADS_THESIS_TEST/splitminer.pnml");

@@ -46,7 +46,6 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/batik-dom-1.9.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/commons-compress-1.13.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/jgrapht-jdk1.6.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/commons-cli-1.3.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/Spex-1.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/gson-2.3.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/YAWLEditor-2.3.5.wo.jgraph.jar!/" />
@@ -124,7 +123,6 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/freehep-graphicsio-svg-2.4.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/batik-rasterizer-1.9.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/TableLayout-20050920.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/ant-1.9.4.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/jlfgr-1_0.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/guava-16.0.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/jcommon-1.0.24.jar!/" />
@@ -165,17 +163,12 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/dictomaton-1.2.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/EMF-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/AlphaMiner-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/NewPackageIvy-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/split-miner-1.7.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/XESAlignmentExtension-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/XESLite-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/LogEnhancement-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/LogAbstractions-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMN-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMNConversions-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/InteractiveProcessMining-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/HeuristicsCNetMiner-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArray-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArrayCreator-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityGraph-latest.jar!/" />
@@ -190,6 +183,11 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/CNet-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/CNetReplayer-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/libs/json-20240303.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/OCELStandard-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/Precision-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/AlphaPrecision-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/AntiAlignments-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/PNetAlignmentAnalysis-latest.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
@@ -200,15 +198,11 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNets-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNetsLGPL-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/EMF-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/split-miner-1.7.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/XESAlignmentExtension-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/XESLite-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/LogEnhancement-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMN-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMNConversions-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/InteractiveProcessMining-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/HeuristicsCNetMiner-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArray-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArrayCreator-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityGraph-latest.jar!/" />
@@ -222,6 +216,7 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/CNet-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/CNetReplayer-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/PNetAlignmentAnalysis-latest.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/src/ivy/Filterd-latest.jar!/" />
@@ -235,17 +230,12 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/DataPetriNetsLGPL-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/EMF-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/AlphaMiner-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/ILPMiner-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/NewPackageIvy-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/split-miner-1.7.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/XESAlignmentExtension-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/XESLite-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/LogEnhancement-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/LogAbstractions-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMN-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/BPMNConversions-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/InteractiveProcessMining-latest.jar!/" />
-      <root url="jar://$PROJECT_DIR$/src/ivy/HeuristicsCNetMiner-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArray-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/ActivityClusterArrayCreator-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/CausalActivityGraph-latest.jar!/" />
@@ -259,6 +249,11 @@
       <root url="jar://$PROJECT_DIR$/src/ivy/HybridILPMiner-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/CNet-latest.jar!/" />
       <root url="jar://$PROJECT_DIR$/src/ivy/CNetReplayer-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/OCELStandard-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/Precision-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/AlphaPrecision-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/AntiAlignments-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/ivy/PNetAlignmentAnalysis-latest.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -1,5 +1,6 @@
 package org.evaluate;
 
+import com.kitfox.svg.A;
 import nl.tue.astar.AStarException;
 import org.deckfour.xes.classification.XEventClass;
 import org.deckfour.xes.info.XLogInfo;
@@ -9,9 +10,13 @@ import org.deckfour.xes.model.XLog;
 import org.discovery.ExportPetriNet;
 import org.processmining.acceptingpetrinet.models.AcceptingPetriNet;
 import org.processmining.acceptingpetrinet.plugins.ConvertPetriNetToAcceptingPetriNetPlugin;
+import org.processmining.antialignments.ilp.antialignment.AntiAlignmentParameters;
+import org.processmining.antialignments.ilp.antialignment.AntiAlignmentPlugin;
+import org.processmining.antialignments.ilp.antialignment.HeuristicAntiAlignmentAlgorithm;
 import org.processmining.contexts.uitopia.PluginContextFactory;
 import org.processmining.dataawareexplorer.utils.PetrinetUtils;
 import org.processmining.framework.plugin.PluginContext;
+import org.processmining.framework.plugin.Progress;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
 import org.processmining.models.graphbased.directed.petrinet.PetrinetGraph;
 import org.processmining.models.graphbased.directed.petrinet.elements.Transition;
@@ -23,6 +28,8 @@ import org.processmining.plugins.petrinet.replayer.PNLogReplayer;
 import org.processmining.plugins.petrinet.replayer.algorithms.costbasedcomplete.CostBasedCompleteParam;
 import org.processmining.plugins.petrinet.replayresult.PNRepResult;
 import org.processmining.plugins.petrinet.replayresult.PNRepResultImpl;
+import org.processmining.plugins.pnalignanalysis.conformance.AlignmentPrecGen;
+import org.processmining.plugins.pnalignanalysis.conformance.AlignmentPrecGenRes;
 import org.processmining.precision.models.EscapingEdgesPrecisionResult;
 import org.processmining.precision.plugins.EscapingEdgesPrecisionPlugin;
 
@@ -33,7 +40,7 @@ import java.util.Arrays;
 public class PetriNetEvaluator {
 
     public static double[] executeAlignments(XLog log, PetrinetGraph net, PluginContextFactory factory) throws AStarException, IllegalTransitionException, FileNotFoundException {
-        double[] metrics = new double[4];
+        double[] metrics = new double[5];
         final Marking initialMarking = PetrinetUtils.guessInitialMarking(net);
         final Marking finalMarking = PetrinetUtils.guessFinalMarking(net);
         XEventClass evClassDummy = new XEventClass("DUMMY",
@@ -64,16 +71,17 @@ public class PetriNetEvaluator {
                 new PetrinetReplayerWithoutILP(), parameter);
         Double fitness = (Double) result.getInfo().get(PNRepResult.TRACEFITNESS);
         metrics[0] = ((fitness != null && fitness > 0.0) || Double.isNaN(fitness)) ? fitness : -1.0;
-        EscapingEdgesPrecisionPlugin precisionPlugin = new EscapingEdgesPrecisionPlugin();
-        ConvertPetriNetToAcceptingPetriNetPlugin convertPetriNetToAcceptingPetriNetPlugin = new ConvertPetriNetToAcceptingPetriNetPlugin();
-        AcceptingPetriNet acceptingPetriNet = convertPetriNetToAcceptingPetriNetPlugin.runDefault(context, (Petrinet) net);
 
-        EscapingEdgesPrecisionResult precisionResult = precisionPlugin.runDefault(context, result, acceptingPetriNet);
-        double precision = precisionResult.getPrecision();
-        metrics[1] = !Double.isNaN(precision) ? precision : -1.0;
+        AlignmentPrecGen precGen = new AlignmentPrecGen();
+        AlignmentPrecGenRes res = precGen.measureConformanceAssumingCorrectAlignment(context, mapping, result, (Petrinet) net, initialMarking, false);
+        double precision = res.getPrecision();
+        double generalization = res.getGeneralization();
 
+        metrics[1] = precision > 0.0 ? precision : -1.0;
         metrics[2] = calculateF1Score(metrics[0], metrics[1]);
         metrics[3] = ModelSimplicity.calculateSimplicity((Petrinet) net, log);
+        metrics[4] = generalization > 0.0 ? generalization : -1.0;
+
 
 //        Boolean conformanceResults = Arrays.stream(metrics).allMatch(n -> n > 0);
 //        if (conformanceResults) {

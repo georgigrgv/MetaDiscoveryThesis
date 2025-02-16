@@ -54,11 +54,12 @@ public class MetaDiscoveryPipeline {
             double[] metricsResult = pipeline(cachedLog, hyperParamFilter, algorithm, requestBody);
 
             JSONObject response = new JSONObject();
-            if (metricsResult.length == 4) {
+            if (metricsResult.length == 5) {
                 response.put("fitness", metricsResult[0]);
                 response.put("precision", metricsResult[1]);
                 response.put("f1-score", metricsResult[2]);
                 response.put("simplicity", metricsResult[3]);
+                response.put("generalization", metricsResult[4]);
             }
             return response.toString();
         });
@@ -99,7 +100,7 @@ public class MetaDiscoveryPipeline {
             try {
                 return PetriNetEvaluator.executeAlignments(log, (PetrinetGraph) finalObjects[0], factory);
             } catch (AStarException e) {
-                return new double[]{-1.0, -1.0, -1.0, -1.0};
+                return new double[]{-1.0, -1.0, -1.0, -1.0, -1.0};
             }
         });
 
@@ -107,7 +108,7 @@ public class MetaDiscoveryPipeline {
             return future.get(10, TimeUnit.MINUTES);
         } catch (TimeoutException e) {
             future.cancel(true);
-            return new double[]{-1.0, -1.0, -1.0, -1.0};
+            return new double[]{-1.0, -1.0, -1.0, -1.0, -1.0};
         } finally {
             executor.shutdownNow();
         }

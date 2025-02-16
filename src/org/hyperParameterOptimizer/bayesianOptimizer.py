@@ -60,6 +60,7 @@ def objective(trial, config):
         precision = result.get("precision", -1.0)
         f1_score = result.get("f1-score", -1.0)
         simplicity = result.get("simplicity", -1.0)
+        generalization = result.get("generalization", -1.0)
 
         if fitness == -1.0:
             logger.warning(f"Trial {trial.number}: Fitness could not be computed. Defaulting to -1.0.")
@@ -70,7 +71,7 @@ def objective(trial, config):
             trial.set_user_attr("status", "Alignments/Precision could not be computed")
             raise optuna.TrialPruned()
 
-        return fitness, precision, f1_score, simplicity
+        return fitness, precision, f1_score, simplicity, generalization
 
     except requests.exceptions.RequestException as e:
         logger.error(f"Error communicating with Java server: {e}")
@@ -86,11 +87,11 @@ def main():
     study = optuna.create_study(
         storage=DB_URL,
         study_name=resume_study,
-        directions=["maximize", "maximize", "maximize", "maximize"],
+        directions=["maximize", "maximize", "maximize", "maximize", "maximize"],
         load_if_exists=True
     )
 
-    study.set_metric_names(["Fitness", "Precision", "F1-Score", "Simplicity"])
+    study.set_metric_names(["Fitness", "Precision", "F1-Score", "Simplicity", "Generalization"])
 
     study.optimize(lambda trial: objective(trial, config), n_trials=100)
 

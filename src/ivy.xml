@@ -12,6 +12,7 @@
 
         <!--Conformance Checking-->
         <dependency org="prom" name="Precision" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="PNetAlignmentAnalysis" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="AntiAlignments" rev="latest" changing="true" transitive="true"/>
         <!-- Used to checks jars for implementations-->
         <dependency org="prom" name="Filterd" rev="latest" changing="true" transitive="true"/>
