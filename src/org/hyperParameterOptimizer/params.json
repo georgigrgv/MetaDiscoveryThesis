@@ -81,14 +81,67 @@
     },
     "ILPMiner": {
       "algorithm": "HybridILPMiner",
-      "variant": "Hybrid ILPMiner"
+      "variant": "Hybrid ILPMiner",
+      "requiresLPObjective": true,
+      "requiresOptionalConstraintPNet": true,
+      "requiresLPFilter": true,
+      "requiresSlackVariableFilterThreshold": true,
+      "requiresSequenceEncodingCutoffLevel": true,
+      "requiresLPVariableType": true
+    }
+  },
+  "preprocessing_variants": {
+    "MatrixFilter": {
+      "method": "Matrix Filtering",
+      "variant": "Conditional Probabilities (MF)",
+      "requiresProbabilityOfRemoval": true,
+      "requiresSubsequenceLength": true
+    },
+    "SequenceFilter": {
+      "method": "Sequence Filtering",
+      "variant": "Frequent Sequence Filtering (SF)",
+      "requiresHighSupportPattern": true,
+      "requiresOddDistance": true,
+      "requiresConfHighConfRules": true,
+      "requiresSuppHighConfRules": true,
+      "requiresConfOrdinaryRules": true
     }
   },
   "parameters": {
-    "hyperParamFilter": {
+    "probabilityOfRemoval": {
       "type": "float",
       "low": 0.01,
-      "high": 0.2
+      "high": 0.4
+    },
+    "subsequenceLength": {
+      "type": "integer",
+      "low": 1,
+      "high": 3
+    },
+    "highSupportPattern": {
+      "type": "float",
+      "low": 0.5,
+      "high": 0.9
+    },
+    "oddDistance": {
+      "type": "integer",
+      "low": 0,
+      "high": 3
+    },
+    "confHighConfRules": {
+      "type": "float",
+      "low": 0.7,
+      "high": 0.99
+    },
+    "suppHighConfRules": {
+      "type": "float",
+      "low": 0.1,
+      "high": 0.5
+    },
+    "confOrdinaryRules": {
+      "type": "float",
+      "low": 0.0,
+      "high": 0.5
     },
     "noiseThreshold": {
       "type": "float",
@@ -186,6 +239,41 @@
         true,
         false
       ]
+    },
+    "lPVariableType": {
+      "type": "categorical",
+      "choices": [
+        "Two variables per event",
+        "One variable per event, two for an event which is potentially in a self loop",
+        "One variable per event"
+      ]
+    },
+    "lPObjective": {
+      "type": "categorical",
+      "choices": [
+        "Minimize Arcs",
+        "Unweighted Parikh values",
+        "Weighted Parikh values, using absolute frequencies",
+        "Weighted Parikh values, using relative frequencies"
+      ]
+    },
+    "lPFilter": {
+      "type": "categorical",
+      "choices": [
+        "None",
+        "Sequence Encoding Filter",
+        "Slack Variable Filter"
+      ]
+    },
+    "slackVariableFilterThreshold": {
+      "type": "float",
+      "low": 0.0,
+      "high": 1.0
+    },
+    "sequenceEncodingCutoffLevel": {
+      "type": "float",
+      "low": 0.0,
+      "high": 1.0
     }
   }
 }

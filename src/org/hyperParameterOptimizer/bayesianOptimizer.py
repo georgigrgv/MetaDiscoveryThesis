@@ -24,32 +24,35 @@ def objective(trial, config):
     # Load algorithm and variant options
     algorithm_variant_choices = config["algorithm_variants"]
     chosen_key = trial.suggest_categorical("algorithm_variants", algorithm_variant_choices)
-
     chosen_combination = algorithm_variant_choices[chosen_key]
 
     # Extract algorithm and variant
     chosen_algorithm = chosen_combination["algorithm"]
     chosen_variant = chosen_combination["variant"]
 
+    # Load preprocessing and variant options
+    preprocessing_choices = config["preprocessing_variants"]
+    chosen_preprocessing_key = trial.suggest_categorical("preprocessing_variants", preprocessing_choices)
+    chosen_preprocessing = preprocessing_choices[chosen_preprocessing_key]
+    chosen_preprocessing_algorithm = chosen_preprocessing["method"]
+
     # Initialize payload
     payload = {
         "algorithm": chosen_algorithm,
         "variant": chosen_variant,
-        "hyperParamFilter": trial.suggest_float(
-            "hyperParamFilter",
-            config["parameters"]["hyperParamFilter"]["low"],
-            config["parameters"]["hyperParamFilter"]["high"]
-        )
+        "preprocessing": chosen_preprocessing_algorithm
     }
 
     for param, param_config in config["parameters"].items():
-        # Use the exact parameter name (camelCase) for the requires key
+        # Use the exact parameter name for the requires key
         requires_key = f"requires{param[:1].upper()}{param[1:]}"
-        if chosen_combination.get(requires_key, False):  # Check if this parameter is required
+        if chosen_combination.get(requires_key, False) or chosen_preprocessing.get(requires_key, False):  # Check if this parameter is required
             if param_config["type"] == "float":
                 payload[param] = trial.suggest_float(param, param_config["low"], param_config["high"])
             elif param_config["type"] == "categorical":
                 payload[param] = trial.suggest_categorical(param, param_config["choices"])
+            elif param_config["type"] == "integer":
+                payload[param] = trial.suggest_int(param, param_config["low"], param_config["high"])
 
     try:
         response = requests.post(JAVA_SERVICE_URL, json=payload)
@@ -93,7 +96,7 @@ def main():
 
     study.set_metric_names(["Fitness", "Precision", "F1-Score", "Simplicity", "Generalization"])
 
-    study.optimize(lambda trial: objective(trial, config), n_trials=100)
+    study.optimize(lambda trial: objective(trial, config), n_trials=1000)
 
     logger.info("Best algorithm and hyperparameters:")
     for trial in study.best_trials:

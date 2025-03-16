@@ -67,7 +67,7 @@
 
     <macrodef name="makejar">
         <sequential>
-            <jar jarfile="${dist}/${project}-${DSTAMP}.jar">
+            <jar jarfile="${dist}/${project}-${DSTAMP}.jar" zip64mode="as-needed">
                 <fileset dir="${build}">
                     <include name="**"/>
                     <exclude name="test**"/>

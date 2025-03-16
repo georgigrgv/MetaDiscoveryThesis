@@ -39,54 +39,59 @@ import java.util.Arrays;
 
 public class PetriNetEvaluator {
 
-    public static double[] executeAlignments(XLog log, PetrinetGraph net, PluginContextFactory factory) throws AStarException, IllegalTransitionException, FileNotFoundException {
+    public static double[] executeAlignments(XLog log, PetrinetGraph net, PluginContextFactory factory, int trial) throws AStarException, IllegalTransitionException, FileNotFoundException {
         double[] metrics = new double[5];
-        final Marking initialMarking = PetrinetUtils.guessInitialMarking(net);
-        final Marking finalMarking = PetrinetUtils.guessFinalMarking(net);
-        XEventClass evClassDummy = new XEventClass("DUMMY",
-                -1);
-        TransEvClassMapping mapping = new TransEvClassMapping(XLogInfoImpl.STANDARD_CLASSIFIER, evClassDummy);
-        XLogInfo logInfo = XLogInfoFactory.createLogInfo(log, XLogInfoImpl.STANDARD_CLASSIFIER);
-        for (XEventClass ec : logInfo.getEventClasses().getClasses()) {
-            for (Transition t : net.getTransitions()) {
-                String n = ec.toString();
-                if (n.contains("+")) {
-                    n = n.substring(0, n.indexOf("+"));
-                }
-                if (t.getLabel().equals(n)) {
-                    mapping.put(t, ec);
+        try{
+            final Marking initialMarking = PetrinetUtils.guessInitialMarking(net);
+            final Marking finalMarking = PetrinetUtils.guessFinalMarking(net);
+            XEventClass evClassDummy = new XEventClass("DUMMY",
+                    -1);
+            TransEvClassMapping mapping = new TransEvClassMapping(XLogInfoImpl.STANDARD_CLASSIFIER, evClassDummy);
+            XLogInfo logInfo = XLogInfoFactory.createLogInfo(log, XLogInfoImpl.STANDARD_CLASSIFIER);
+            for (XEventClass ec : logInfo.getEventClasses().getClasses()) {
+                for (Transition t : net.getTransitions()) {
+                    String n = ec.toString();
+                    if (n.contains("+")) {
+                        n = n.substring(0, n.indexOf("+"));
+                    }
+                    if (t.getLabel().equals(n)) {
+                        mapping.put(t, ec);
+                    }
                 }
             }
+            CostBasedCompleteParam parameter = new
+                    CostBasedCompleteParam(logInfo.getEventClasses().getClasses(),
+                    evClassDummy, net.getTransitions(), 1, 1);
+            parameter.setGUIMode(false);
+            parameter.setCreateConn(false);
+            parameter.setInitialMarking(initialMarking);
+            parameter.setFinalMarkings(finalMarking);
+            parameter.setMaxNumOfStates(200000);
+            PluginContext context = factory.getContext();
+            PNRepResultImpl result = (PNRepResultImpl) new PNLogReplayer().replayLog(null, net, log, mapping,
+                    new PetrinetReplayerWithoutILP(), parameter);
+            Double fitness = (Double) result.getInfo().get(PNRepResult.TRACEFITNESS);
+            metrics[0] = ((fitness != null && fitness > 0.0) || Double.isNaN(fitness)) ? fitness : -1.0;
+
+            AlignmentPrecGen precGen = new AlignmentPrecGen();
+            AlignmentPrecGenRes res = precGen.measureConformanceAssumingCorrectAlignment(context, mapping, result, (Petrinet) net, initialMarking, false);
+            double precision = res.getPrecision();
+            double generalization = res.getGeneralization();
+
+            metrics[1] = precision > 0.0 ? precision : -1.0;
+            metrics[2] = calculateF1Score(metrics[0], metrics[1]);
+            metrics[3] = ModelSimplicity.calculateSimplicity((Petrinet) net, log);
+            metrics[4] = generalization > 0.0 ? generalization : -1.0;
+
+            boolean conformanceResults = Arrays.stream(metrics).allMatch(n -> n > 0);
+            if (conformanceResults) {
+                ExportPetriNet.exportPetrinetToPNMLorEPNMLFile(net, initialMarking, System.getenv("SAVE_RESULTS") + "/" +"trial"+trial+".pnml");
+            }
+
+        } catch (NullPointerException e){
+            return new double[] { -1.0, -1.0, -1.0, -1.0, -1.0 };
         }
-        CostBasedCompleteParam parameter = new
-                CostBasedCompleteParam(logInfo.getEventClasses().getClasses(),
-                evClassDummy, net.getTransitions(), 1, 1);
-        parameter.setGUIMode(false);
-        parameter.setCreateConn(false);
-        parameter.setInitialMarking(initialMarking);
-        parameter.setFinalMarkings(finalMarking);
-        parameter.setMaxNumOfStates(200000);
-        PluginContext context = factory.getContext();
-        PNRepResultImpl result = (PNRepResultImpl) new PNLogReplayer().replayLog(null, net, log, mapping,
-                new PetrinetReplayerWithoutILP(), parameter);
-        Double fitness = (Double) result.getInfo().get(PNRepResult.TRACEFITNESS);
-        metrics[0] = ((fitness != null && fitness > 0.0) || Double.isNaN(fitness)) ? fitness : -1.0;
 
-        AlignmentPrecGen precGen = new AlignmentPrecGen();
-        AlignmentPrecGenRes res = precGen.measureConformanceAssumingCorrectAlignment(context, mapping, result, (Petrinet) net, initialMarking, false);
-        double precision = res.getPrecision();
-        double generalization = res.getGeneralization();
-
-        metrics[1] = precision > 0.0 ? precision : -1.0;
-        metrics[2] = calculateF1Score(metrics[0], metrics[1]);
-        metrics[3] = ModelSimplicity.calculateSimplicity((Petrinet) net, log);
-        metrics[4] = generalization > 0.0 ? generalization : -1.0;
-
-
-//        Boolean conformanceResults = Arrays.stream(metrics).allMatch(n -> n > 0);
-//        if (conformanceResults) {
-//            ExportPetriNet.exportPetrinetToPNMLorEPNMLFile(net, initialMarking, System.getenv("SAVE_RESULTS"));
-//        }
         return metrics;
     }
 

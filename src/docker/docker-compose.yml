@@ -7,8 +7,12 @@ services:
     environment:
       - JAVA_OPTS=${JAVA_OPTS}
       - EVENT_LOG_PATH=${EVENT_LOG_PATH}
+      - DISCOVERY_RESULTS_FOLDER=${DISCOVERY_RESULTS_FOLDER}
+      - DISCOVERY_RESULTS_FOLDER_NAME=${DISCOVERY_RESULTS_FOLDER_NAME}
+      - SAVE_RESULTS=${SAVE_RESULTS}
     volumes:
       - ${EVENT_LOG_FILE}:${EVENT_LOG_PATH}
+      - ${DISCOVERY_RESULTS_FOLDER}:${DISCOVERY_RESULTS_FOLDER}
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://java-service:8081/health" ]
       interval: 5s

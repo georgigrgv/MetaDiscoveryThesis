@@ -24,6 +24,7 @@ public class MetaDiscoveryPipeline {
 
     private static final EventLogFilters filters = new EventLogFilters();
     private static XLog cachedLog = null;
+    private static int trial = 0;
 
     public static void main(String[] args) throws Exception {
         // Load the event log at the beginning
@@ -32,8 +33,8 @@ public class MetaDiscoveryPipeline {
             System.out.println("Event log path not specified. Set EVENT_LOG_PATH environment variable.");
             System.exit(1);
         }
-//        ExportPetriNet.createFolderForResults(System.getenv("DISCOVERY_RESULTS_FOLDER"),
-//                System.getenv("DISCOVERY_RESULTS_FOLDER_NAME"));
+        ExportPetriNet.createFolderForResults(System.getenv("DISCOVERY_RESULTS_FOLDER"),
+                System.getenv("DISCOVERY_RESULTS_FOLDER_NAME"));
 
         cachedLog = filters.loadXLog(logPath);
 
@@ -47,11 +48,11 @@ public class MetaDiscoveryPipeline {
         // Define the pipeline endpoint
         post("/pipeline", (req, res) -> {
             JSONObject requestBody = new JSONObject(req.body());
-            double hyperParamFilter = requestBody.getDouble("hyperParamFilter");
+            String preprocessing = (String) requestBody.get("preprocessing");
             String algorithm = (String) requestBody.get("algorithm");
 
             // Execute the pipeline
-            double[] metricsResult = pipeline(cachedLog, hyperParamFilter, algorithm, requestBody);
+            double[] metricsResult = pipeline(cachedLog, preprocessing, algorithm, requestBody);
 
             JSONObject response = new JSONObject();
             if (metricsResult.length == 5) {
@@ -68,13 +69,23 @@ public class MetaDiscoveryPipeline {
     }
 
 
-    public static double[] pipeline(XLog log, double hyperParamFilter, String algorithm, JSONObject request) throws Exception {
+    public static double[] pipeline(XLog log, String preprocessing, String algorithm, JSONObject request) throws Exception {
         DiscoveryAlgorithms algorithms = new DiscoveryAlgorithms();
         PluginContextFactory factory = new PluginContextFactory();
 
-        XLog filteredXlog = filters.filterWithMinOccFreq(factory.getContext(), log, XLogInfoFactory.createLogInfo(log).getEventClasses(),
-                XLogInfoFactory.createLogInfo(log).getEventClasses().getClasses().toArray(new XEventClass[0]),
-                hyperParamFilter);
+        XLog filteredXlog = null;
+        switch (preprocessing){
+            case "Matrix Filtering":
+                filteredXlog = filters.preprocessUsingMatrixFilter(log,request);
+                break;
+            case "Sequence Filtering":
+                filteredXlog = filters.preprocessUsingSequenceFilter(log,request);
+                break;
+            default:
+                // TODO: REMOVE LATER
+                filteredXlog = log;
+        }
+
 
         Object[] objects = new Object[2];
         switch (algorithm) {
@@ -88,7 +99,7 @@ public class MetaDiscoveryPipeline {
                 objects = algorithms.obtainPetriNetUsingAlphaMiner(filteredXlog, request);
                 break;
             case "HybridILPMiner":
-                objects = algorithms.obtainPetriNetUsingHybridILPMiner(filteredXlog);
+                objects = algorithms.obtainPetriNetUsingHybridILPMiner(filteredXlog, request);
                 break;
             case "SplitMiner":
                 objects = algorithms.obtainPetriNetUsingSplitMiner(filteredXlog, request);
@@ -96,16 +107,16 @@ public class MetaDiscoveryPipeline {
         }
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
         Object[] finalObjects = objects;
+        trial++;
         Future<double[]> future = executor.submit(() -> {
             try {
-                return PetriNetEvaluator.executeAlignments(log, (PetrinetGraph) finalObjects[0], factory);
+                return PetriNetEvaluator.executeAlignments(log, (PetrinetGraph) finalObjects[0], factory, trial);
             } catch (AStarException e) {
                 return new double[]{-1.0, -1.0, -1.0, -1.0, -1.0};
             }
         });
-
         try {
-            return future.get(10, TimeUnit.MINUTES);
+            return future.get(3, TimeUnit.MINUTES);
         } catch (TimeoutException e) {
             future.cancel(true);
             return new double[]{-1.0, -1.0, -1.0, -1.0, -1.0};

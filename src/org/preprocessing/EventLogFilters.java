@@ -7,31 +7,24 @@ import org.deckfour.xes.info.XLogInfoFactory;
 import org.deckfour.xes.model.XEvent;
 import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
-import org.processmining.filterd.filters.FilterdTraceFrequencyFilter;
-import org.processmining.filterd.parameters.Parameter;
+import org.discovery.utils.ParamsConstants;
+import org.json.JSONObject;
 import org.processmining.framework.plugin.PluginContext;
+import org.processmining.logfiltering.algorithms.FilterBasedOnRelationMatrixK;
+import org.processmining.logfiltering.algorithms.FilterBasedOnSequence;
+import org.processmining.logfiltering.parameters.MatrixFilterParameter;
+import org.processmining.logfiltering.parameters.SequenceFilterParameter;
 import org.processmining.plugins.log.logfilters.LogFilter;
 import org.processmining.plugins.log.logfilters.XEventCondition;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class EventLogFilters {
 
-
     /**
-    / Filtering traces with different configs based on the Parameters
-    */
-    public XLog filterTracesByMinOcc(XLog log, List<Parameter> parameters){
-
-        //Using filter from the plugin Filter Event Log
-        FilterdTraceFrequencyFilter filter = new FilterdTraceFrequencyFilter();
-
-        return filter.filter(log, parameters);
-    }
-
-    /**
-     * Filtering traces based on % occurrence.
+     * Filtering events based on % occurrence.
      */
     public XLog filterWithMinOccFreq(PluginContext context, XLog log, final XEventClasses allEventClasses,
                                      final XEventClass[] eventClassesToKeep, final Double minOccurrence) {
@@ -56,8 +49,6 @@ public class EventLogFilters {
     public Map<XEventClass, Double> getOccurrenceFrequency(XLog log, XEventClasses allEventClasses) {
         Map<XEventClass, Integer> eventCounts = new HashMap<>();
         int totalEvents = 0;
-
-        // Iterate through each trace and event to count occurrences of each event class
         for (XTrace trace : log) {
             for (XEvent event : trace) {
                 XEventClass eventClass = allEventClasses.getClassOf(event);
@@ -65,8 +56,6 @@ public class EventLogFilters {
                 totalEvents++;
             }
         }
-
-        // Calculate the frequency as a percentage of the total number of events
         Map<XEventClass, Double> eventFrequency = new HashMap<>();
         for (Map.Entry<XEventClass, Integer> entry : eventCounts.entrySet()) {
             double frequency = (double) entry.getValue() / totalEvents;
@@ -74,6 +63,25 @@ public class EventLogFilters {
         }
 
         return eventFrequency;
+    }
+
+
+    public XLog preprocessUsingMatrixFilter(XLog log, JSONObject request){
+        MatrixFilterParameter parameter = new MatrixFilterParameter();
+        parameter.setProbabilityOfRemoval(request.getFloat(ParamsConstants.PROBABILITY_OF_REMOVAL));
+        parameter.setSubsequenceLength(request.getInt(ParamsConstants.SUBSEQUENCE_LENGTH));
+        return FilterBasedOnRelationMatrixK.apply(log, parameter);
+    }
+
+    public XLog preprocessUsingSequenceFilter(XLog log, JSONObject request) throws IOException {
+        SequenceFilterParameter parameter = new SequenceFilterParameter();
+        //Parameters to set
+        parameter.setHighSupportPattern(request.getFloat(ParamsConstants.HIGH_SUPPORT_PATTERN));
+        parameter.setOddDistance(request.getInt(ParamsConstants.ODD_DISTANCE));
+        parameter.setConfHighConfRules(request.getFloat(ParamsConstants.CONF_HIGH_CONF_RULES));
+        parameter.setSuppHighConfRules(request.getFloat(ParamsConstants.SUPP_HIGH_CONF_RULES));
+        parameter.setConfOridnaryRules(request.getFloat(ParamsConstants.CONF_ORDINARY_RULES));
+        return FilterBasedOnSequence.apply(log, parameter);
     }
 
     public XLog loadXLog(String xesFile) throws Exception {

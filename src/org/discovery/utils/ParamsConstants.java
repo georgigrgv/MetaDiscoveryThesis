@@ -1,6 +1,8 @@
 package org.discovery.utils;
 
 
+import org.python.antlr.ast.Str;
+
 public class ParamsConstants {
 
     public static final String ALGORITHM = "algorithm";
@@ -26,5 +28,21 @@ public class ParamsConstants {
     public static final String PARALLELISM_FIRST = "parallelismFirst";
     public static final String REPLACE_IORS = "replaceIORs";
     public static final String REMOVE_LOOP_ACTIVITIES = "removeLoopActivities";
+    // LP Miner
+    public static final String LP_OBJECTIVE = "lPObjective";
+    public static final String LP_FILTER = "lPFilter";
+    public static final String SLACK_VARIABLE_FILTER_THRESHOLD = "slackVariableFilterThreshold";
+    public static final String SEQUENCE_ENCODING_CUTOFF_LEVEL = "sequenceEncodingCutoffLevel";
+    public static final String LP_VARIABLE_TYPE = "lPVariableType";
+    public static final String DISCOVERY_STRATEGY = "discoveryStrategy";
+    // Matrix filter
+    public static final String PROBABILITY_OF_REMOVAL = "probabilityOfRemoval";
+    public static final String SUBSEQUENCE_LENGTH = "subsequenceLength";
+    // Sequence filter
+    public static final String HIGH_SUPPORT_PATTERN = "highSupportPattern";
+    public static final String ODD_DISTANCE = "oddDistance";
+    public static final String CONF_HIGH_CONF_RULES = "confHighConfRules";
+    public static final String SUPP_HIGH_CONF_RULES ="suppHighConfRules";
+    public static final String CONF_ORDINARY_RULES = "confOrdinaryRules";
 
  }

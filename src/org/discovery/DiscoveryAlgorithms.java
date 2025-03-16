@@ -22,8 +22,7 @@ import org.processmining.framework.connections.ConnectionCannotBeObtained;
 import org.processmining.framework.util.Pair;
 import org.processmining.hybridilpminer.connections.XLogHybridILPMinerParametersConnection;
 import org.processmining.hybridilpminer.dialogs.ConnectionsClassifierEngineAndDefaultConfigurationDialogImpl;
-import org.processmining.hybridilpminer.parameters.DiscoveryStrategyType;
-import org.processmining.hybridilpminer.parameters.XLogHybridILPMinerParametersImpl;
+import org.processmining.hybridilpminer.parameters.*;
 import org.processmining.hybridilpminer.utils.XLogUtils;
 import org.processmining.models.graphbased.directed.bpmn.BPMNDiagram;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
@@ -124,15 +123,9 @@ public class DiscoveryAlgorithms {
         return ret;
     }
 
-    public Object[] obtainPetriNetUsingHybridILPMiner(XLog xLog) throws Exception {
+    public Object[] obtainPetriNetUsingHybridILPMiner(XLog xLog, JSONObject request) throws Exception {
         UIPluginContextFactory contextFactory = new UIPluginContextFactory();
         Object[] result = null;
-        Collection<XLogHybridILPMinerParametersConnection> connections = new HashSet<>();
-        try {
-            connections = contextFactory.getContext().getConnectionManager().getConnections(XLogHybridILPMinerParametersConnection.class,
-                    contextFactory.getContext(), xLog);
-        } catch (ConnectionCannotBeObtained e) {
-        }
         XEventClassifier defaultClassifier;
         if (xLog.getClassifiers().isEmpty()) {
             XEventClassifier nameCl = new XEventNameClassifier();
@@ -141,20 +134,64 @@ public class DiscoveryAlgorithms {
         } else {
             defaultClassifier = xLog.getClassifiers().get(0);
         }
+
         final String startLabel = "[start>@" + System.currentTimeMillis();
         final String endLabel = "[end]@" + System.currentTimeMillis();
         XLog artifLog = XLogUtils.addArtificialStartAndEnd(xLog, startLabel, endLabel);
-        Dialog<XLogHybridILPMinerParametersImpl> firstDialog = new ConnectionsClassifierEngineAndDefaultConfigurationDialogImpl(
-                contextFactory.getContext(), null, artifLog, connections);
-        WizardResult<XLogHybridILPMinerParametersImpl> wizardResult = Wizard.show(contextFactory.getContext(), firstDialog);
-        XLogHybridILPMinerParametersImpl params = wizardResult.getParameters();
+        XLogHybridILPMinerParametersImpl params = new XLogHybridILPMinerParametersImpl(contextFactory.getContext());
+        params.setNetClass(NetClass.PT_NET);
         params.setEventClassifier(defaultClassifier);
-        result = discoverWithArtificialStartEnd(contextFactory.getContext(), xLog, artifLog, params);
-        if (!params.getDiscoveryStrategy().getDiscoveryStrategyType()
-                .equals(DiscoveryStrategyType.CAUSAL_E_VERBEEK)) {
-            Connection paramsConnection = new XLogHybridILPMinerParametersConnection(xLog, params);
-            contextFactory.getContext().getConnectionManager().addConnection(paramsConnection);
+
+        String objectiveStr = request.getString(ParamsConstants.LP_OBJECTIVE);
+        LPObjectiveType objectiveType = null;
+        for (LPObjectiveType type : LPObjectiveType.values()) {
+            if (type.toString().equals(objectiveStr)) {
+                objectiveType = type;
+                break;
+            }
         }
+        if (objectiveType == null) {
+            throw new IllegalArgumentException("Invalid LPObjectiveType: " + objectiveStr);
+        }
+        params.setObjectiveType(objectiveType);
+
+        final String lpFilter = request.getString(ParamsConstants.LP_FILTER);
+        LPFilterType selectedFilter = LPFilterType.NONE;
+        double threshold = 0.0;
+        for (LPFilterType type : LPFilterType.values()) {
+            if (type.toString().equals(lpFilter)) {
+                selectedFilter = type;
+                break;
+            }
+        }
+
+        // Assign the correct threshold value based on the filter type
+        if (selectedFilter == LPFilterType.SLACK_VAR) {
+            threshold = request.optDouble(ParamsConstants.SLACK_VARIABLE_FILTER_THRESHOLD, selectedFilter.getDefaultThreshold());
+        } else if (selectedFilter == LPFilterType.SEQUENCE_ENCODING) {
+            threshold = request.optDouble(ParamsConstants.SEQUENCE_ENCODING_CUTOFF_LEVEL, selectedFilter.getDefaultThreshold());
+        }
+
+        params.setFilter(new LPFilter(selectedFilter, threshold));
+
+        DiscoveryStrategy strategy = new DiscoveryStrategy();
+        strategy.setDiscoveryStrategyType(DiscoveryStrategyType.TRANSITION_PAIR);
+        params.setDiscoveryStrategy(strategy);
+
+        String variableStr = request.getString(ParamsConstants.LP_VARIABLE_TYPE);
+        LPVariableType variableType = null;
+        for (LPVariableType type : LPVariableType.values()) {
+            if (type.toString().equals(variableStr)) {
+                variableType = type;
+                break;
+            }
+        }
+        params.setVariableType(variableType);
+
+        // set the log to the params
+        params.setLog(artifLog);
+
+        result = discoverWithArtificialStartEnd(contextFactory.getContext(), xLog, artifLog, params);
         return result;
     }
 
