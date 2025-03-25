@@ -11,15 +11,31 @@ import java.util.HashSet;
 
 public class ModelSimplicity {
 
-    public static double calculateSimplicity(Petrinet petriNet, XLog eventLog) {
+    public static double calculateHybridSimplicity(Petrinet petriNet, XLog eventLog, double alpha) {
+        HashSet<String> eventClasses = extractEventClasses(eventLog);
+
+        double labelSimplicity = calculateLabelBasedSimplicity(petriNet, eventClasses);
+        double edgeSimplicity = calculateEdgeBasedSimplicity(petriNet, eventClasses);
+
+        return alpha * labelSimplicity + (1.0 - alpha) * edgeSimplicity;
+    }
+
+    public static double calculateLabelBasedSimplicity(Petrinet petriNet, HashSet<String> eventClasses) {
         int nodesInPetriNet = countNodes(petriNet);
         int duplicateActivities = countDuplicateActivities(petriNet);
-        int missingActivities = countMissingActivities(petriNet, eventLog);
-        int eventClassCount = extractEventClasses(eventLog).size();
+        int missingActivities = countMissingActivities(petriNet, eventClasses);
+        int eventClassCount = eventClasses.size();
 
-        if ((nodesInPetriNet + eventClassCount) == 0) return 1.0; // Avoid division by zero
+        if ((nodesInPetriNet + eventClassCount) == 0) return 1.0;
 
-        return 1 - ((double) (duplicateActivities + missingActivities) / (nodesInPetriNet + eventClassCount));
+        return 1.0 - ((double) (duplicateActivities + missingActivities) / (nodesInPetriNet + eventClassCount));
+    }
+
+    public static double calculateEdgeBasedSimplicity(Petrinet petriNet, HashSet<String> eventClasses) {
+        int edgeCount = petriNet.getEdges().size();
+        int eventCount = eventClasses.size();
+        if (eventCount == 0) return 1.0;
+        return 1.0 - Math.min((double) edgeCount / eventCount, 1.0);
     }
 
     private static int countNodes(Petrinet petriNet) {
@@ -28,30 +44,33 @@ public class ModelSimplicity {
 
     private static int countDuplicateActivities(Petrinet petriNet) {
         HashMap<String, Integer> activityCount = new HashMap<>();
-        int duplicates = 0;
         for (Transition transition : petriNet.getTransitions()) {
-            if (!transition.isInvisible()) { // Ignore silent transitions
+            if (!transition.isInvisible()) {
                 String label = transition.getLabel();
                 activityCount.put(label, activityCount.getOrDefault(label, 0) + 1);
-                if (activityCount.get(label) > 1) duplicates++;
+            }
+        }
+        int duplicates = 0;
+        for (int count : activityCount.values()) {
+            if (count > 1) {
+                duplicates += (count - 1);
             }
         }
         return duplicates;
     }
 
-    private static int countMissingActivities(Petrinet petriNet, XLog eventLog) {
-        HashSet<String> eventClasses = extractEventClasses(eventLog);
+    private static int countMissingActivities(Petrinet petriNet, HashSet<String> eventClasses) {
         HashSet<String> modelActivities = new HashSet<>();
-
         for (Transition transition : petriNet.getTransitions()) {
             if (!transition.isInvisible()) {
                 modelActivities.add(transition.getLabel());
             }
         }
-
         int missing = 0;
         for (String event : eventClasses) {
-            if (!modelActivities.contains(event)) missing++;
+            if (!modelActivities.contains(event)) {
+                missing++;
+            }
         }
         return missing;
     }

@@ -45,6 +45,9 @@ EXPOSE 8081 5005
 
 ENV JAVA_OPTS_DEFAULT="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"
 
-#CMD ["java","-Xms512m", "-Xmx4G", "-cp", "/app/MetaDiscoveryThesis.jar:/app/lib/*:/app/libs/*:/app/ivy/*", "-Djava.library.path=/usr/local/lib", "org.pipeline.MetaDiscoveryPipeline"]
-#Can be used for debug mode but doesnt work?
-CMD sh -c "java -Xms512m -Xmx4G ${JAVA_OPTS:-} -cp /app/MetaDiscoveryThesis.jar:/app/lib/*:/app/libs/*:/app/ivy/* -Djava.library.path=/usr/local/lib org.pipeline.MetaDiscoveryPipeline"
+CMD sh -c "java -Xms512m -Xmx8G ${JAVA_OPTS:-} \
+  -XX:+FlightRecorder \
+  -XX:StartFlightRecording=filename=/app/recording.jfr,duration=300s,settings=profile \
+  -cp /app/MetaDiscoveryThesis.jar:/app/lib/*:/app/libs/*:/app/ivy/* \
+  -Djava.library.path=/usr/local/lib \
+  org.pipeline.MetaDiscoveryPipeline"

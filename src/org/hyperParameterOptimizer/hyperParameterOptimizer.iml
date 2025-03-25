@@ -6,5 +6,7 @@
     <orderEntry type="jdk" jdkName="Python 3.11" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="MetaDiscoveryThesis" level="project" />
+    <orderEntry type="library" name="gurobi-6.5" level="project" />
+    <orderEntry type="library" name="gurobi-12.0.0" level="project" />
   </component>
 </module>

@@ -14,6 +14,7 @@ import org.processmining.logfiltering.algorithms.FilterBasedOnRelationMatrixK;
 import org.processmining.logfiltering.algorithms.FilterBasedOnSequence;
 import org.processmining.logfiltering.parameters.MatrixFilterParameter;
 import org.processmining.logfiltering.parameters.SequenceFilterParameter;
+import org.processmining.logfiltering.plugins.RepairLog;
 import org.processmining.plugins.log.logfilters.LogFilter;
 import org.processmining.plugins.log.logfilters.XEventCondition;
 
@@ -23,10 +24,54 @@ import java.util.*;
 
 public class EventLogFilters {
 
+
+    public XLog repairEventLog(XLog log, JSONObject request){
+        MatrixFilterParameter parameter = new MatrixFilterParameter();
+        parameter.setProbabilityOfRemoval(request.getFloat(ParamsConstants.PROBABILITY_OF_REMOVAL_RL));
+        parameter.setSubsequenceLength(request.getInt(ParamsConstants.SUBSEQUENCE_LENGTH_RL));
+        return RepairLog.run(null, log, parameter);
+    }
+
     /**
-     * Filtering events based on % occurrence.
+     * Filtering traces based on % occurrence.
      */
-    public XLog filterWithMinOccFreq(PluginContext context, XLog log, final XEventClasses allEventClasses,
+    public XLog filterByTracePercentage(XLog log, JSONObject request) {
+        XLog clonedLog = (XLog) log.clone();
+        Map<List<String>, Integer> traceOccurrenceMap = new HashMap<>();
+        Map<XTrace, List<String>> traceActivitiesMap = new HashMap<>();
+
+        int totalTraces = clonedLog.size();
+        for (XTrace trace : clonedLog) {
+            List<String> activities = new ArrayList<>();
+            for (XEvent event : trace) {
+                activities.add(event.getAttributes().get("concept:name").toString());
+            }
+            traceActivitiesMap.put(trace, activities);
+            traceOccurrenceMap.put(activities, traceOccurrenceMap.getOrDefault(activities, 0) + 1);
+        }
+
+        Map<List<String>, Double> tracePercentageMap = new HashMap<>();
+        for (Map.Entry<List<String>, Integer> entry : traceOccurrenceMap.entrySet()) {
+            double percentage = (entry.getValue() / (double) totalTraces) * 100;
+            tracePercentageMap.put(entry.getKey(), percentage);
+        }
+
+        XLog filteredLog = (XLog) clonedLog.clone();
+        filteredLog.clear();
+
+        for (XTrace trace : clonedLog) {
+            List<String> activities = traceActivitiesMap.get(trace);
+            if (tracePercentageMap.get(activities) >= request.getFloat(ParamsConstants.MIN_OCCURANCE_THRESHOLD)) {
+                filteredLog.add(trace);
+            }
+        }
+        return filteredLog;
+    }
+
+    /**
+     * Filtering traces based on % occurrence.
+     */
+    public XLog filterByEventPercentage(PluginContext context, XLog log, final XEventClasses allEventClasses,
                                      final XEventClass[] eventClassesToKeep, final Double minOccurrence) {
 
         final HashSet<XEventClass> toKeep = new HashSet<>(Arrays.asList(eventClassesToKeep));
@@ -68,8 +113,8 @@ public class EventLogFilters {
 
     public XLog preprocessUsingMatrixFilter(XLog log, JSONObject request){
         MatrixFilterParameter parameter = new MatrixFilterParameter();
-        parameter.setProbabilityOfRemoval(request.getFloat(ParamsConstants.PROBABILITY_OF_REMOVAL));
-        parameter.setSubsequenceLength(request.getInt(ParamsConstants.SUBSEQUENCE_LENGTH));
+        parameter.setProbabilityOfRemoval(request.getFloat(ParamsConstants.PROBABILITY_OF_REMOVAL_MF));
+        parameter.setSubsequenceLength(request.getInt(ParamsConstants.SUBSEQUENCE_LENGTH_MF));
         return FilterBasedOnRelationMatrixK.apply(log, parameter);
     }
 

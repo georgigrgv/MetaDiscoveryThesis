@@ -15,6 +15,9 @@ import org.processmining.alphaminer.algorithms.AlphaMinerFactory;
 import org.processmining.alphaminer.parameters.AlphaMinerParameters;
 import org.processmining.alphaminer.parameters.AlphaRobustMinerParameters;
 import org.processmining.alphaminer.parameters.AlphaVersion;
+import org.processmining.causalactivitygraphcreator.algorithms.DiscoverCausalActivityGraphAlgorithm;
+import org.processmining.causalactivitygraphcreator.parameters.DiscoverCausalActivityGraphParameters;
+import org.processmining.causalactivitymatrixminer.miners.MatrixMinerManager;
 import org.processmining.contexts.uitopia.PluginContextFactory;
 import org.processmining.contexts.uitopia.UIPluginContextFactory;
 import org.processmining.framework.connections.Connection;
@@ -58,7 +61,7 @@ public class DiscoveryAlgorithms {
     public Object[] obtainPetriNetUsingInductiveMiner(XLog log, JSONObject request) throws
             Exception {
         UIPluginContextFactory factory = new UIPluginContextFactory();
-        String variant = request.getString(ParamsConstants.ALGORITHM_VARIANT);
+        String variant = request.getString(ParamsConstants.VARIANT);
         float threshold = 0.2f;
         boolean existThreshold = false;
         if (request.has(ParamsConstants.NOISE_THRESHOLD)) {
@@ -85,15 +88,8 @@ public class DiscoveryAlgorithms {
     public Object[] obtainPetriNetUsingHeuristicsMiner(XLog log, JSONObject request) throws
             Exception {
         UIPluginContextFactory factory = new UIPluginContextFactory();
-        XEventClassifier defaultClassifier;
-        if (log.getClassifiers().isEmpty()) {
-            XEventClassifier nameCl = new XEventNameClassifier();
-            XEventClassifier lifeTransCl = new XEventLifeTransClassifier();
-            defaultClassifier = new XEventAndClassifier(nameCl, lifeTransCl);
-        } else {
-            defaultClassifier = log.getClassifiers().get(0);
-        }
-        XLogInfo loginfo = new XLogInfoImpl(log, defaultClassifier, log.getClassifiers());
+        XEventClassifier classifier = XLogInfoImpl.NAME_CLASSIFIER;
+        XLogInfo loginfo = new XLogInfoImpl(log, classifier, log.getClassifiers());
         ParametersPanel parameters = new ParametersPanel(loginfo.getEventClassifiers());
         HeuristicsMinerSettings settings = HeuristicsMinerVariant.createHeuristicsMinerParameters(parameters.getSettings(), request);
         return HeuristicsNetToPetriNetConverter.converter(factory.getContext(),
@@ -104,7 +100,7 @@ public class DiscoveryAlgorithms {
         PluginContextFactory factory = new PluginContextFactory();
         Object[] ret = new Object[2];
         XEventClassifier classifier = XLogInfoImpl.NAME_CLASSIFIER;
-        String variant = request.getString(ParamsConstants.ALGORITHM_VARIANT);
+        String variant = request.getString(ParamsConstants.VARIANT);
 
         AlphaMinerParameters parameters;
 
@@ -126,15 +122,7 @@ public class DiscoveryAlgorithms {
     public Object[] obtainPetriNetUsingHybridILPMiner(XLog xLog, JSONObject request) throws Exception {
         UIPluginContextFactory contextFactory = new UIPluginContextFactory();
         Object[] result = null;
-        XEventClassifier defaultClassifier;
-        if (xLog.getClassifiers().isEmpty()) {
-            XEventClassifier nameCl = new XEventNameClassifier();
-            XEventClassifier lifeTransCl = new XEventLifeTransClassifier();
-            defaultClassifier = new XEventAndClassifier(nameCl, lifeTransCl);
-        } else {
-            defaultClassifier = xLog.getClassifiers().get(0);
-        }
-
+        XEventClassifier defaultClassifier = new XEventNameClassifier();
         final String startLabel = "[start>@" + System.currentTimeMillis();
         final String endLabel = "[end]@" + System.currentTimeMillis();
         XLog artifLog = XLogUtils.addArtificialStartAndEnd(xLog, startLabel, endLabel);
@@ -191,24 +179,43 @@ public class DiscoveryAlgorithms {
         // set the log to the params
         params.setLog(artifLog);
 
+        DiscoveryStrategy discoveryStrategy = new DiscoveryStrategy();
+        DiscoverCausalActivityGraphAlgorithm algorithm = new DiscoverCausalActivityGraphAlgorithm();
+        // Experimental
+        discoveryStrategy.setDiscoveryStrategyType(DiscoveryStrategyType.CAUSAL_E_VERBEEK);
+
+        DiscoverCausalActivityGraphParameters graphParams = new DiscoverCausalActivityGraphParameters(params.getLog());
+        graphParams.setMiner(MatrixMinerManager.getInstance().getMiner(null).getName());
+        graphParams.setClassifier(defaultClassifier);
+        graphParams.setShowClassifierPanel(false);
+
+        discoveryStrategy.setCausalActivityGraphParameters(graphParams);
+        discoveryStrategy.setCausalActivityGraph(algorithm.apply(null, params.getLog(), graphParams));
+
+        params.setDiscoveryStrategy(discoveryStrategy);
+
         result = discoverWithArtificialStartEnd(contextFactory.getContext(), xLog, artifLog, params);
         return result;
     }
 
     public Object[] obtainPetriNetUsingSplitMiner(XLog xLog, JSONObject request) {
-        UIPluginContextFactory factory = new UIPluginContextFactory();
-        BPMN2PetriNetConverter_Configuration config = new BPMN2PetriNetConverter_Configuration();
-        ExportPetriNet exportPetriNet = new ExportPetriNet();
-        double eta = request.getDouble(ParamsConstants.ETA);
-        double epsilon = request.getDouble(ParamsConstants.EPSILON);
-        boolean parallelismFirst = request.getBoolean(ParamsConstants.PARALLELISM_FIRST);
-        boolean replaceIORs = request.getBoolean(ParamsConstants.REPLACE_IORS);
-        boolean removeLoopActivities = request.getBoolean(ParamsConstants.REMOVE_LOOP_ACTIVITIES);
-        SimpleLog cLog = LogParser.getComplexLog(xLog, new XEventNameClassifier());
-        DirectlyFollowGraphPlus dfgp = new DirectlyFollowGraphPlus(cLog, eta, epsilon, DFGPUIResult.FilterType.FWG, parallelismFirst);
-        dfgp.buildDFGP();
-        SplitMiner sm = new SplitMiner(replaceIORs, removeLoopActivities);
-        BPMNDiagram output = sm.discoverFromDFGP(dfgp);
-        return exportPetriNet.convertBPMNToPetriNet(factory.getContext(), output, config);
+        try {
+            UIPluginContextFactory factory = new UIPluginContextFactory();
+            BPMN2PetriNetConverter_Configuration config = new BPMN2PetriNetConverter_Configuration();
+            ExportPetriNet exportPetriNet = new ExportPetriNet();
+            double eta = request.getDouble(ParamsConstants.ETA);
+            double epsilon = request.getDouble(ParamsConstants.EPSILON);
+            boolean parallelismFirst = request.getBoolean(ParamsConstants.PARALLELISM_FIRST);
+            boolean replaceIORs = request.getBoolean(ParamsConstants.REPLACE_IORS);
+            boolean removeLoopActivities = request.getBoolean(ParamsConstants.REMOVE_LOOP_ACTIVITIES);
+            SimpleLog cLog = LogParser.getComplexLog(xLog, new XEventNameClassifier());
+            DirectlyFollowGraphPlus dfgp = new DirectlyFollowGraphPlus(cLog, eta, epsilon, DFGPUIResult.FilterType.FWG, parallelismFirst);
+            dfgp.buildDFGP();
+            SplitMiner sm = new SplitMiner(replaceIORs, removeLoopActivities);
+            BPMNDiagram output = sm.discoverFromDFGP(dfgp);
+            return exportPetriNet.convertBPMNToPetriNet(factory.getContext(), output, config);
+        }catch (Exception e){
+            return new Object[]{"noModel"};
+        }
     }
 }

@@ -1,62 +1,14 @@
 {
   "algorithm_variants": {
-    "IM": {
-      "algorithm": "InductiveMiner",
-      "variant": "Inductive Miner (IM)",
-      "requiresNoiseThreshold": false
-    },
-    "IMf": {
-      "algorithm": "InductiveMiner",
-      "variant": "Inductive Miner - infrequent (IMf)",
-      "requiresNoiseThreshold": true
-    },
-    "IMa": {
-      "algorithm": "InductiveMiner",
-      "variant": "Inductive Miner - all operators (IMa)",
-      "requiresNoiseThreshold": false
-    },
-    "IMfa": {
-      "algorithm": "InductiveMiner",
-      "variant": "Inductive Miner - infrequent & all operators (IMfa)",
-      "requiresNoiseThreshold": true
-    },
-    "IMc": {
-      "algorithm": "InductiveMiner",
-      "variant": "Inductive Miner - incompleteness (IMc)",
-      "requiresNoiseThreshold": false
-    },
-    "IMlc": {
-      "algorithm": "InductiveMiner",
-      "variant": "Inductive Miner - life cycle (IMlc)",
-      "requiresNoiseThreshold": false
-    },
-    "IMflc": {
-      "algorithm": "InductiveMiner",
-      "variant": "Inductive Miner - infrequent & life cycle (IMflc)",
-      "requiresNoiseThreshold": true
-    },
-    "Alpha": {
+    "AlphaMiner": {
       "algorithm": "AlphaMiner",
-      "variant": "Alpha"
+      "variant": "Alpha Miner",
+      "variantParameterName": "alphaVariant"
     },
-    "Alpha+": {
-      "algorithm": "AlphaMiner",
-      "variant": "Alpha+"
-    },
-    "Alpha++": {
-      "algorithm": "AlphaMiner",
-      "variant": "Alpha++"
-    },
-    "Alpha#": {
-      "algorithm": "AlphaMiner",
-      "variant": "Alpha#"
-    },
-    "AlphaR": {
-      "algorithm": "AlphaMiner",
-      "variant": "AlphaR",
-      "requiresCausalThreshold": true,
-      "requiresNoiseThresholdLeastFreq": true,
-      "requiresNoiseThresholdMostFreq": true
+    "InductiveMiner": {
+      "algorithm": "InductiveMiner",
+      "variant": "Inductive Miner",
+      "variantParameterName": "inductiveVariant"
     },
     "HM": {
       "algorithm": "HeuristicsMiner",
@@ -90,58 +42,73 @@
       "requiresLPVariableType": true
     }
   },
-  "preprocessing_variants": {
-    "MatrixFilter": {
-      "method": "Matrix Filtering",
-      "variant": "Conditional Probabilities (MF)",
-      "requiresProbabilityOfRemoval": true,
-      "requiresSubsequenceLength": true
+  "variantRequirements": {
+    "AlphaMiner": {
+      "AlphaR": [
+        "causalThreshold",
+        "noiseThresholdLeastFreq",
+        "noiseThresholdMostFreq"
+      ]
     },
-    "SequenceFilter": {
-      "method": "Sequence Filtering",
-      "variant": "Frequent Sequence Filtering (SF)",
-      "requiresHighSupportPattern": true,
-      "requiresOddDistance": true,
-      "requiresConfHighConfRules": true,
-      "requiresSuppHighConfRules": true,
-      "requiresConfOrdinaryRules": true
+    "InductiveMiner": {
+      "Inductive Miner - infrequent (IMf)": [
+        "noiseThreshold"
+      ],
+      "Inductive Miner - infrequent & all operators (IMfa)": [
+        "noiseThreshold"
+      ],
+      "Inductive Miner - infrequent & life cycle (IMflc)": [
+        "noiseThreshold"
+      ]
     }
   },
   "parameters": {
-    "probabilityOfRemoval": {
+    "alphaVariant": {
+      "type": "categorical",
+      "choices": [
+        "Alpha",
+        "Alpha+",
+        "Alpha++",
+        "Alpha#",
+        "AlphaR"
+      ]
+    },
+    "inductiveVariant": {
+      "type": "categorical",
+      "choices": [
+        "Inductive Miner (IM)",
+        "Inductive Miner - infrequent (IMf)",
+        "Inductive Miner - all operators (IMa)",
+        "Inductive Miner - infrequent & all operators (IMfa)",
+        "Inductive Miner - incompleteness (IMc)",
+        "Inductive Miner - life cycle (IMlc)",
+        "Inductive Miner - infrequent & life cycle (IMflc)"
+      ]
+    },
+    "probabilityOfRemovalMF": {
       "type": "float",
       "low": 0.01,
       "high": 0.4
     },
-    "subsequenceLength": {
+    "subsequenceLengthMF": {
       "type": "integer",
       "low": 1,
-      "high": 3
+      "high": 4
     },
-    "highSupportPattern": {
+    "probabilityOfRemovalRL": {
       "type": "float",
-      "low": 0.5,
-      "high": 0.9
+      "low": 0.01,
+      "high": 0.4
     },
-    "oddDistance": {
+    "subsequenceLengthRL": {
       "type": "integer",
-      "low": 0,
-      "high": 3
+      "low": 1,
+      "high": 4
     },
-    "confHighConfRules": {
-      "type": "float",
-      "low": 0.7,
-      "high": 0.99
-    },
-    "suppHighConfRules": {
+    "percentageOccurance": {
       "type": "float",
       "low": 0.1,
-      "high": 0.5
-    },
-    "confOrdinaryRules": {
-      "type": "float",
-      "low": 0.0,
-      "high": 0.5
+      "high": 3
     },
     "noiseThreshold": {
       "type": "float",
@@ -274,6 +241,25 @@
       "type": "float",
       "low": 0.0,
       "high": 1.0
+    }
+  },
+  "preprocessing_variants": {
+    "TraceFilter": {
+      "method": "Trace Filter",
+      "variant": "Trace Frequency Filter (TF)",
+      "requiresPercentageOccurance": true
+    },
+    "MatrixFilter": {
+      "method": "Matrix Filtering",
+      "variant": "Conditional Probabilities (MF)",
+      "requiresProbabilityOfRemovalMF": true,
+      "requiresSubsequenceLengthMF": true
+    },
+    "RepairLogFilter": {
+      "method": "Repair Log Filter",
+      "variant": "Repair Log Filter (RLF)",
+      "requiresProbabilityOfRemovalRL": true,
+      "requiresSubsequenceLengthRL": true
     }
   }
 }

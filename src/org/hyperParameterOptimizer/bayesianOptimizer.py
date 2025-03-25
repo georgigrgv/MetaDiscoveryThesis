@@ -6,6 +6,7 @@ import string
 import requests
 import optuna
 import logging
+from itertools import permutations
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("Logger")
@@ -26,38 +27,81 @@ def objective(trial, config):
     chosen_key = trial.suggest_categorical("algorithm_variants", algorithm_variant_choices)
     chosen_combination = algorithm_variant_choices[chosen_key]
 
-    # Extract algorithm and variant
     chosen_algorithm = chosen_combination["algorithm"]
-    chosen_variant = chosen_combination["variant"]
+    variant_param_name = chosen_combination.get("variantParameterName")
 
-    # Load preprocessing and variant options
-    preprocessing_choices = config["preprocessing_variants"]
-    chosen_preprocessing_key = trial.suggest_categorical("preprocessing_variants", preprocessing_choices)
-    chosen_preprocessing = preprocessing_choices[chosen_preprocessing_key]
-    chosen_preprocessing_algorithm = chosen_preprocessing["method"]
+    # If algorithm has a variant param (e.g., alphaVariant), choose one
+    if variant_param_name:
+        chosen_variant = trial.suggest_categorical(
+            variant_param_name,
+            config["parameters"][variant_param_name]["choices"]
+        )
+    else:
+        chosen_variant = chosen_combination["variant"]
+
+    # Preprocessing combination logic
+    preprocessing_keys = list(config["preprocessing_variants"].keys())
+    preprocessing_combo_choices = []
+    for r in range(1, len(preprocessing_keys)):
+        for permutation in permutations(preprocessing_keys, r):
+            preprocessing_combo_choices.append("+".join(permutation))
+
+    chosen_combo_key = trial.suggest_categorical("preprocessing_combo", preprocessing_combo_choices)
+    chosen_combo = chosen_combo_key.split("+")
+
+    preprocessing_methods = []
+    # Collect required parameters
+    required_params = []
+
+    for key in chosen_combo:
+        method_conf = config["preprocessing_variants"][key]
+        preprocessing_methods.append(method_conf["method"])
+
+        for param, param_conf in config["parameters"].items():
+            requires_key = f"requires{param[0].upper()}{param[1:]}"
+            if method_conf.get(requires_key, False):
+                required_params.append(param)
 
     # Initialize payload
     payload = {
         "algorithm": chosen_algorithm,
         "variant": chosen_variant,
-        "preprocessing": chosen_preprocessing_algorithm
+        "preprocessing": preprocessing_methods
     }
 
+    # Check for general "requires*" flags
     for param, param_config in config["parameters"].items():
-        # Use the exact parameter name for the requires key
         requires_key = f"requires{param[:1].upper()}{param[1:]}"
-        if chosen_combination.get(requires_key, False) or chosen_preprocessing.get(requires_key, False):  # Check if this parameter is required
-            if param_config["type"] == "float":
-                payload[param] = trial.suggest_float(param, param_config["low"], param_config["high"])
-            elif param_config["type"] == "categorical":
-                payload[param] = trial.suggest_categorical(param, param_config["choices"])
-            elif param_config["type"] == "integer":
-                payload[param] = trial.suggest_int(param, param_config["low"], param_config["high"])
+        if chosen_combination.get(requires_key, False):
+            required_params.append(param)
+
+    # Include variant-specific parameters if defined
+    variant_requirements = config.get("variantRequirements", {})
+    variant_specific = variant_requirements.get(chosen_algorithm, {}).get(chosen_variant, [])
+    required_params.extend(variant_specific)
+
+    # Sample only required parameters
+    for param in required_params:
+        param_config = config["parameters"][param]
+        if param_config["type"] == "float":
+            payload[param] = trial.suggest_float(param, param_config["low"], param_config["high"])
+        elif param_config["type"] == "categorical":
+            payload[param] = trial.suggest_categorical(param, param_config["choices"])
+        elif param_config["type"] == "integer":
+            payload[param] = trial.suggest_int(param, param_config["low"], param_config["high"])
 
     try:
         response = requests.post(JAVA_SERVICE_URL, json=payload)
         response.raise_for_status()
         result = response.json()
+
+        error = result.get("error", "")
+
+        precision_plugin = result.get("precisionPlugin", "")
+
+        if len(error) != 0:
+            trial.set_user_attr("status", error)
+            raise optuna.TrialPruned()
 
         fitness = result.get("fitness", -1.0)
         precision = result.get("precision", -1.0)
@@ -65,6 +109,11 @@ def objective(trial, config):
         simplicity = result.get("simplicity", -1.0)
         generalization = result.get("generalization", -1.0)
 
+        # Only fitness and simpilcity
+        if fitness != -1.0 and simplicity != -1.0 and precision == -1.0:
+            status = f"Only Fitness and Simplicity available | "f"Fitness: {fitness:.4f}, Simplicity: {simplicity:.4f}"
+            trial.set_user_attr("status", status)
+            raise optuna.TrialPruned()
         if fitness == -1.0:
             logger.warning(f"Trial {trial.number}: Fitness could not be computed. Defaulting to -1.0.")
             trial.set_user_attr("status", "Alignments/Fitness could not be computed")
@@ -73,7 +122,12 @@ def objective(trial, config):
             logger.warning(f"Trial {trial.number}: Precision could not be computed. Defaulting to -1.0.")
             trial.set_user_attr("status", "Alignments/Precision could not be computed")
             raise optuna.TrialPruned()
+        if simplicity == -1.0:
+            logger.warning(f"Trial {trial.number}: Simplicity could not be computed. Defaulting to -1.0.")
+            trial.set_user_attr("status", "Simplicity could not be computed")
+            raise optuna.TrialPruned()
 
+        trial.set_user_attr("status", f"Precision plugin used: {precision_plugin}")
         return fitness, precision, f1_score, simplicity, generalization
 
     except requests.exceptions.RequestException as e:

@@ -5,14 +5,18 @@ import org.python.antlr.ast.Str;
 
 public class ParamsConstants {
 
+
     public static final String ALGORITHM = "algorithm";
     public static final String FILTER_VALUE = "hyperParamFilter";
-    public static final String ALGORITHM_VARIANT = "variant";
+    public static final String VARIANT = "variant";
+    //IM
+    public static final String ALGORITHM_VARIANT_INDUCTIVE = "inductiveVariant";
     public static final String NOISE_THRESHOLD = "noiseThreshold";
     // Alpha Miner
     public static final String CAUSAL_THRESHOLD = "causalThreshold";
     public static final String NOISE_THRESHOLD_LEAST_FREQ = "noiseThresholdLeastFreq";
     public static final String NOISE_THRESHOLD_MOST_FREQ = "noiseThresholdMostFreq";
+    public static final String ALGORITHM_VARIANT_ALPHA = "alphaVariant";
     // Heuristics Miner
     public static final String RELATIVE_TO_BEST = "relativeToBest";
     public static final String DEPENDENCY_THRESHOLD = "dependencyThreshold";
@@ -36,13 +40,18 @@ public class ParamsConstants {
     public static final String LP_VARIABLE_TYPE = "lPVariableType";
     public static final String DISCOVERY_STRATEGY = "discoveryStrategy";
     // Matrix filter
-    public static final String PROBABILITY_OF_REMOVAL = "probabilityOfRemoval";
-    public static final String SUBSEQUENCE_LENGTH = "subsequenceLength";
+    public static final String PROBABILITY_OF_REMOVAL_MF = "probabilityOfRemovalMF";
+    public static final String SUBSEQUENCE_LENGTH_MF = "subsequenceLengthMF";
+    //Repair Log Filter
+    public static final String PROBABILITY_OF_REMOVAL_RL = "probabilityOfRemovalRL";
+    public static final String SUBSEQUENCE_LENGTH_RL = "subsequenceLengthRL";
     // Sequence filter
     public static final String HIGH_SUPPORT_PATTERN = "highSupportPattern";
     public static final String ODD_DISTANCE = "oddDistance";
     public static final String CONF_HIGH_CONF_RULES = "confHighConfRules";
     public static final String SUPP_HIGH_CONF_RULES ="suppHighConfRules";
     public static final String CONF_ORDINARY_RULES = "confOrdinaryRules";
+    // Trace filter
+    public static final String MIN_OCCURANCE_THRESHOLD = "percentageOccurance";
 
  }

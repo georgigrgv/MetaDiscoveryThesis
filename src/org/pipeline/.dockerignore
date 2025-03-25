@@ -1,0 +1,10 @@
+.git
+*.log
+*.env
+target/
+.idea/
+*.iml
+*.class
+.DS_Store
+node_modules/
+*.zip
