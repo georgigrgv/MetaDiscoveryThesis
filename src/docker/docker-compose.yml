@@ -28,7 +28,9 @@ services:
     environment:
       - OPTUNA_STUDY_NAME=${OPTUNA_STUDY_NAME}
       - JAVA_SERVICE_URL=${JAVA_SERVICE_URL}
-
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/docker-compose-dir
   db:
     image: postgres:14-alpine
     ports:

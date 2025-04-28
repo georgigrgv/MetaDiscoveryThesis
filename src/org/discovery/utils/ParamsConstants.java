@@ -45,13 +45,11 @@ public class ParamsConstants {
     //Repair Log Filter
     public static final String PROBABILITY_OF_REMOVAL_RL = "probabilityOfRemovalRL";
     public static final String SUBSEQUENCE_LENGTH_RL = "subsequenceLengthRL";
-    // Sequence filter
-    public static final String HIGH_SUPPORT_PATTERN = "highSupportPattern";
-    public static final String ODD_DISTANCE = "oddDistance";
-    public static final String CONF_HIGH_CONF_RULES = "confHighConfRules";
-    public static final String SUPP_HIGH_CONF_RULES ="suppHighConfRules";
-    public static final String CONF_ORDINARY_RULES = "confOrdinaryRules";
     // Trace filter
     public static final String MIN_OCCURANCE_THRESHOLD = "percentageOccurance";
+    // Projection filter
+    public static final String KEEP_THRESHOLD = "keepThresholdP";
+    // Variant filter
+    public static final String KEEP_THRESHOLD_VF = "keepThresholdVF";
 
  }

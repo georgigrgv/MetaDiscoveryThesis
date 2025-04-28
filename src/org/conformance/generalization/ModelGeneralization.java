@@ -1,4 +1,4 @@
-package org.evaluate;
+package org.conformance.generalization;
 
 import org.deckfour.xes.model.XLog;
 import org.processmining.models.graphbased.directed.petrinet.Petrinet;
@@ -12,12 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public class ModelGeneralization {
-    // Use the PM4Py impl, or more accurate the literature formula for Generalization
-
-    // General inf:
-    // node instance: all the transitions/events that were involved in the alignments
-    // step Types: for all transitions/events the move accordingly
-    // trace Index: the indices of traces that share the same result
 
     public double measureGeneralization(Petrinet petrinet, PNRepResult alignment){
         Map<Transition, Integer> transExecutions = new HashMap<>();
@@ -41,8 +35,6 @@ public class ModelGeneralization {
                 }
             });
         });
-
-        // Clear the map out of unsed transitions
         transExecutions.entrySet().removeIf(entry -> entry.getValue() == 0);
 
         // compute values for formula same as PM4Py

@@ -5,12 +5,10 @@ import org.processmining.framework.plugin.impl.AbstractGlobalContext;
 
 public class UIPluginContextFactory extends AbstractGlobalContext {
     protected PluginContext getMainPluginContext() {
-// TODO Auto-generated method stub
         return null;
     }
 
     public Class<? extends PluginContext> getPluginContextType() {
-// TODO Auto-generated method stub
         return null;
     }
 

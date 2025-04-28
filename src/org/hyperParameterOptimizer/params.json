@@ -26,7 +26,7 @@
       "algorithm": "SplitMiner",
       "variant": "Split Miner",
       "requiresEta": true,
-      "requiresEpsilon": true,
+      "requiresEpsilon":true,
       "requiresParallelismFirst": true,
       "requiresReplaceIORs": true,
       "requiresRemoveLoopActivities": true
@@ -39,7 +39,8 @@
       "requiresLPFilter": true,
       "requiresSlackVariableFilterThreshold": true,
       "requiresSequenceEncodingCutoffLevel": true,
-      "requiresLPVariableType": true
+      "requiresLPVariableType": true,
+      "requiresDiscoveryStrategy": true
     }
   },
   "variantRequirements": {
@@ -87,23 +88,23 @@
     },
     "probabilityOfRemovalMF": {
       "type": "float",
-      "low": 0.01,
-      "high": 0.4
+      "low": 0.05,
+      "high": 0.25
     },
     "subsequenceLengthMF": {
       "type": "integer",
       "low": 1,
-      "high": 4
+      "high": 3
     },
     "probabilityOfRemovalRL": {
       "type": "float",
-      "low": 0.01,
-      "high": 0.4
+      "low": 0.05,
+      "high": 0.25
     },
     "subsequenceLengthRL": {
       "type": "integer",
       "low": 1,
-      "high": 4
+      "high": 3
     },
     "percentageOccurance": {
       "type": "float",
@@ -132,8 +133,8 @@
     },
     "relativeToBest": {
       "type": "float",
-      "low": 1.0,
-      "high": 10.0
+      "low": 0.0,
+      "high": 100.0
     },
     "dependencyThreshold": {
       "type": "float",
@@ -142,12 +143,12 @@
     },
     "lengthOneLoopsThreshold": {
       "type": "float",
-      "low": 0.0,
+      "low": 64.0,
       "high": 100.0
     },
     "lengthTwoLoopsThreshold": {
       "type": "float",
-      "low": 0.0,
+      "low": 64.0,
       "high": 100.0
     },
     "longDistanceThreshold": {
@@ -241,14 +242,34 @@
       "type": "float",
       "low": 0.0,
       "high": 1.0
+    },
+    "discoveryStrategy": {
+      "type": "categorical",
+      "choices": [
+        "Random",
+        "Alpha",
+        "Heuristics",
+        "Fuzzy",
+        "Standard",
+        "Mini",
+        "Midi",
+        "Maxi",
+        "Average",
+        "Directly Follows"
+      ]
+    },
+    "keepThresholdP": {
+      "type": "integer",
+      "low": 0,
+      "high": 100
+    },
+    "keepThresholdVF": {
+      "type": "integer",
+      "low": 0,
+      "high": 100
     }
   },
   "preprocessing_variants": {
-    "TraceFilter": {
-      "method": "Trace Filter",
-      "variant": "Trace Frequency Filter (TF)",
-      "requiresPercentageOccurance": true
-    },
     "MatrixFilter": {
       "method": "Matrix Filtering",
       "variant": "Conditional Probabilities (MF)",
@@ -260,6 +281,16 @@
       "variant": "Repair Log Filter (RLF)",
       "requiresProbabilityOfRemovalRL": true,
       "requiresSubsequenceLengthRL": true
+    },
+    "VariantFilter": {
+      "method": "Variant Log Filter",
+      "variant": "Variant Log Filter",
+      "requiresKeepThresholdVF": true
+    },
+    "ProjectionFilter": {
+      "method": "Projection Log Filter",
+      "variant": "Projection Log Filter",
+      "requiresKeepThresholdP": true
     }
   }
 }

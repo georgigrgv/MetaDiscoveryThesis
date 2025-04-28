@@ -1,4 +1,4 @@
-package org.discovery;
+package org.discovery.utils;
 
 import org.processmining.framework.plugin.PluginContext;
 import org.processmining.framework.plugin.Progress;
@@ -61,16 +61,11 @@ public class ExportPetriNet {
     public Object[] convertBPMNToPetriNet(PluginContext context, BPMNDiagram bpmn, BPMN2PetriNetConverter_Configuration config) {
 
         BPMN2PetriNetConverter conv = new BPMN2PetriNetConverter(bpmn, config);
-
-        Progress progress = context.getProgress();
-        progress.setCaption("Converting BPMN diagram to Petri net");
-
         boolean success = conv.convert();
 
         if (success) {
             Petrinet net = conv.getPetriNet();
             Marking m = conv.getMarking();
-            context.getConnectionManager().addConnection(new InitialMarkingConnection(net, m));
 
             List<Place> finalPlaces = conv.getFinalPlaces();
             if (finalPlaces.size() == 1) {

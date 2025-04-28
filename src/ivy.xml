@@ -16,6 +16,7 @@
         <dependency org="prom" name="AntiAlignments" rev="latest" changing="true" transitive="true"/>
         <!-- Used to checks jars for implementations-->
         <dependency org="prom" name="LogFiltering" rev="latest" changing="true" transitive="true"/>
+        <dependency org="prom" name="Filterd" rev="latest" changing="true" transitive="true"/>
         <!-- Dependencies for fitness algorithms-->
         <dependency org="prom" name="LPEngine" rev="latest" changing="true" transitive="true"/>
         <dependency org="prom" name="DataAwareExplorer" rev="latest" changing="true" transitive="true"/>
