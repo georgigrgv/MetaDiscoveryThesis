@@ -16,11 +16,9 @@ public class ModelGeneralization {
     public double measureGeneralization(Petrinet petrinet, PNRepResult alignment){
         Map<Transition, Integer> transExecutions = new HashMap<>();
 
-        // Add the possible transitions
         for (Transition t : petrinet.getTransitions()){
             transExecutions.put(t, 0);
         }
-
         // Only viable alignements and add all executions for a transition from
         // an alignement on all traces
         alignment.stream().filter(SyncReplayResult::isReliable).forEach(syncReplayResult -> {

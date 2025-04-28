@@ -4,8 +4,6 @@ package org.discovery.utils;
 import org.python.antlr.ast.Str;
 
 public class ParamsConstants {
-
-
     public static final String ALGORITHM = "algorithm";
     public static final String FILTER_VALUE = "hyperParamFilter";
     public static final String VARIANT = "variant";
